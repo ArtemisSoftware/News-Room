@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -40,6 +42,9 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     implementation(project(Modules.coreData))
+
+    implementation(DaggerHilt.hiltAndroid)
+    kapt(DaggerHilt.hiltCompiler)
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
