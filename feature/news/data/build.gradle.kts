@@ -39,6 +39,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
 
+    implementation(project(Modules.coreData))
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
