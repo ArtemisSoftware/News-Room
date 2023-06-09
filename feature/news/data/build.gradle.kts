@@ -49,6 +49,10 @@ dependencies {
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
 
+    kapt(Room.roomCompiler)
+    implementation(Room.roomKtx)
+    implementation(Room.roomRuntime)
+
 
 
     testImplementation("junit:junit:4.13.2")
