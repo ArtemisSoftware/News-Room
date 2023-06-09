@@ -15,13 +15,6 @@ import com.core.data.database.entities.ArticleEntity
     exportSchema = false,
 )
 abstract class NewsRoomDatabase : RoomDatabase() {
-    companion object {
-        fun getInstance(context: Context): NewsRoomDatabase {
-            return Room.databaseBuilder(context, NewsRoomDatabase::class.java, "news_room_db")
-                .fallbackToDestructiveMigration()
-                .build()
-        }
-    }
 
     abstract fun getNewsDao(): NewsDao
 }
