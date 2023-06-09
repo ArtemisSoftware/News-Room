@@ -1,6 +1,6 @@
 object Compose {
 
-    val kotlinCompilerExtensionVersion = "1.3.2"
+    val kotlinCompilerExtensionVersion = "1.4.6"
 
     private val composeBomVersion = "2022.10.00"
 
