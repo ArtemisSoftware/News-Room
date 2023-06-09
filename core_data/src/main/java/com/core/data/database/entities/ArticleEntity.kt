@@ -1,11 +1,11 @@
-package com.news.data.database.entities
+package com.core.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
 data class ArticleEntity(
-    val author: String,
+    val author: String? = null,
     val content: String,
     val description: String,
     @PrimaryKey(autoGenerate = false)
