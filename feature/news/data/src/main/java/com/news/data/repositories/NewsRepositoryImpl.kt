@@ -14,9 +14,9 @@ class NewsRepositoryImpl constructor(
     private val newsDao: NewsDao,
 ) : NewsRepository {
 
-    override suspend fun getNewsArticle() {
+    override suspend fun getNewsArticle(country: String, category: String) {
         return try {
-            val result = newsApi.getNewsArticles(country = "us", category = "war")
+            val result = newsApi.getNewsArticles(country = country, category = category)
             newsDao.insert(result.articles.map { it.toEntity() })
         } catch (e: Exception) {
         }

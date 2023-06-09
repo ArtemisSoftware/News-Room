@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    suspend fun getNewsArticle()
+    suspend fun getNewsArticle(country: String, category: String)
 
     suspend fun searchArticles(map: MutableMap<String, String>): List<Article>
 
