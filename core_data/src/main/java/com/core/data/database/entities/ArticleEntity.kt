@@ -10,5 +10,5 @@ data class ArticleEntity(
     val description: String,
     @PrimaryKey(autoGenerate = false)
     val title: String,
-    val urlToImage: String
+    val urlToImage: String? = null,
 )
