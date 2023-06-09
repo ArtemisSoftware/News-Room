@@ -33,20 +33,37 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.kotlinCompilerExtensionVersion
+    }
 }
 
 dependencies {
 
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
+
+
+
     implementation(project(Modules.newsDomain))
+
+
+    implementation(platform(Compose.bom))
+    implementation(Compose.ui)
+    implementation(Compose.uiGraphics)
+    implementation(Compose.uiToolingPreview)
+    implementation(Compose.material3)
 
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltCompiler)
+
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
