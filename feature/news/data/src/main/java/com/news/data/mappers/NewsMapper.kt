@@ -23,3 +23,13 @@ fun ArticleDto.toArticle(): Article {
         urlToImage = this.urlToImage ?: "",
     )
 }
+
+fun ArticleEntity.toArticle(): Article {
+    return Article(
+        author = this.author ?: "",
+        content = this.content,
+        description = this.description,
+        title = this.title,
+        urlToImage = this.urlToImage ?: "",
+    )
+}
