@@ -1,5 +1,6 @@
 package com.news.presentation.news.composables
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
@@ -34,12 +36,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.news.domain.models.Article
 
 sealed class Screen(
     val title: String,
@@ -53,13 +56,118 @@ sealed class Screen(
 }
 
 @Composable
+fun TopicSelector(
+    screens: List<Screen>,
+    selectedTopicIndex: Int = 0,
+) {
+    var selectedScreen by remember { mutableStateOf(0) }
+    Box(
+        Modifier
+            // .shadow(5.dp)
+            .background(color = MaterialTheme.colorScheme.surface)
+            .height(40.dp)
+            .fillMaxWidth()
+            .background(
+                color = Color.LightGray,
+                shape = RoundedCornerShape(24.dp),
+            )
+            .clip(RoundedCornerShape(24.dp))
+            .padding(horizontal = 2.dp)
+        ,
+    ) {
+        Row(
+            Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            for (screen in screens) {
+                val isSelected = screen == screens[selectedScreen]
+                val animatedWeight by animateFloatAsState(targetValue = if (isSelected) 1.5f else 1f)
+                val animated_Weight by animateDpAsState(targetValue = if (isSelected) 20.dp else 0.dp)
+                Box(
+                    modifier = Modifier.weight(1F),
+                    //modifier = Modifier.padding(start = animated_Weight, end = animated_Weight),
+                    // modifier = Modifier.padding(start = 0.dp, end = animated_Weight),
+                    // modifier = Modifier.weight(animatedWeight),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    val interactionSource = remember { MutableInteractionSource() }
+                    TopicChip(
+                        modifier = Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null,
+                        ) {
+                            selectedScreen = screens.indexOf(screen)
+                        },
+                        screen = screen,
+                        isSelected = isSelected,
+                    )
+                }
+            }
+        }
+    }
+
+//    var sizes by remember {
+//        mutableStateOf(mutableListOf(IntSize.Zero, IntSize.Zero, IntSize.Zero))
+//    }
+//
+//    var selectedScreen by remember { mutableStateOf(0) }
+//
+//    Box(
+//        modifier = Modifier
+//            //            .shadow(5.dp)
+//                        .background(color = MaterialTheme.colorScheme.surface)
+// //                        .height(64.dp)
+//            .fillMaxWidth(),
+//    ) {
+//        Row(
+//            Modifier.fillMaxWidth(),
+//            verticalAlignment = Alignment.CenterVertically,
+//        ) {
+//            screens.forEachIndexed { index, screen ->
+//
+//                val isSelected = screen == screens[selectedTopicIndex]
+//                val animatedWeight by animateFloatAsState(targetValue = if (isSelected) 1.5f else 1f)
+//
+//                Box(
+//                    modifier = Modifier.weight(animatedWeight),
+// //                contentAlignment = Alignment.Center,
+//                ) {
+//                    val interactionSource = remember { MutableInteractionSource() }
+//                    TopicChip(
+//                        modifier = Modifier
+//                            .clickable(
+//                                interactionSource = interactionSource,
+//                                indication = null,
+//                                onClick = {
+//                                    selectedScreen = screens.indexOf(screen)
+//                                },
+//                            ),
+//                        screen = screen,
+//                        isSelected = isSelected,
+//                    )
+//                }
+//            }
+//        }
+//    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TopicSelectorPreview() {
+    TopicSelector(
+        screens = listOf(Screen.Home, Screen.Settings, Screen.Profile),
+    )
+}
+
+@Composable
 fun BottomNavNoAnimation(
     screens: List<Screen>,
 ) {
     var selectedScreen by remember { mutableStateOf(0) }
     Box(
         Modifier
-            //.shadow(5.dp)
+            // .shadow(5.dp)
             .background(color = MaterialTheme.colorScheme.surface)
             .height(64.dp)
             .fillMaxWidth(),
