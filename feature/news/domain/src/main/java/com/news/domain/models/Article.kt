@@ -6,4 +6,14 @@ data class Article(
     val description: String,
     val title: String,
     val urlToImage: String,
-)
+) {
+    companion object {
+        val mockArticle = Article(
+            author = "Author",
+            content = "Content",
+            description = "description",
+            title = "title",
+            urlToImage = "url",
+        )
+    }
+}
