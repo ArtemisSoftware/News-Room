@@ -32,7 +32,7 @@ fun UserTopBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(32.dp),
+            .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -48,7 +48,7 @@ fun UserTopBar() {
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .size(55.dp)
-                    .clip(RoundedCornerShape(50.dp)),
+                    .clip(CircleShape),
             )
 
             Box(
