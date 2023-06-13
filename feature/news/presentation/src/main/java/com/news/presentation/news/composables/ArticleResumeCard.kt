@@ -63,7 +63,7 @@ fun ArticleResumeCard(article: Article, isLast: Boolean = false) {
                     modifier = Modifier,
                 ) {
                     CustomImageChip(
-                       text = article.author,
+                        text = article.author,
                         imageId = R.drawable.profile,
                         selected = true,
                     )
@@ -98,7 +98,7 @@ fun ArticleResumeCard(article: Article, isLast: Boolean = false) {
 fun String.capitalizeWords(): String = split(" ").map { it.capitalize() }.joinToString(" ")
 
 @Composable
-private fun CustomImageChip(
+fun CustomImageChip(
     text: String,
     imageId: Int,
     selected: Boolean,

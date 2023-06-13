@@ -26,10 +26,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.news.presentation.news.models.Topic
 
 @Composable
 fun TopicChip(
-    screen: Screen,
+    topic: Topic,
     isSelected: Boolean,
     modifier: Modifier = Modifier,
     showTitle: Boolean = true,
@@ -42,7 +43,8 @@ fun TopicChip(
         contentAlignment = Alignment.Center,
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(getHeight(isSelected = isSelected))
                 .shadow(
                     elevation = getElevation(isSelected = isSelected),
@@ -57,9 +59,9 @@ fun TopicChip(
         ) {
             Icon(
                 painter = rememberVectorPainter(
-                    image = getImage(isSelected = isSelected, screen = screen),
+                    image = getImage(isSelected = isSelected, topic = topic),
                 ),
-                contentDescription = screen.title,
+                contentDescription = topic.title,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .fillMaxHeight()
@@ -70,7 +72,7 @@ fun TopicChip(
 
             if (showTitle) {
                 Text(
-                    text = screen.title,
+                    text = topic.title,
                     modifier = Modifier.padding(start = 8.dp, end = 12.dp),
                     style = MaterialTheme.typography.bodySmall,
                     maxLines = 1,
@@ -85,7 +87,7 @@ private fun getColors(isSelected: Boolean) = if (isSelected) MaterialTheme.color
 private fun getHeight(isSelected: Boolean) = if (isSelected) 36.dp else 26.dp
 private fun getPadding(isSelected: Boolean) = if (isSelected) 12.dp else 2.dp
 private fun getElevation(isSelected: Boolean) = if (isSelected) 15.dp else 0.dp
-private fun getImage(isSelected: Boolean, screen: Screen) = if (isSelected) screen.activeIcon else screen.inactiveIcon
+private fun getImage(isSelected: Boolean, topic: Topic) = if (isSelected) topic.activeIcon else topic.inactiveIcon
 private fun getAlpha(isSelected: Boolean) = if (isSelected) 1f else .5f
 private fun getSize(isSelected: Boolean) = if (isSelected) 26.dp else 20.dp
 
@@ -94,11 +96,11 @@ private fun getSize(isSelected: Boolean) = if (isSelected) 26.dp else 20.dp
 private fun TopicChipPreview() {
     Column {
         TopicChip(
-            screen = Screen.Home,
+            topic = Topic.Home,
             isSelected = false,
         )
         TopicChip(
-            screen = Screen.Home,
+            topic = Topic.Home,
             isSelected = true,
         )
     }

@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.news.presentation.news.models.Topic
 
 @Composable
 fun NewsHeader(
@@ -35,8 +36,7 @@ fun NewsHeader(
             style = MaterialTheme.typography.headlineMedium,
         )
 
-        //BottomNavNoAnimation(listOf(Screen.Home, Screen.Settings, Screen.Profile))
-        TopicSelector(listOf(Screen.Home, Screen.Settings, Screen.Profile))
+        TopicSelector(listOf(Topic.Home, Topic.Settings, Topic.Profile))
     }
 }
 
