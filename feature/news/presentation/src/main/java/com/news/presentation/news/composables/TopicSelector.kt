@@ -33,20 +33,22 @@ import com.news.presentation.news.models.Topic
 @Composable
 fun TopicSelector(
     topics: List<Topic>,
+    modifier: Modifier = Modifier,
     selectedTopicIndex: Int = 0,
 ) {
     var selectedScreen by remember { mutableStateOf(0) }
     Box(
-        Modifier
-            .shadow(5.dp)
-            .background(color = MaterialTheme.colorScheme.surface)
+        modifier
             .height(40.dp)
-            .fillMaxWidth()
+            .clip(RoundedCornerShape(24.dp))
+            .shadow(
+                elevation = 5.dp,
+                shape = RoundedCornerShape(24.dp)
+            )
             .background(
                 color = Color.LightGray,
                 shape = RoundedCornerShape(24.dp),
             )
-            .clip(RoundedCornerShape(24.dp))
             .padding(horizontal = 2.dp),
     ) {
         Row(
@@ -77,10 +79,11 @@ fun TopicSelector(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 private fun TopicSelectorPreview() {
     TopicSelector(
+        modifier = Modifier.fillMaxWidth(),
         topics = listOf(Topic.Home, Topic.Settings, Topic.Profile),
     )
 }

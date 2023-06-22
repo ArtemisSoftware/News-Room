@@ -1,5 +1,6 @@
 package com.news.presentation.news.composables
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,10 +17,12 @@ import com.news.presentation.news.models.Topic
 
 @Composable
 fun NewsHeader(
+    topics: List<Topic>,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Text(
             text = "Today's date",
@@ -28,15 +31,14 @@ fun NewsHeader(
             color = Color.Gray,
         )
 
+        TopicSelector(topics)
+
         Text(
-            text = "Task-based \nExplanation Process",
-            modifier = Modifier.padding(bottom = 20.dp),
+            text = "Hottest News",
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             style = MaterialTheme.typography.headlineMedium,
         )
-
-        TopicSelector(listOf(Topic.Home, Topic.Settings, Topic.Profile))
     }
 }
 
@@ -44,6 +46,7 @@ fun NewsHeader(
 @Composable
 private fun NewsHeaderPreview() {
     NewsHeader(
+        topics = listOf(Topic.Home, Topic.Settings, Topic.Profile),
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),

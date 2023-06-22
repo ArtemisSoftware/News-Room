@@ -24,10 +24,12 @@ import com.news.domain.models.Article
 import com.news.presentation.R
 
 @Composable
-fun ArticleCard(article: Article) {
+fun ArticleCard(
+    article: Article,
+    modifier: Modifier = Modifier
+) {
     Card(
-        modifier = Modifier
-            .width(280.dp),
+        modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
         Box(
@@ -100,5 +102,5 @@ fun ArticleCard(article: Article) {
 @Preview(showBackground = true)
 @Composable
 private fun ArticleCardPreview() {
-    ArticleCard(Article.mockArticle)
+    ArticleCard(Article.mockArticle, modifier = Modifier.fillMaxWidth())
 }
