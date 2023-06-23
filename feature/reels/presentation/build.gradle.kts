@@ -91,6 +91,8 @@ dependencies {
     implementation("androidx.media3:media3-exoplayer:1.0.0-beta02")
     implementation("androidx.media3:media3-ui:1.0.0-beta02")
 
+    implementation("com.google.accompanist:accompanist-pager:0.23.1")
+
 
 //
 //    testImplementation("junit:junit:4.13.2")
