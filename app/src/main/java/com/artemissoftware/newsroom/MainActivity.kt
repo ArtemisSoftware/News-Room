@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.newsroom.ui.theme.NewsRoomTheme
+import com.reels.presentation.spotlight.SpotlightScreen
+import com.reels.presentation.spotlight.a
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +26,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Greeting("Android")
+                    SpotlightScreen()
+                    //a()
+                    //Greeting("Android")
                 }
             }
         }
