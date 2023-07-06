@@ -3,6 +3,19 @@ import androidx.compose.runtime.toMutableStateList
 
 object DummySpotlightData {
 
+    val spotlightV2 =
+        listOf(
+            SpotlightV2(
+                title = "LifeStyle",
+            ),
+            SpotlightV2(
+                title = "Travel Guide",
+            ),
+            SpotlightV2(
+                title = "Food",
+            ),
+        )
+
     val spotlight = listOf(
 
         Spotlight(
@@ -61,7 +74,6 @@ Spotlight(
         ),
     )
 
-
     val reels = listOf(
         Reel(
             "https://user-images.githubusercontent.com/90382113/170887700-e405c71e-fe31-458d-8572-aea2e801eecc.mp4",
@@ -90,7 +102,7 @@ Spotlight(
 //            "altego_music • Original Audio",
 //            "https://scontent-mct1-1.cdninstagram.com/v/t51.2885-19/274969059_117165994229563_8118811520835177688_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mct1-1.cdninstagram.com&_nc_cat=1&_nc_ohc=rr7KUgMYI54AX_cD8R0&edm=ACaJ6XgBAAAA&ccb=7-5&oh=00_AT8tV71goYhWRV4anlVv4NJYqVSJbQ9KqoHfNHKYYRx_vw&oe=629A762D&_nc_sid=0cc1b1",
 //            location = "Kelowna, British Columbia"
-            )
+            ),
         ),
         Reel(
             "https://user-images.githubusercontent.com/90382113/170885742-d82e3b59-e45a-4fcf-a851-fed58ff5a690.mp4",
@@ -105,7 +117,7 @@ Spotlight(
 //            "bossbabe.inc  •Lady Gaga x The Hollywood Reporter Interview",
 //            "https://scontent-mct1-1.cdninstagram.com/v/t51.2885-19/277597070_364118672307381_4433884710927050387_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mct1-1.cdninstagram.com&_nc_cat=1&_nc_ohc=SdCU4yNkVeoAX95Kaa1&edm=ACaJ6XgBAAAA&ccb=7-5&oh=00_AT_FhJs7MBxrSRzAkUk66KcauL4OhUrNvLkKLxuRWP0Rxw&oe=6299CEB6&_nc_sid=0cc1b1",
 //            filter = "Gloom"
-            )
+            ),
         ),
         Reel(
             "https://user-images.githubusercontent.com/90382113/170888784-5d9a7623-10c8-4ca2-8585-fdb29b2ed037.mp4",
@@ -119,7 +131,7 @@ Spotlight(
 //            32,
 //            "discolines • BABY GIRL",
 //            "https://scontent-mct1-1.cdninstagram.com/v/t51.2885-19/240527586_863343994581126_6875774888716843072_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mct1-1.cdninstagram.com&_nc_cat=1&_nc_ohc=Jz2cOt7cHBMAX97GsTw&edm=ACaJ6XgBAAAA&ccb=7-5&oh=00_AT_a9846Hvz6nZX-f00J9rAcdoX0UwE5u2f26RyAwcNerw&oe=629AA750&_nc_sid=0cc1b1"
-            )
+            ),
         ),
         Reel(
             "https://user-images.githubusercontent.com/90382113/170889265-7ed9a56c-dd5f-4d78-b453-18b011644da0.mp4",
@@ -151,7 +163,7 @@ Spotlight(
 //            "austinmillz • Austin Millz - To Be Real",
 //            "https://scontent-mct1-1.cdninstagram.com/v/t51.2885-19/275736784_745737279732337_2276854236975549613_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mct1-1.cdninstagram.com&_nc_cat=1&_nc_ohc=EBcAexX3sgwAX9QEXt8&edm=ACaJ6XgBAAAA&ccb=7-5&oh=00_AT_HPieyS3SNbgWjPnIZ3rpqEyPE89AFTLRc4_j-yrb3Xw&oe=629A872C&_nc_sid=0cc1b1",
 //            taggedPeople = Array(12){"it"}.toList()
-            )
+            ),
         ),
         Reel(
             "https://user-images.githubusercontent.com/90382113/170890384-43214cc8-79c6-4815-bcb7-e22f6f7fe1bc.mp4",
@@ -177,9 +189,7 @@ Spotlight(
 //            "Heaven Is a Place on Earth",
 //            "https://scontent-mct1-1.cdninstagram.com/v/t51.2885-19/271128977_1148150582385758_6231211705717447032_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mct1-1.cdninstagram.com&_nc_cat=102&_nc_ohc=nXvCaCHGcOsAX-4bhz1&edm=APU89FABAAAA&ccb=7-5&oh=00_AT9frDidLom8pn7fSjTk2zxbmVDmQxPu9uzPbg-0fcDhrA&oe=629A689D&_nc_sid=86f79a",
 //            taggedPeople = Array(20){"it"}.toList()
-            )
+            ),
         ),
     ).toMutableStateList()
 }
-
-
