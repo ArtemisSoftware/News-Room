@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -77,14 +78,14 @@ fun VideoPage(
         maximumFlingDistance = {
             1F
         },
+        endContentPadding = 24.dp
     )
 
     val pagerState = rememberPagerState()
+    val pagerStateHorizontal = rememberPagerState()
 
-
-    Column(modifier = modifier){
-
-        if(expanded == false){
+    Column(modifier = modifier) {
+        if (expanded == false) {
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -94,14 +95,15 @@ fun VideoPage(
                 userScrollEnabled = true,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                items(allitems) {
+                itemsIndexed(allitems) { index, item ->
                     Box(
                         modifier = Modifier
                             .padding(end = 64.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(
-                            it.title,
+                            text = item.title,
+                            color = if (index == lazyListState.firstVisibleItemIndex) Color.Red else Color.White,
                             style = MaterialTheme.typography.displayLarge,
                             textAlign = TextAlign.Start,
                             modifier = Modifier.align(
@@ -113,9 +115,40 @@ fun VideoPage(
             }
         }
 
+        if(expanded == false) {
+            HorizontalPager(
+                state = pagerStateHorizontal,
+                contentPadding = PaddingValues(0.dp),
+                itemSpacing = 0.dp,
+                count = 1,
+                modifier = Modifier
+                    .padding(aniDP)
+                    .fillMaxHeight(animH)
+                    .background(color = Color.Red)
+                    .clickable { onExpand() },
+            ) { index ->
+                Box(
+                    modifier = Modifier
+                        //                    .fillMaxHeight()
+                        //                    .fillMaxWidth()
+                        .fillMaxSize()
+                        .background(color = if (index == 0) Color.Green else Color.Magenta),
+                ) {
+                    Text(
+                        text = allitems[lazyListState.firstVisibleItemIndex].reels[0],
+                        style = MaterialTheme.typography.displayLarge,
+                    )
+                }
+            }
+        }
+        else{
+
+
+
+
 
         VerticalPager(
-            count = if (expanded) allitems.size else 1,
+            count = if (expanded) allitems[lazyListState.firstVisibleItemIndex].reels.size else 1,
             state = pagerState,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -126,15 +159,15 @@ fun VideoPage(
                 ,
         ) { index ->
             Box(modifier = Modifier.background(color = Color.LightGray)) {
-//                val shouldPlay by remember(pagerState) {
-//                    derivedStateOf {
-//                        (abs(currentPageOffset) < .5 && currentPage == index) || (
-//                                abs(
-//                                    currentPageOffset,
-//                                ) > .5 && pagerState.targetPage == index
-//                                )
-//                    }
-//                }
+ //                val shouldPlay by remember(pagerState) {
+ //                    derivedStateOf {
+ //                        (abs(currentPageOffset) < .5 && currentPage == index) || (
+ //                                abs(
+ //                                    currentPageOffset,
+ //                                ) > .5 && pagerState.targetPage == index
+ //                                )
+ //                    }
+ //                }
 
                 Box(
                     modifier = Modifier
@@ -142,29 +175,35 @@ fun VideoPage(
                         //                    .fillMaxWidth()
                         .fillMaxSize()
                         .background(color = if (index == 0) Color.Green else Color.Magenta),
-                )
+                ){
+                    Text(
+                        text = allitems[lazyListState.firstVisibleItemIndex].reels[index],
+                        style = MaterialTheme.typography.displayLarge,
+                    )
+                }
 
-//                VideoPlayer_(
-//                    modifier = Modifier.fillMaxSize(),
-//                    reel = reels[index],
-//                    shouldPlay = shouldPlay,
-//                    isMuted = isMuted,
-//                    isExpanded = expanded,
-//                    isScrolling = pagerState.isScrollInProgress,
-//                    onMuted = {
-//                        isMuted = it
-//                    },
-//                )
+ //                VideoPlayer_(
+ //                    modifier = Modifier.fillMaxSize(),
+ //                    reel = reels[index],
+ //                    shouldPlay = shouldPlay,
+ //                    isMuted = isMuted,
+ //                    isExpanded = expanded,
+ //                    isScrolling = pagerState.isScrollInProgress,
+ //                    onMuted = {
+ //                        isMuted = it
+ //                    },
+ //                )
 
-//                VideoDataPanel(
-//                    modifier = Modifier
-//                        .padding(horizontal = 24.dp)
-//                        .padding(bottom = 16.dp)
-//                        .fillMaxWidth(0.8F)
-//                        .align(Alignment.BottomStart).background(color = Color.Red),
-//                )
+ //                VideoDataPanel(
+ //                    modifier = Modifier
+ //                        .padding(horizontal = 24.dp)
+ //                        .padding(bottom = 16.dp)
+ //                        .fillMaxWidth(0.8F)
+ //                        .align(Alignment.BottomStart).background(color = Color.Red),
+ //                )
             }
         }
+    }
     }
 }
 
@@ -279,6 +318,6 @@ private fun VideoPagePreview() {
         allitems = DummySpotlightData.spotlightV2,
         modifier = Modifier.wrapContentSize(),
         expanded = false,
-        onExpand = {}
+        onExpand = {},
     )
 }

@@ -7,13 +7,24 @@ object DummySpotlightData {
         listOf(
             SpotlightV2(
                 title = "LifeStyle",
+                reels = listOf("AAA", "AAA1"),
             ),
             SpotlightV2(
                 title = "Travel Guide",
+                reels = listOf("BBB", "BBB1"),
             ),
             SpotlightV2(
                 title = "Food",
+                reels = listOf("CCC", "CCC1"),
             ),
+            SpotlightV2(
+                title = "Other",
+                reels = listOf("DDD", "DDD1"),
+            ),
+//            SpotlightV2(
+//                title = "          ",
+//                reels = listOf("EEE", "EEE1"),
+//            ),
         )
 
     val spotlight = listOf(
