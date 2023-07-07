@@ -7,5 +7,6 @@ object Modules {
     const val newsData = ":feature:news:data"
     const val newsDomain = ":feature:news:domain"
 
+    const val reelsDomain = ":feature:reels:domain"
     const val reelsPresentation = ":feature:reels:presentation"
 }
