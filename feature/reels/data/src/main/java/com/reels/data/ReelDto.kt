@@ -1,6 +1,7 @@
 package com.reels.data
 
 data class ReelDto(
+    val type: String,
     val reelUrl: String,
     val isFollowed: Boolean,
     val reelInfo: ReelInfoDto,
