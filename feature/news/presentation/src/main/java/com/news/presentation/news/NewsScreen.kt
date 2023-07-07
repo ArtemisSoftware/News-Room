@@ -1,17 +1,17 @@
 package com.news.presentation.news
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -22,8 +22,12 @@ import com.news.presentation.news.composables.UserTopBar
 import com.news.presentation.news.models.Topic
 
 @Composable
-fun NewsScreen() {
-    // NewsScreenContent()
+fun NewsScreen(viewModel: NewsViewModel = hiltViewModel()) {
+    val state = viewModel.state.collectAsState()
+
+    NewsScreenContent(
+        state = state.value
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
@@ -53,7 +57,7 @@ private fun NewsScreenContent(
                 SearchBar()
 
                 // Spacer
-                //Spacer(modifier = Modifier.height(32.dp))
+                // Spacer(modifier = Modifier.height(32.dp))
 
                 HorizontalPager(
                     state = pagerState,
@@ -61,13 +65,13 @@ private fun NewsScreenContent(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     itemSpacing = 16.dp,
-                    count = 10,
+                    count = state.articles.size,
                 ) { page ->
 
-                    ArticleCard(
-                        state.articles[0],
-                        modifier = Modifier.fillMaxWidth(),
-                    )
+//                    ArticleCard(
+//                        article = state.articles[0],
+//                        modifier = Modifier.fillMaxWidth(),
+//                    )
                 }
 
 //                Spacer(modifier = Modifier.height(30.dp))

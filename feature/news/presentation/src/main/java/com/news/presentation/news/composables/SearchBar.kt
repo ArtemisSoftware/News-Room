@@ -2,6 +2,7 @@ package com.news.presentation.news.composables
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,8 +29,7 @@ fun SearchBar() {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp)),
-        value = textState.value,
-        onValueChange = { textState.value = it },
+
         leadingIcon = {
             Icon(imageVector = Icons.Filled.Search, contentDescription = "Search Icon")
         },
@@ -43,7 +43,13 @@ fun SearchBar() {
         placeholder = {
             Text(text = "Try to find...", color = Color.LightGray, fontSize = 16.sp)
         },
-
+        value = textState.value,
+        onValueChange = { textState.value = it },
+        keyboardActions = KeyboardActions(
+            onSearch = {
+                //onSearchClicked(text)
+            }
+        ),
     )
 }
 

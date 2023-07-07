@@ -63,7 +63,11 @@ dependencies {
     implementation DaggerHilt.hiltAndroid
     kapt DaggerHilt.hiltCompiler
 
-    implementation project(Modules.reelsPresentation)
+//    implementation project(Modules.reelsPresentation)
+//
+    implementation project(Modules.newsData)
+    implementation project(Modules.newsDomain)
+    implementation project(Modules.newsPresentation)
 
 
     testImplementation 'junit:junit:4.13.2'

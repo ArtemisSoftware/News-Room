@@ -10,4 +10,6 @@ java {
 
 dependencies {
     implementation(KotlinX.coroutineCore)
+
+    implementation(DaggerHilt.dagger)
 }

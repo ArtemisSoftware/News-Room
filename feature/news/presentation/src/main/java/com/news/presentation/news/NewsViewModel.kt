@@ -16,8 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    private val getNewsArticlesUseCase: GetNewsArticlesUseCase,
-    private val searchArticlesUseCase: SearchArticlesUseCase,
+//    private val getNewsArticlesUseCase: GetNewsArticlesUseCase,
+//    private val searchArticlesUseCase: SearchArticlesUseCase,
     private val getFeaturedArticlesUseCase: GetFeaturedArticlesUseCase,
 ) : ViewModel() {
 

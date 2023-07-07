@@ -1,6 +1,9 @@
 package com.news.data.di
 
+import com.core.data.database.NewsRoomDatabase
 import com.news.data.remote.NewsApi
+import com.news.data.repositories.NewsRepositoryImpl
+import com.news.domain.repositories.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +21,9 @@ object NewsNetworkModule {
         return retrofit.create(NewsApi::class.java)
     }
 
-//    @Provides
-//    fun provideNewsRepository(newsApiService: NewsApiService):NewsRepository{
-//        return NewsRepoImpl(newsApiService)
-//    }
+    @Provides
+    @Singleton
+    fun provideNewsRepository(newsApi: NewsApi, newsRoomDatabase: NewsRoomDatabase): NewsRepository {
+        return NewsRepositoryImpl(newsApi = newsApi, newsDao = newsRoomDatabase.getNewsDao())
+    }
 }

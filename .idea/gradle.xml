@@ -19,10 +19,6 @@
             <option value="$PROJECT_DIR$/feature/news/data" />
             <option value="$PROJECT_DIR$/feature/news/domain" />
             <option value="$PROJECT_DIR$/feature/news/presentation" />
-            <option value="$PROJECT_DIR$/feature/reels" />
-            <option value="$PROJECT_DIR$/feature/reels/data" />
-            <option value="$PROJECT_DIR$/feature/reels/domain" />
-            <option value="$PROJECT_DIR$/feature/reels/presentation" />
           </set>
         </option>
       </GradleProjectSettings>

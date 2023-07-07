@@ -46,6 +46,9 @@ dependencies {
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
+    implementation(platform(Retrofit.okHttpBom))
+    implementation(Retrofit.okHttp)
+    implementation(Retrofit.okHttpLoggingInterceptor)
 
     kapt(Room.roomCompiler)
     implementation(Room.roomKtx)
