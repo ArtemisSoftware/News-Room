@@ -17,13 +17,13 @@ class NewsRepositoryImpl constructor(
     override suspend fun getNewsArticle(country: String, category: String) {
         return try {
             val result = newsApi.getNewsArticles(country = country, category = category)
-            newsDao.insert(result.articles.map { it.toEntity() })
+            //--newsDao.insert(result.articles.map { it.toEntity() })
         } catch (e: Exception) {
         }
     }
 
     override suspend fun searchArticles(query: String): List<Article> {
-        return newsApi.searchArticles(query = query).articles.map { it.toArticle() }
+        return emptyList()//--newsApi.searchArticles(query = query).articles.map { it.toArticle() }
     }
 
     override fun getFeaturedArticles(): Flow<List<Article>> {
