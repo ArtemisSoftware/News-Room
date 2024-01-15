@@ -3,7 +3,7 @@ package com.news.data.repositories
 import com.core.data.database.dao.NewsDao
 import com.news.data.mappers.toArticle
 import com.news.data.mappers.toEntity
-import com.news.data.remote.NewsApi
+import com.core.data.remote.NewsApi
 import com.news.domain.models.Article
 import com.news.domain.repositories.NewsRepository
 import kotlinx.coroutines.flow.Flow

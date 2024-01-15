@@ -3,7 +3,7 @@ package com.news.data.di
 import com.core.data.database.NewsRoomDatabase
 import com.core.data.interceptors.ApiKeyInterceptor
 import com.core.data.util.Constants
-import com.news.data.remote.NewsApi
+import com.core.data.remote.NewsApi
 import com.news.data.repositories.NewsRepositoryImpl
 import com.news.domain.repositories.NewsRepository
 import dagger.Module

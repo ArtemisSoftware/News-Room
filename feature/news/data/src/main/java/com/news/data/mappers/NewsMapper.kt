@@ -1,7 +1,7 @@
 package com.news.data.mappers
 
 import com.core.data.database.entities.ArticleEntity
-import com.news.data.remote.dto.ArticleDto
+import com.core.data.remote.dto.ArticleDto
 import com.news.domain.models.Article
 
 fun ArticleDto.toEntity(): ArticleEntity {
