@@ -26,7 +26,8 @@ fun NewsScreen(viewModel: NewsViewModel = hiltViewModel()) {
     val state = viewModel.state.collectAsState()
 
     NewsScreenContent(
-        state = state.value
+        state = state.value,
+        events = viewModel::onTriggerEvent
     )
 }
 
@@ -34,6 +35,7 @@ fun NewsScreen(viewModel: NewsViewModel = hiltViewModel()) {
 @Composable
 private fun NewsScreenContent(
     state: NewsState,
+    events: ((NewsEvents) -> Unit),
 ) {
     val pagerState = rememberPagerState()
 
@@ -54,7 +56,12 @@ private fun NewsScreenContent(
                     .fillMaxSize()
                     .padding(paddingValues = it),
             ) {
-                SearchBar()
+                SearchBar(
+                    modifier = Modifier.fillMaxWidth(),
+                    onSearchClicked = { text ->
+                        events.invoke(NewsEvents.searchArticles(query = text))
+                    }
+                )
 
                 // Spacer
                 // Spacer(modifier = Modifier.height(32.dp))
@@ -133,6 +140,7 @@ private fun NewsScreenContent(
 @Composable
 private fun NewsScreenContentPreview() {
     NewsScreenContent(
+        events = {},
         state = NewsState(
             topics = listOf(Topic.Home, Topic.Settings, Topic.Profile),
             articles = listOf(

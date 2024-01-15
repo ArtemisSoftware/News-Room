@@ -22,8 +22,8 @@ class NewsRepositoryImpl constructor(
         }
     }
 
-    override suspend fun searchArticles(map: MutableMap<String, String>): List<Article> {
-        return newsApi.searchArticles(map).articles.map { it.toArticle() }
+    override suspend fun searchArticles(query: String): List<Article> {
+        return newsApi.searchArticles(query = query).articles.map { it.toArticle() }
     }
 
     override fun getFeaturedArticles(): Flow<List<Article>> {

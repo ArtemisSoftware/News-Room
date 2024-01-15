@@ -15,6 +15,12 @@ interface NewsApi {
 
     @GET("everything")
     suspend fun searchArticles(
-        @QueryMap map: MutableMap<String, String>,
+        @Query("q") query: String,
+        @Query("apiKey") key: String = API_KEY,
     ): NewsDto
+
+    companion object {
+        const val API_KEY = "2b3350c2e130493a94f280d8c05ca388"
+        const val BASE_URL = "https://newsapi.org/v2/"
+    }
 }

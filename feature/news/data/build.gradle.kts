@@ -49,6 +49,8 @@ dependencies {
 
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiConverter)
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 
     kapt(Room.roomCompiler)
     implementation(Room.roomKtx)

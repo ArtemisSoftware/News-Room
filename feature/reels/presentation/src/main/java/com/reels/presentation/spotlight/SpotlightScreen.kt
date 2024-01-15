@@ -1,9 +1,12 @@
 package com.reels.presentation.spotlight
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -11,7 +14,9 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -22,44 +27,157 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.VerticalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.reels.presentation.composables.ReelPlayer
+import com.reels.presentation.composables.ReelTopBar
+import com.reels.presentation.composables.SpotlightCarrousel_Final
+import com.reels.presentation.composables.SpotlightTabPreviewer
 import com.reels.presentation.composables.VideoDataPanel
 import com.reels.presentation.composables.VideoPlayer_
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.Locale
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun SpotlightScreen() {
-    val allitems = DummySpotlightData.spotlightV2
-    var expanded by remember { mutableStateOf(false) }
+//    val allitems = DummySpotlightData.spotlightV2
+//    var expanded by remember { mutableStateOf(false) }
+//
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(color = Color.Blue),
+//    ) {
+//        Text(
+//            modifier = Modifier.align(Alignment.TopStart),
+//            text = "Today's Date",
+//            style = MaterialTheme.typography.displayMedium,
+//        )
+//
+//        VideoPage(
+//            expanded = expanded,
+//            allitems = allitems,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .align(Alignment.BottomCenter),
+//            onExpand = {
+//                expanded = !expanded
+//            },
+//        )
+//    }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.Blue),
-    ) {
+    SpotlightScreenContent(
+        state = SpotlightState(
+            date = "",
+            spotlights = DummySpotlightData.spotlightV2,
+        ),
+    )
+}
 
-            Text(
-                modifier = Modifier.align(Alignment.TopStart),
-                text = "Today's Date",
-                style = MaterialTheme.typography.displayMedium,
-            )
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SpotlightScreenContent(
+    state: SpotlightState,
+) {
+    // TODO: vai para o state
+    var expandReels by remember { mutableStateOf(false) }
+    // var expandReels = state.expandReels
+    // -----------
 
-        VideoPage(
-            expanded = expanded,
-            allitems = allitems,
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter),
-            onExpand = {
-                expanded = !expanded
-            },
-        )
-    }
+    Scaffold(
+        topBar = {
+            AnimatedVisibility(
+                visible = !expandReels,
+                enter = fadeIn(),
+                exit = fadeOut(),
+            ) {
+                ReelTopBar(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                )
+            }
+        },
+        bottomBar = {
+        },
+        content = {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues = it),
+            ) {
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .padding(top = 44.dp),
+                    style = MaterialTheme.typography.displaySmall,
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(color = Color.Black)) {
+                            append("Today,\n")
+                        }
+                        withStyle(style = SpanStyle(color = Color.LightGray)) {
+                            append(getDate())
+                        }
+                    },
+                )
+
+                SpotlightTabPreviewer(
+                    spotlights = DummySpotlightData.spotlightV2,
+                    expanded = expandReels,
+                    onExpand = {
+                        expandReels = !expandReels
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter),
+                )
+            }
+        },
+        modifier = Modifier,
+    )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF00FF00)
+@Composable
+private fun SpotlightScreenContentPreview() {
+    SpotlightScreenContent(
+        state = SpotlightState(
+            date = "",
+            expandReels = false,
+            spotlights = DummySpotlightData.spotlightV2,
+        ),
+    )
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF00FF00)
+@Composable
+private fun SpotlightScreenContentPreview__expanded() {
+    SpotlightScreenContent(
+        state = SpotlightState(
+            date = "",
+            expandReels = true,
+            spotlights = DummySpotlightData.spotlightV2,
+        ),
+    )
+}
+
+fun getDate(): String {
+    val currentDate = LocalDate.now()
+    val dayOfWeek = currentDate.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
+    val month = currentDate.month.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
+
+    val formattedDate = currentDate.format(DateTimeFormatter.ofPattern("MMMM dd"))
+
+    return "$dayOfWeek, $formattedDate"
 }
 
 @OptIn(ExperimentalPagerApi::class)
@@ -253,12 +371,6 @@ fun SpotlightScreen_V1() {
             }
         }
     }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFF00FF00)
-@Composable
-private fun SpotlightScreenPreview() {
-    SpotlightScreen()
 }
 
 @OptIn(ExperimentalPagerApi::class)
