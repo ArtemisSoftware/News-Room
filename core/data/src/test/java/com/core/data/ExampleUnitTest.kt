@@ -1,4 +1,4 @@
-package com.artemissoftware.core_data
+package com.core.data
 
 import org.junit.Test
 

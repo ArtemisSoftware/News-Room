@@ -15,9 +15,10 @@ dependencyResolutionManagement {
 rootProject.name = "NewsRoom"
 include ':app'
 include ':feature:news:data'
-include ':core_data'
+//include ':core_data'
 include ':feature:news:domain'
 include ':feature:news:presentation'
 //include ':feature:reels:presentation'
 //include ':feature:reels:domain'
 //include ':feature:reels:data'
+include ':core:data'
