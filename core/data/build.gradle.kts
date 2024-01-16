@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -34,8 +35,18 @@ android {
 }
 
 dependencies {
+
+    implementation(project(Modules.coreDomain))
+
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
+
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
+
 //    implementation(libs.androidx.core.ktx)
 //    implementation(libs.appcompat)
 //    implementation(libs.material)

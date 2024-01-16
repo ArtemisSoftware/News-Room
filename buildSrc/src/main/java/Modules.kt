@@ -3,6 +3,7 @@ object Modules {
     const val app = ":app"
 
     const val coreData = ":core:data"
+    const val coreDomain = ":core:domain"
 
     const val newsData = ":feature:news:data"
     const val newsDomain = ":feature:news:domain"

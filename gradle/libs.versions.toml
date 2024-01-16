@@ -8,6 +8,8 @@ espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
 retrofit = "2.9.0"
+com-google-devtools-ksp = "1.8.20-1.0.11"
+room = "2.4.3"
 junit-jupiter = "5.9.3"
 assertk = "0.26.1"
 de-mannodermaus-android-junit5 = "1.9.3.0"
@@ -22,6 +24,11 @@ material = { group = "com.google.android.material", name = "material", version.r
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 
+#Room
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room"  }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"  }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room"  }
 
 # test
 
@@ -40,7 +47,7 @@ com-android-library = { id = "com.android.library", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 de-mannodermaus-android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "de-mannodermaus-android-junit5" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
-
+com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "com-google-devtools-ksp" }
 
 
 [bundles]
