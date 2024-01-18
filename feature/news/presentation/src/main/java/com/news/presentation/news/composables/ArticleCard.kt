@@ -20,47 +20,46 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.news.domain.models.Article
 import com.news.presentation.R
 
 @Composable
 fun ArticleCard(
-    article: Article,
+//    article: Article,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-    ) {
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Image(
-                modifier = Modifier.fillMaxWidth(),
-                painter = painterResource(id = R.drawable.profile),
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-            Column(
-                modifier = Modifier
-                    .padding(12.dp)
-                    .align(Alignment.BottomStart),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Text(
-                    text = article.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
-                )
-                CustomImageChip(
-                    text = article.author,
-                    imageId = R.drawable.profile,
-                    selected = true,
-                )
-            }
-        }
-    }
+//    Card(
+//        modifier = modifier,
+//        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+//    ) {
+//        Box(
+//            modifier = Modifier.fillMaxWidth(),
+//        ) {
+//            Image(
+//                modifier = Modifier.fillMaxWidth(),
+//                painter = painterResource(id = R.drawable.profile),
+//                contentScale = ContentScale.Crop,
+//                contentDescription = null,
+//            )
+//            Column(
+//                modifier = Modifier
+//                    .padding(12.dp)
+//                    .align(Alignment.BottomStart),
+//                verticalArrangement = Arrangement.spacedBy(8.dp),
+//            ) {
+//                Text(
+//                    text = article.title,
+//                    style = MaterialTheme.typography.titleMedium,
+//                    fontWeight = FontWeight.Bold,
+//                    fontSize = 28.sp,
+//                )
+//                CustomImageChip(
+//                    text = article.author,
+//                    imageId = R.drawable.profile,
+//                    selected = true,
+//                )
+//            }
+//        }
+//    }
 
     /*
     Box(
@@ -102,5 +101,5 @@ fun ArticleCard(
 @Preview(showBackground = true)
 @Composable
 private fun ArticleCardPreview() {
-    ArticleCard(Article.mockArticle, modifier = Modifier.fillMaxWidth())
+//    ArticleCard(Article.mockArticle, modifier = Modifier.fillMaxWidth())
 }

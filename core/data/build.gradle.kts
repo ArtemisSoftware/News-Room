@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.de.mannodermaus.android.junit5)
+//    alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
 android {
@@ -42,8 +44,12 @@ dependencies {
     implementation(libs.converter.moshi)
 
     implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
+
+//    implementation(libs.hilt.android)
+//    ksp(libs.hilt.android.compiler)
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 
@@ -54,4 +60,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.jupiter.params)
+
+    testImplementation(libs.assertk)
 }

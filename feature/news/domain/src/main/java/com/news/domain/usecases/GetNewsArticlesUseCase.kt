@@ -9,5 +9,5 @@ class GetNewsArticlesUseCase /*@Inject*/ constructor(
     suspend operator fun invoke(
         country: String,
         category: String,
-    ) = newsRepository.getNewsArticle(country = country, category = category)
+    ) = null//newsRepository.getNewsArticle(country = country, category = category)
 }

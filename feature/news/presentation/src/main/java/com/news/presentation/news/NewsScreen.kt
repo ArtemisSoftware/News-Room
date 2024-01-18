@@ -15,7 +15,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.news.domain.models.Article
 import com.news.presentation.news.composables.ArticleCard
 import com.news.presentation.news.composables.SearchBar
 import com.news.presentation.news.composables.UserTopBar
@@ -66,20 +65,20 @@ private fun NewsScreenContent(
                 // Spacer
                 // Spacer(modifier = Modifier.height(32.dp))
 
-                HorizontalPager(
-                    state = pagerState,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    itemSpacing = 16.dp,
-                    count = state.articles.size,
-                ) { page ->
-
-//                    ArticleCard(
-//                        article = state.articles[0],
-//                        modifier = Modifier.fillMaxWidth(),
-//                    )
-                }
+//                HorizontalPager(
+//                    state = pagerState,
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(horizontal = 16.dp),
+//                    itemSpacing = 16.dp,
+//                    count = state.articles.size,
+//                ) { page ->
+//
+////                    ArticleCard(
+////                        article = state.articles[0],
+////                        modifier = Modifier.fillMaxWidth(),
+////                    )
+//                }
 
 //                Spacer(modifier = Modifier.height(30.dp))
 //
@@ -143,11 +142,11 @@ private fun NewsScreenContentPreview() {
         events = {},
         state = NewsState(
             topics = listOf(Topic.Home, Topic.Settings, Topic.Profile),
-            articles = listOf(
-                Article.mockArticle,
-                Article.mockArticle,
-                Article.mockArticle,
-            ),
+//            articles = listOf(
+////                Article.mockArticle,
+////                Article.mockArticle,
+////                Article.mockArticle,
+//            ),
         ),
     )
 }

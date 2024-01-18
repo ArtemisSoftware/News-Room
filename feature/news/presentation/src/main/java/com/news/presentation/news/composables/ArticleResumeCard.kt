@@ -29,70 +29,71 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.news.domain.models.Article
 import com.news.presentation.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ArticleResumeCard(article: Article, isLast: Boolean = false) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            // Left Section
-            Column(
-                verticalArrangement = Arrangement.SpaceBetween,
-                horizontalAlignment = Alignment.Start,
-            ) {
-                Text(
-                    text = article.title.capitalizeWords(),
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Row(
-                    modifier = Modifier,
-                ) {
-                    CustomImageChip(
-                        text = article.author,
-                        imageId = R.drawable.profile,
-                        selected = true,
-                    )
-
-                    Text(text = ".", color = Color.Gray, fontSize = 15.sp)
-                    Text(text = "3 mins ago", color = Color.Gray, fontSize = 15.sp)
-                }
-            }
-
-            Image(
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(12.dp)),
-                painter = painterResource(id = R.drawable.profile),
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-        }
-
-        if (isLast) {
-            Divider(
-                color = Color.LightGray,
-                thickness = 1.dp,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp),
-            )
-        }
-    }
+fun ArticleResumeCard(
+//    article: Article,
+    isLast: Boolean = false) {
+//    Column(
+//        modifier = Modifier
+//            .fillMaxWidth(),
+//    ) {
+//        Row(
+//            modifier = Modifier
+//                .fillMaxWidth(),
+//            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.SpaceBetween,
+//        ) {
+//            // Left Section
+//            Column(
+//                verticalArrangement = Arrangement.SpaceBetween,
+//                horizontalAlignment = Alignment.Start,
+//            ) {
+//                Text(
+//                    text = article.title.capitalizeWords(),
+//                    color = Color.Black,
+//                    fontWeight = FontWeight.Bold,
+//                    fontSize = 22.sp,
+//                )
+//
+//                Spacer(modifier = Modifier.height(16.dp))
+//
+//                Row(
+//                    modifier = Modifier,
+//                ) {
+//                    CustomImageChip(
+//                        text = article.author,
+//                        imageId = R.drawable.profile,
+//                        selected = true,
+//                    )
+//
+//                    Text(text = ".", color = Color.Gray, fontSize = 15.sp)
+//                    Text(text = "3 mins ago", color = Color.Gray, fontSize = 15.sp)
+//                }
+//            }
+//
+//            Image(
+//                modifier = Modifier
+//                    .size(80.dp)
+//                    .clip(RoundedCornerShape(12.dp)),
+//                painter = painterResource(id = R.drawable.profile),
+//                contentScale = ContentScale.Crop,
+//                contentDescription = null,
+//            )
+//        }
+//
+//        if (isLast) {
+//            Divider(
+//                color = Color.LightGray,
+//                thickness = 1.dp,
+//                modifier = Modifier
+//                    .padding(horizontal = 16.dp)
+//                    .padding(top = 16.dp),
+//            )
+//        }
+//    }
 }
 
 fun String.capitalizeWords(): String = split(" ").map { it.capitalize() }.joinToString(" ")
@@ -152,5 +153,5 @@ fun CustomImageChip(
 @Preview(showBackground = true)
 @Composable
 private fun ArticleResumeCardPreview() {
-    ArticleResumeCard(Article.mockArticle)
+//    ArticleResumeCard(Article.mockArticle)
 }

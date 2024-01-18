@@ -18,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor(
 //    private val getNewsArticlesUseCase: GetNewsArticlesUseCase,
-    private val searchArticlesUseCase: SearchArticlesUseCase,
-    private val getFeaturedArticlesUseCase: GetFeaturedArticlesUseCase,
+//    private val searchArticlesUseCase: SearchArticlesUseCase,
+//    private val getFeaturedArticlesUseCase: GetFeaturedArticlesUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(NewsState())
@@ -30,35 +30,35 @@ class NewsViewModel @Inject constructor(
     }
 
     fun onTriggerEvent(event: NewsEvents) {
-        when (event) {
-            NewsEvents.openArticle -> TODO()
-            is NewsEvents.searchArticles -> {searchArticles(event.query)}
-        }
+//        when (event) {
+//            NewsEvents.openArticle -> TODO()
+//            is NewsEvents.searchArticles -> {searchArticles(event.query)}
+//        }
     }
 
     private fun searchArticles(query: String) = with(_state) {
-        viewModelScope.launch {
-            searchArticlesUseCase(query = query).collectLatest { result ->
-                when(result){
-                    is Resource.Error -> {}
-                    is Resource.Loading -> {}
-                    is Resource.Success -> {
-                        update {
-                            it.copy(articles = result.data)
-                        }
-                    }
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            searchArticlesUseCase(query = query).collectLatest { result ->
+//                when(result){
+//                    is Resource.Error -> {}
+//                    is Resource.Loading -> {}
+//                    is Resource.Success -> {
+//                        update {
+//                            it.copy(articles = result.data)
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     private fun getFeaturedArticles() = with(_state) {
-        viewModelScope.launch {
-            getFeaturedArticlesUseCase().collectLatest { result ->
-                update {
-                    it.copy(articles = result)
-                }
-            }
-        }
+//        viewModelScope.launch {
+//            getFeaturedArticlesUseCase().collectLatest { result ->
+//                update {
+//                    it.copy(articles = result)
+//                }
+//            }
+//        }
     }
 }
