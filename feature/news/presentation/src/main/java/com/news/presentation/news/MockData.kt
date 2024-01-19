@@ -14,4 +14,11 @@ object MockData {
         url = "",
         urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg",
     )
+
+    val articleList = listOf(
+        article,
+        article,
+        article,
+        article,
+    )
 }
