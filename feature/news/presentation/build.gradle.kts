@@ -53,12 +53,15 @@ dependencies {
     implementation(Compose.uiToolingPreview)
     implementation(Compose.material3)
 
+
+
     implementation(Compose.hiltNavigationCompose)
     implementation(Compose.navigation)
 
 
     implementation(project(Modules.coreDomain))
     implementation(project(Modules.newsDomain))
+    implementation(project(Modules.coreUi))
 
 
     testImplementation("junit:junit:4.13.2")
