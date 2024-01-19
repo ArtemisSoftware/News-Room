@@ -1,22 +1,23 @@
 package com.news.data.repositories
 
-import com.core.data.database.dao.NewsDao
+import com.core.data.mappers.toListArticles
 import com.core.data.remote.NewsApi
+import com.core.domain.models.Article
 import com.news.domain.repositories.NewsRepository
 
 class NewsRepositoryImpl constructor(
     private val newsApi: NewsApi,
-    private val newsDao: NewsDao,
 ) : NewsRepository {
 
-//    override suspend fun getNewsArticle(country: String, category: String) {
-//        return try {
-//            val result = newsApi.getNewsArticles(country = country, category = category)
-//            //--newsDao.insert(result.articles.map { it.toEntity() })
-//        } catch (e: Exception) {
-//        }
-//    }
-//
+    override suspend fun getNews(sources: List<String>): List<Article> {
+        return try {
+            val result = newsApi.getNews(sources = sources.joinToString(separator = ","), page = 1)
+            result.toListArticles()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
 //    override suspend fun searchArticles(query: String): List<Article> {
 //        return emptyList()//--newsApi.searchArticles(query = query).articles.map { it.toArticle() }
 //    }

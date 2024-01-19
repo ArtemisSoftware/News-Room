@@ -12,4 +12,5 @@ dependencies {
     implementation(KotlinX.coroutineCore)
 
     implementation(DaggerHilt.dagger)
+    implementation(project(Modules.coreDomain))
 }

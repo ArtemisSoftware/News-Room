@@ -2,8 +2,13 @@ package com.core.data.mappers
 
 import com.core.data.database.entities.ArticleEntity
 import com.core.data.remote.dto.ArticleDto
+import com.core.data.remote.dto.NewsDto
 import com.core.domain.models.Article
 import com.core.domain.models.Source
+
+fun NewsDto.toListArticles(): List<Article> {
+    return this.articles.map { it.toArticle() }
+}
 
 fun ArticleDto.toEntity(): ArticleEntity {
     return ArticleEntity(

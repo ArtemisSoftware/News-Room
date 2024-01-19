@@ -42,6 +42,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     implementation(project(Modules.coreData))
+    implementation(project(Modules.coreDomain))
     implementation(project(Modules.newsDomain))
 
     implementation(DaggerHilt.hiltAndroid)
