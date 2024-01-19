@@ -48,6 +48,9 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
 
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
 //    implementation(libs.hilt.android)
 //    ksp(libs.hilt.android.compiler)
 

@@ -1,8 +1,9 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
-    id("kotlin-kapt")
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -54,7 +55,8 @@ dependencies {
     implementation(Compose.material3)
 
 
-
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
     implementation(Compose.hiltNavigationCompose)
     implementation(Compose.navigation)
 
@@ -96,8 +98,7 @@ dependencies {
 
 
 
-    implementation(DaggerHilt.hiltAndroid)
-    kapt(DaggerHilt.hiltCompiler)
+
 
 
 //

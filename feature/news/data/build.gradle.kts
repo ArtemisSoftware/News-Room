@@ -1,8 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
-    id("kotlin-kapt")
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -22,7 +22,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -31,7 +31,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
@@ -39,25 +39,22 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
 
     implementation(project(Modules.coreData))
     implementation(project(Modules.coreDomain))
     implementation(project(Modules.newsDomain))
 
-    implementation(DaggerHilt.hiltAndroid)
-    kapt(DaggerHilt.hiltCompiler)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
-    implementation(Retrofit.retrofit)
-    implementation(Retrofit.moshiConverter)
-    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
-
-    kapt(Room.roomCompiler)
-    implementation(Room.roomKtx)
-    implementation(Room.roomRuntime)
-
-
+//    implementation(Retrofit.retrofit)
+//    implementation(Retrofit.moshiConverter)
+//    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+//    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+//
+//    kapt(Room.roomCompiler)
+//    implementation(Room.roomKtx)
+//    implementation(Room.roomRuntime)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

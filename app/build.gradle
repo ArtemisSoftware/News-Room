@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android'
+    alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
 android {
@@ -33,7 +33,7 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose true
@@ -60,13 +60,17 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
 
 
-    implementation DaggerHilt.hiltAndroid
-    kapt DaggerHilt.hiltCompiler
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
 //    implementation project(Modules.reelsPresentation)
 //
+
+    implementation project(Modules.coreData)
+    implementation project(Modules.coreDomain)
+    implementation project(Modules.coreUi)
+
     implementation project(Modules.newsData)
-    implementation project(Modules.newsDomain)
     implementation project(Modules.newsPresentation)
 
 
