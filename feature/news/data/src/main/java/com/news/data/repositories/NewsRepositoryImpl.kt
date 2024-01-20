@@ -12,8 +12,11 @@ class NewsRepositoryImpl constructor(
     override suspend fun getNews(sources: List<String>): List<Article> {
         return try {
             val result = newsApi.getNews(sources = sources.joinToString(separator = ","), page = 1)
-            result.toListArticles()
+            emptyList()
+            //result.toListArticles()
         } catch (e: Exception) {
+            val d = e.toString()
+            val dd = d + ""
             emptyList()
         }
     }
