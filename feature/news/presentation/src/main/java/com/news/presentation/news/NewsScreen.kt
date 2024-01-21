@@ -4,20 +4,25 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.core.ui.composables.SearchBar
 import com.core.ui.theme.NewsRoomTheme
+import com.core.ui.theme.palette
 import com.core.ui.theme.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.news.presentation.R
@@ -29,68 +34,8 @@ fun NewsScreen(viewModel: NewsViewModel = hiltViewModel()) {
     val state = viewModel.state.collectAsState()
     // val articles = viewModel.news.collectAsLazyPagingItems()
 
-    NewsScreenContent(
-        state = state.value,
-        events = viewModel::onTriggerEvent,
-    )
-}
+    //        val scrollState = rememberScrollState(initial = state.scrollValue)
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
-@Composable
-private fun NewsScreenContent(
-    state: NewsState,
-    events: ((NewsEvents) -> Unit),
-) {
-//    val titles by remember {
-//        derivedStateOf {
-//            if (articles.itemCount > 10) {
-//                articles.itemSnapshotList.items
-//                    .slice(IntRange(start = 0, endInclusive = 9))
-//                    .joinToString(separator = " \uD83D\uDFE5 ") { it.title }
-//            } else {
-//                ""
-//            }
-//        }
-//    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = MaterialTheme.spacing.mediumPadding)
-            .statusBarsPadding(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.mediumPadding),
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_news_room),
-            contentDescription = null,
-            modifier = Modifier
-                .width(150.dp)
-                .height(30.dp)
-                .padding(horizontal = MaterialTheme.spacing.mediumPadding),
-        )
-
-//        SearchBar(
-//            modifier = Modifier
-//                .padding(horizontal = MediumPadding1)
-//                .fillMaxWidth(),
-//            text = "",
-//            readOnly = true,
-//            onValueChange = {},
-//            onSearch = {},
-//            onClick = navigateToSearch
-//        )
-
-//        val scrollState = rememberScrollState(initial = state.scrollValue)
-//
-//        Text(
-//            text = titles, modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(start = MediumPadding1)
-//                .horizontalScroll(scrollState, enabled = false),
-//            fontSize = 12.sp,
-//            color = colorResource(id = R.color.placeholder)
-//        )
-//
 //        // Update the maxScrollingValue
 //        LaunchedEffect(key1 = scrollState.maxValue) {
 //            event(HomeEvent.UpdateMaxScrollingValue(scrollState.maxValue))
@@ -115,6 +60,57 @@ private fun NewsScreenContent(
 //                )
 //            }
 //        }
+
+    NewsScreenContent(
+        state = state.value,
+        events = viewModel::onTriggerEvent,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
+@Composable
+private fun NewsScreenContent(
+    state: NewsState,
+    events: ((NewsEvents) -> Unit),
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = MaterialTheme.spacing.mediumPadding)
+            .statusBarsPadding(),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.mediumPadding),
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_news_room),
+            contentDescription = null,
+            modifier = Modifier
+                .width(150.dp)
+                .height(30.dp)
+                .padding(horizontal = MaterialTheme.spacing.mediumPadding),
+        )
+
+        SearchBar(
+            modifier = Modifier
+                .padding(horizontal = MaterialTheme.spacing.mediumPadding)
+                .fillMaxWidth(),
+            text = "",
+            readOnly = true,
+            onValueChange = {},
+            onSearch = {},
+            onClick = {
+                // navigateToSearch
+            },
+        )
+
+        Text(
+            text = state.getTitle(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = MaterialTheme.spacing.mediumPadding),
+            // .horizontalScroll(scrollState, enabled = false)
+            fontSize = 12.sp,
+            color = MaterialTheme.palette.Placeholder,
+        )
 
         ArticlesList(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.mediumPadding),

@@ -68,7 +68,7 @@ fun NewsRoomTheme(
     CompositionLocalProvider(
         localSpacing provides spacing,
         localDimension provides dimension,
-        localPalette provides palette,
+        localPalette provides if(darkTheme) paletteDark else paletteLight,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
