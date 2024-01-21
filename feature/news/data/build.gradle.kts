@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.news.data"
-    compileSdk = 33
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         minSdk = 31

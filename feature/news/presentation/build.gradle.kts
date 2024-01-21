@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.news.presentation"
-    compileSdk = 33
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         minSdk = 31

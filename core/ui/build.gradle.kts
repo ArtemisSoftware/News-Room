@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.core.ui"
-    compileSdk = 33
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         minSdk = 31

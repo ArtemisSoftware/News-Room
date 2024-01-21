@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.artemissoftware.newsroom'
-    compileSdk 34
+    compileSdk ProjectConfig.compileSdk
 
     defaultConfig {
         applicationId "com.artemissoftware.newsroom"

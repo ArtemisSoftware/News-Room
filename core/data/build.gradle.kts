@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.core.data"
-    compileSdk = 33
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         minSdk = 31
