@@ -25,15 +25,28 @@ class NewsViewModel @Inject constructor(
     }
 
     fun onTriggerEvent(event: NewsEvents) {
-//        when (event) {
-//            NewsEvents.openArticle -> TODO()
-//            is NewsEvents.searchArticles -> {searchArticles(event.query)}
-//        }
+        when (event) {
+            is NewsEvents.UpdateMaxScrollingValue -> updateMaxScrollingValue(event.value)
+            is NewsEvents.UpdateScrollValue -> updateScrollValue(event.value)
+            NewsEvents.openArticle -> TODO()
+        }
     }
 
     private fun updateArticles(articles: List<Article>) = with(_state) {
         update {
             it.copy(articles = articles)
+        }
+    }
+
+    private fun updateMaxScrollingValue(value: Int) = with(_state) {
+        update {
+            it.copy(maxScrollingValue = value)
+        }
+    }
+
+    private fun updateScrollValue(value: Int) = with(_state) {
+        update {
+            it.copy(scrollValue = value)
         }
     }
 

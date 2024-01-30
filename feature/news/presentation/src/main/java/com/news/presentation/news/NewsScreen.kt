@@ -1,77 +1,79 @@
 package com.news.presentation.news
 
-import androidx.compose.foundation.Image
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.core.ui.composables.SearchBar
 import com.core.ui.theme.NewsRoomTheme
 import com.core.ui.theme.palette
 import com.core.ui.theme.spacing
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.news.presentation.R
 import com.news.presentation.news.composables.ArticlesList
 import com.news.presentation.news.models.Topic
+import kotlinx.coroutines.delay
 
 @Composable
 fun NewsScreen(viewModel: NewsViewModel = hiltViewModel()) {
-    val state = viewModel.state.collectAsState()
+    val state = viewModel.state.collectAsState().value
     // val articles = viewModel.news.collectAsLazyPagingItems()
 
-    //        val scrollState = rememberScrollState(initial = state.scrollValue)
+    val scrollState = rememberScrollState(initial = state.scrollValue)
 
-//        // Update the maxScrollingValue
-//        LaunchedEffect(key1 = scrollState.maxValue) {
-//            event(HomeEvent.UpdateMaxScrollingValue(scrollState.maxValue))
-//        }
-//        // Save the state of the scrolling position
-//        LaunchedEffect(key1 = scrollState.value) {
-//            event(HomeEvent.UpdateScrollValue(scrollState.value))
-//        }
-//        // Animate the scrolling
-//        LaunchedEffect(key1 = state.maxScrollingValue) {
-//            delay(500)
-//            if (state.maxScrollingValue > 0) {
-//                scrollState.animateScrollTo(
-//                    value = state.maxScrollingValue,
-//                    animationSpec = infiniteRepeatable(
-//                        tween(
-//                            durationMillis = (state.maxScrollingValue - state.scrollValue) * 50_000 / state.maxScrollingValue,
-//                            easing = LinearEasing,
-//                            delayMillis = 1000
-//                        )
-//                    )
-//                )
-//            }
-//        }
+    // Update the maxScrollingValue
+    LaunchedEffect(key1 = scrollState.maxValue) {
+        viewModel.onTriggerEvent(NewsEvents.UpdateMaxScrollingValue(scrollState.maxValue))
+    }
+
+    // Save the state of the scrolling position
+    LaunchedEffect(key1 = scrollState.value) {
+        viewModel.onTriggerEvent(NewsEvents.UpdateScrollValue(scrollState.value))
+    }
+
+    // Animate the scrolling
+    LaunchedEffect(key1 = state.maxScrollingValue) {
+        delay(500)
+        if (state.maxScrollingValue > 0) {
+            scrollState.animateScrollTo(
+                value = state.maxScrollingValue,
+                animationSpec = infiniteRepeatable(
+                    tween(
+                        durationMillis = (state.maxScrollingValue - state.scrollValue) * 50_000 / state.maxScrollingValue,
+                        easing = LinearEasing,
+                        delayMillis = 1000,
+                    ),
+                ),
+            )
+        }
+    }
 
     NewsScreenContent(
-        state = state.value,
+        state = state,
         events = viewModel::onTriggerEvent,
+        scrollState = scrollState,
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
 @Composable
 private fun NewsScreenContent(
     state: NewsState,
-    events: ((NewsEvents) -> Unit),
+    events: (NewsEvents) -> Unit,
+    scrollState: ScrollState,
 ) {
     Column(
         modifier = Modifier
@@ -80,40 +82,20 @@ private fun NewsScreenContent(
             .statusBarsPadding(),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.mediumPadding),
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_news_room),
-            contentDescription = null,
-            modifier = Modifier
-                .width(150.dp)
-                .height(30.dp)
-                .padding(horizontal = MaterialTheme.spacing.mediumPadding),
-        )
-
-        SearchBar(
-            modifier = Modifier
-                .padding(horizontal = MaterialTheme.spacing.mediumPadding)
-                .fillMaxWidth(),
-            text = "",
-            readOnly = true,
-            onValueChange = {},
-            onSearch = {},
-            onClick = {
-                // navigateToSearch
-            },
-        )
-
         Text(
             text = state.getTitle(),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = MaterialTheme.spacing.mediumPadding),
-            // .horizontalScroll(scrollState, enabled = false)
+                .padding(start = MaterialTheme.spacing.mediumPadding)
+                .horizontalScroll(scrollState, enabled = false),
             fontSize = 12.sp,
             color = MaterialTheme.palette.Placeholder,
         )
 
         ArticlesList(
-            modifier = Modifier.padding(horizontal = MaterialTheme.spacing.mediumPadding),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaterialTheme.spacing.mediumPadding),
             articles = state.articles,
             onClick = { /*navigateToDetails*/ },
         )
@@ -222,12 +204,14 @@ private fun NewsScreenContent(
 @Composable
 private fun NewsScreenContentPreview() {
     NewsRoomTheme {
+        val scrollState = rememberScrollState()
         NewsScreenContent(
-            events = {},
             state = NewsState(
                 topics = listOf(Topic.Home, Topic.Settings, Topic.Profile),
                 articles = MockData.articleList,
             ),
+            events = {},
+            scrollState = scrollState,
         )
     }
 }

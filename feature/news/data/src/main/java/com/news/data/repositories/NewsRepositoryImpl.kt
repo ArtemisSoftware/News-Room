@@ -14,8 +14,6 @@ class NewsRepositoryImpl constructor(
             val result = newsApi.getNews(sources = sources.joinToString(separator = ","), page = 1)
             result.toListArticles()
         } catch (e: Exception) {
-            val d = e.toString()
-            val dd = d + ""
             emptyList()
         }
     }
