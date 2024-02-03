@@ -26,10 +26,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.core.domain.models.Article
-import com.core.ui.theme.NewsRoomTheme
-import com.core.ui.theme.dimension
-import com.core.ui.theme.palette
-import com.core.ui.theme.spacing
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
+import com.artemissoftware.newsroom.core.designsystem.theme.dimension
+import com.artemissoftware.newsroom.core.designsystem.theme.palette
+import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.news.presentation.R
 import com.news.presentation.news.MockData
 
@@ -97,7 +97,7 @@ fun ArticleCard(
 @Preview(showBackground = true)
 @Composable
 private fun ArticleCardPreview() {
-    NewsRoomTheme {
+    com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme {
         ArticleCard(
             article = MockData.article,
             modifier = Modifier.fillMaxWidth(),

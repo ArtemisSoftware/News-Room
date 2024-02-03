@@ -21,9 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.core.ui.theme.NewsRoomTheme
-import com.core.ui.theme.palette
-import com.core.ui.theme.spacing
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
+import com.artemissoftware.newsroom.core.designsystem.theme.palette
+import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.news.presentation.news.composables.ArticlesList
 import com.news.presentation.news.models.Topic
 import kotlinx.coroutines.delay
@@ -203,7 +203,7 @@ private fun NewsScreenContent(
 @Preview(showBackground = true)
 @Composable
 private fun NewsScreenContentPreview() {
-    NewsRoomTheme {
+    com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme {
         val scrollState = rememberScrollState()
         NewsScreenContent(
             state = NewsState(

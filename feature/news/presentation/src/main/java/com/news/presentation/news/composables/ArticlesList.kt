@@ -11,8 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.core.domain.models.Article
-import com.core.ui.theme.NewsRoomTheme
-import com.core.ui.theme.spacing
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
+import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.news.presentation.news.MockData
 
 @Composable
@@ -42,7 +42,7 @@ fun ArticlesList(
 @Preview(showBackground = true)
 @Composable
 private fun ArticlesListPreview() {
-    NewsRoomTheme {
+    com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme {
         ArticlesList(
             articles = MockData.articleList,
             modifier = Modifier.fillMaxSize(),
