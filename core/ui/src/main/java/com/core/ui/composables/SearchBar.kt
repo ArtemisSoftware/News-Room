@@ -28,9 +28,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.core.ui.R
-import com.core.ui.theme.NewsRoomTheme
-import com.core.ui.theme.dimension
-import com.core.ui.theme.palette
+/*
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
+import com.artemissoftware.newsroom.core.designsystem.theme.dimension
+import com.artemissoftware.newsroom.core.designsystem.theme.palette
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -114,8 +115,9 @@ private fun Modifier.searchBar(): Modifier = composed {
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 private fun SearchBarPreview() {
-    NewsRoomTheme {
+    com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme {
         SearchBar(text = "", onValueChange = {}, readOnly = false) {
         }
     }
 }
+*/
