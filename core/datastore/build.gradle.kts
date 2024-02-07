@@ -38,4 +38,5 @@ dependencies {
 
     implementation(libs.datastore)
     implementation(libs.kotlinx.serialization.json)
+    implementation(project(":core:model"))
 }
