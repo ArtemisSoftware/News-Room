@@ -1,4 +1,4 @@
-package com.core.data.remote.dto
+package com.artemissoftware.newsroom.core.network.dto
 
 import com.squareup.moshi.Json
 

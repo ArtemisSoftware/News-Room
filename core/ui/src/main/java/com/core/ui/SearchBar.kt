@@ -1,4 +1,4 @@
-package com.core.ui.composables
+package com.core.ui
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.border

@@ -1,12 +1,12 @@
 package com.news.data.repositories
 
 import com.core.data.mappers.toListArticles
-import com.core.data.remote.NewsApi
+import com.artemissoftware.newsroom.core.network.NewsApi
 import com.core.domain.models.Article
 import com.news.domain.repositories.NewsRepository
 
 class NewsRepositoryImpl constructor(
-    private val newsApi: NewsApi,
+    private val newsApi: com.artemissoftware.newsroom.core.network.NewsApi,
 ) : NewsRepository {
 
     override suspend fun getNews(sources: List<String>): List<Article> {

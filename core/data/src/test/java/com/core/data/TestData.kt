@@ -1,19 +1,19 @@
 package com.core.data
 
 import com.core.data.database.entities.ArticleEntity
-import com.core.data.remote.dto.ArticleDto
-import com.core.data.remote.dto.SourceDto
+import com.artemissoftware.newsroom.core.network.dto.ArticleDto
+import com.artemissoftware.newsroom.core.network.dto.SourceDto
 import com.core.domain.models.Article
 import com.core.domain.models.Source
 
 internal object TestData {
 
-    val sourceDto = SourceDto(
+    val sourceDto = com.artemissoftware.newsroom.core.network.dto.SourceDto(
         id = "marca",
         name = "Marca",
     )
 
-    val articleDto = ArticleDto(
+    val articleDto = com.artemissoftware.newsroom.core.network.dto.ArticleDto(
         author = "apnews.com",
         content = "Asian shares traded mixed Thursday as pessimism spread among investors about any imminent interest rate cut in the United States.Japan's benchmark Nikkei was little changed, inching down less than 0.… [+302 chars]",
         description = "Asian shares traded mixed Thursday as pessimism spread among investors about any imminent interest rate cut in the United States. Japan's benchmark Nikkei was little changed, inching down less than 0.1% to finish at 35,466.17. Australia's S&P/ASX 200 slipped …",

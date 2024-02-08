@@ -1,7 +1,7 @@
-package com.core.data.remote
+package com.artemissoftware.newsroom.core.network
 
-import com.core.AppConstants.API_KEY
-import com.core.data.remote.dto.NewsDto
+import com.artemissoftware.newsroom.core.network.Constants.API_KEY
+import com.artemissoftware.newsroom.core.network.dto.NewsDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

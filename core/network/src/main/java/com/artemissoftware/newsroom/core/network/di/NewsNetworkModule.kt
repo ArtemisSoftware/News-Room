@@ -1,7 +1,7 @@
-package com.core.di
+package com.artemissoftware.newsroom.core.network.di
 
-import com.core.AppConstants
-import com.core.data.remote.NewsApi
+import com.artemissoftware.newsroom.core.network.Constants
+import com.artemissoftware.newsroom.core.network.NewsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +34,7 @@ object NewsNetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(AppConstants.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
