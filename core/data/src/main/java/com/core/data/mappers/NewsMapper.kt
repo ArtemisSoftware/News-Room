@@ -1,11 +1,16 @@
 package com.core.data.mappers
 
+import com.artemissoftware.newsroom.core.datastore.models.AppSettingsStore
+import com.artemissoftware.newsroom.core.model.AppSettings
 import com.core.data.database.entities.ArticleEntity
-import com.artemissoftware.newsroom.core.network.dto.ArticleDto
-import com.artemissoftware.newsroom.core.network.dto.NewsDto
 import com.core.domain.models.Article
 import com.core.domain.models.Source
 
+internal fun AppSettingsStore.toAppSettings() = AppSettings(
+    onboardingDone = onboardingDone,
+)
+
+/*
 fun com.artemissoftware.newsroom.core.network.dto.NewsDto.toListArticles(): List<Article> {
     return this.articles.map { it.toArticle() }
 }
@@ -48,3 +53,4 @@ fun ArticleEntity.toArticle(): Article {
         urlToImage = this.urlToImage,
     )
 }
+*/

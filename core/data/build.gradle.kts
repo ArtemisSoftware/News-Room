@@ -39,12 +39,14 @@ android {
 dependencies {
 
     implementation(project(Modules.coreDomain))
+    implementation(project(":core:model"))
 
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(project(":core:datastore"))
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
 
