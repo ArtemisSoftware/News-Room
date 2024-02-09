@@ -33,7 +33,7 @@ fun NewsRoomTheme(
     CompositionLocalProvider(
         localSpacing provides spacing,
         localShape provides shape,
-//        localDimension provides dimension,
+        localDimension provides dimension,
         localPalette provides if (darkTheme) paletteDark else paletteLight,
     ) {
         val colorScheme = localPalette.current.toScheme()
@@ -46,8 +46,6 @@ fun NewsRoomTheme(
     }
 }
 
-// private val localDimension = staticCompositionLocalOf<Dimension> { throw IllegalStateException("No theme installed") }
-//
 val MaterialTheme.spacing: Spacing
     @Composable
     get() = localSpacing.current
@@ -55,10 +53,6 @@ val MaterialTheme.spacing: Spacing
 val MaterialTheme.shape: Shaping
     @Composable
     get() = localShape.current
-
-// val MaterialTheme.dimension: Dimension
-//    @Composable
-//    get() = localDimension.current
 
 val MaterialTheme.palette: Palette
     @Composable
