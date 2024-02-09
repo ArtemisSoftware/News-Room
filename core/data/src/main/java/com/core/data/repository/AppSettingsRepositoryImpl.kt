@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class AppSettingsRepositoryImpl @Inject constructor(
-    private val nrDataSource: NRDataSource
-): AppSettingsRepository {
+    private val nrDataSource: NRDataSource,
+) : AppSettingsRepository {
     override fun getAppSettings(): Flow<AppSettings> {
         return nrDataSource.getAppSettings().map {
             it.toAppSettings()
@@ -19,5 +19,4 @@ class AppSettingsRepositoryImpl @Inject constructor(
     override suspend fun setOnboarding(done: Boolean) {
         nrDataSource.setOnboarding(done = done)
     }
-
 }
