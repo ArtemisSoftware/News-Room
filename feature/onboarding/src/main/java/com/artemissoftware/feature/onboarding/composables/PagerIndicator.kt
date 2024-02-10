@@ -17,6 +17,7 @@ import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
+import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 
 @Composable
 internal fun PagerIndicator(
@@ -28,7 +29,7 @@ internal fun PagerIndicator(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing1),
     ) {
         repeat(times = pagesSize) { page ->
             Box(
@@ -46,7 +47,7 @@ internal fun PagerIndicator(
 private fun PagerIndicatorPreview() {
     NewsRoomTheme {
         PagerIndicator(
-            modifier = Modifier.width(80.dp),
+            modifier = Modifier,
             pagesSize = 4,
             selectedPage = 2,
         )

@@ -16,6 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import com.artemissoftware.feature.onboarding.PreviewData
+import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
@@ -61,7 +62,7 @@ private fun OnBoardingPagePreview() {
         OnBoardingPage(
             modifier = Modifier.fillMaxWidth(),
             page = PreviewData.pages[0],
-            image = 0,
+            image = R.drawable.news_2,
         )
     }
 }

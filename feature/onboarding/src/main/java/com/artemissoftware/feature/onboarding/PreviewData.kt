@@ -22,5 +22,7 @@ internal object PreviewData {
     val onBoardingState = OnBoardingState(
         previewsText = "",
         nextText = "Next",
+        currentPage = 0,
+        pages = pages,
     )
 }
