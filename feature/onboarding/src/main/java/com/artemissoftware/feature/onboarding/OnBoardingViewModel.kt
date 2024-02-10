@@ -20,7 +20,7 @@ class OnBoardingViewModel @Inject constructor() : ViewModel() {
     fun onTriggerEvent(event: OnBoardingEvent) {
         when (event) {
             OnBoardingEvent.GoToNextPage -> updateNextPage()
-            OnBoardingEvent.GoToPreviewsPage -> TODO()
+            OnBoardingEvent.GoToPreviewsPage -> updatePreviewsPage()
         }
     }
 
