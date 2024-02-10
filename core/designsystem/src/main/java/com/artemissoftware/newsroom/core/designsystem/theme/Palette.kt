@@ -14,7 +14,7 @@ data class Palette(
 
 //    val Body: Color,
 //    val DisplaySmall: Color,
-//    val TextMedium: Color,
+
 //    val TextTitle: Color,
 //    val InputBackground: Color,
 //    val Placeholder: Color,
@@ -27,6 +27,8 @@ data class Palette(
 data class ExtraColors(
     val OverlayWhite: Color,
     val BlueGray: Color,
+    val textMedium: Color,
+    val displaySmall: Color,
 )
 
 internal val localPalette = staticCompositionLocalOf<Palette> { throw IllegalStateException("No theme installed") }
@@ -37,6 +39,8 @@ internal val localPalette = staticCompositionLocalOf<Palette> { throw IllegalSta
 internal val extraColors = ExtraColors(
     OverlayWhite = WhiteGray,
     BlueGray = BlueGray,
+    textMedium = TextMedium,
+    displaySmall = DisplaySmall,
 )
 
 internal val paletteLight = Palette(

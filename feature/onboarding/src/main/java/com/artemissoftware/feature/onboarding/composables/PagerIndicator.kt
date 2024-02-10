@@ -12,17 +12,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 
 @Composable
-fun PagerIndicator(
-    modifier: Modifier = Modifier,
+internal fun PagerIndicator(
     pagesSize: Int,
     selectedPage: Int,
+    modifier: Modifier = Modifier,
     selectedColor: Color = MaterialTheme.palette.primary,
     unselectedColor: Color = MaterialTheme.palette.extraColors.BlueGray,
 ) {
@@ -41,7 +41,7 @@ fun PagerIndicator(
     }
 }
 
-@Preview(showBackground = true)
+@ThemePreviews
 @Composable
 private fun PagerIndicatorPreview() {
     NewsRoomTheme {

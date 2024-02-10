@@ -5,8 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -39,7 +40,7 @@ fun OnBoardingScreenContent(
 //                .padding(horizontal = MediumPadding2)
 //                .navigationBarsPadding(),
 //            horizontalArrangement = Arrangement.SpaceBetween,
-//            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
 //            PagerIndicator(
 //                modifier = Modifier.width(52.dp),
@@ -47,7 +48,7 @@ fun OnBoardingScreenContent(
 //                selectedPage = pagerState.currentPage
 //            )
 //
-//            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
 //                val scope = rememberCoroutineScope()
 //                //Hide the button when the first element of the list is empty
 //                if (buttonsState.value[0].isNotEmpty()) {
@@ -77,13 +78,13 @@ fun OnBoardingScreenContent(
 //                        }
 //                    }
 //                )
-//            }
+            }
         }
 //        Spacer(modifier = Modifier.weight(0.5f))
     }
 }
 
-@Preview(showBackground = true)
+@ThemePreviews
 @Composable
 private fun OnBoardingScreenContentPreview() {
     // com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme {
