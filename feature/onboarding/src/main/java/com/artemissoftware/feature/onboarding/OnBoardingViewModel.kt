@@ -18,17 +18,25 @@ class OnBoardingViewModel @Inject constructor(
     val state: StateFlow<OnBoardingState> = _state.asStateFlow()
 
     init {
-        updateOnboarding()
+        getOnboarding()
     }
 
     fun onTriggerEvent(event: OnBoardingEvent) {
         when (event) {
             OnBoardingEvent.GoToNextPage -> updateNextPage()
             OnBoardingEvent.GoToPreviewsPage -> updatePreviewsPage()
+            is OnBoardingEvent.SwipePage -> swipePage(event.index)
+        }
+    }
+    private fun swipePage(index: Int) = with(_state.value) {
+        if (currentPage > index) {
+            updatePreviewsPage()
+        } else {
+            updateNextPage()
         }
     }
 
-    private fun updateOnboarding() = with(_state) {
+    private fun getOnboarding() = with(_state) {
         update {
             it.copy(pages = getOnboardingPagesUseCase())
         }
@@ -36,13 +44,12 @@ class OnBoardingViewModel @Inject constructor(
     }
 
     private fun updateNextPage() = with(_state) {
-        update {
-            it.copy(currentPage = (it.currentPage + 1))
-        }
-
         if (value.reachedLastPage()) {
         } else {
-            updateTexts()
+            updateTexts(currentPage = (value.currentPage + 1))
+        }
+        update {
+            it.copy(currentPage = (it.currentPage + 1))
         }
     }
 
@@ -53,8 +60,8 @@ class OnBoardingViewModel @Inject constructor(
         updateTexts()
     }
 
-    private fun updateTexts() = with(_state) {
-        val (previews, next) = when (value.currentPage) {
+    private fun updateTexts(currentPage: Int = 0) = with(_state) {
+        val (previews, next) = when (currentPage) {
             0 -> "" to "Next"
             1 -> "Back" to "Next"
             2 -> "Back" to "Get Started"

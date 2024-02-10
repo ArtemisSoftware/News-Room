@@ -9,7 +9,7 @@ data class OnBoardingState(
     @DrawableRes val image: Int = R.drawable.news_1,
     val previewsText: String = "",
     val nextText: String = "",
-    val pages: List<Page> = emptyList()
-){
-    fun reachedLastPage() = (currentPage + 1) == pages.size
+    val pages: List<Page> = emptyList(),
+) {
+    fun reachedLastPage() = currentPage == pages.size
 }
