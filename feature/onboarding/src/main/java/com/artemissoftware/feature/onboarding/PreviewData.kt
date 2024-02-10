@@ -18,4 +18,9 @@ internal object PreviewData {
             description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         ),
     )
+
+    val onBoardingState = OnBoardingState(
+        previewsText = "",
+        nextText = "Next",
+    )
 }
