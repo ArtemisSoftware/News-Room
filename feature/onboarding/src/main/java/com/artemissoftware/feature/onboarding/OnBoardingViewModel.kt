@@ -1,6 +1,7 @@
 package com.artemissoftware.feature.onboarding
 
 import androidx.lifecycle.ViewModel
+import com.core.domain.usecases.GetOnboardingPagesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -9,12 +10,15 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class OnBoardingViewModel @Inject constructor() : ViewModel() {
+class OnBoardingViewModel @Inject constructor(
+    private val getOnboardingPagesUseCase: GetOnboardingPagesUseCase,
+) : ViewModel() {
 
     private val _state = MutableStateFlow(OnBoardingState())
     val state: StateFlow<OnBoardingState> = _state.asStateFlow()
 
     init {
+        updateOnboarding()
     }
 
     fun onTriggerEvent(event: OnBoardingEvent) {
@@ -22,6 +26,13 @@ class OnBoardingViewModel @Inject constructor() : ViewModel() {
             OnBoardingEvent.GoToNextPage -> updateNextPage()
             OnBoardingEvent.GoToPreviewsPage -> updatePreviewsPage()
         }
+    }
+
+    private fun updateOnboarding() = with(_state) {
+        update {
+            it.copy(pages = getOnboardingPagesUseCase())
+        }
+        updateTexts()
     }
 
     private fun updateNextPage() = with(_state) {
