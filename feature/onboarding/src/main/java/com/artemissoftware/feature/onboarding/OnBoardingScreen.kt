@@ -1,7 +1,6 @@
 package com.artemissoftware.feature.onboarding
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,9 +29,8 @@ import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen(viewModel: OnBoardingViewModel = hiltViewModel()) {
+internal fun OnBoardingScreen(viewModel: OnBoardingViewModel = hiltViewModel()) {
     val state = viewModel.state.collectAsState().value
 
     OnBoardingScreenContent(
