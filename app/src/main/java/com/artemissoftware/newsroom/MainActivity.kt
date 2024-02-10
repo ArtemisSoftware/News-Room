@@ -6,8 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.artemissoftware.feature.onboarding.OnBoardingScreen
+import androidx.navigation.compose.rememberNavController
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
+import com.artemissoftware.newsroom.navigation.NavGraphRoot
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +18,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             NewsRoomTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    OnBoardingScreen()
+                    val navController = rememberNavController()
+                    NavGraphRoot(
+                        navController = navController,
+                    )
                 }
             }
         }
