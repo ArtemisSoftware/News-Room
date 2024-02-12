@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -36,7 +37,11 @@ android {
 
 dependencies {
 
+    implementation(project(":core:model"))
+
     implementation(libs.datastore)
     implementation(libs.kotlinx.serialization.json)
-    implementation(project(":core:model"))
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }

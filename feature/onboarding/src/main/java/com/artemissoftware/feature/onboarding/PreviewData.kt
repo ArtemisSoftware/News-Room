@@ -2,6 +2,7 @@ package com.artemissoftware.feature.onboarding
 
 import com.artemissoftware.newsroom.core.model.OnboardingType
 import com.artemissoftware.newsroom.core.model.Page
+import com.core.ui.composables.UiText
 
 internal object PreviewData {
 
@@ -24,8 +25,8 @@ internal object PreviewData {
     )
 
     val onBoardingState = OnBoardingState(
-        previewsText = "",
-        nextText = "Next",
+        previewsText = UiText.DynamicString(""),
+        nextText = UiText.DynamicString("Next"),
         currentPage = 0,
         pages = pages,
     )

@@ -66,7 +66,7 @@ private fun OnBoardingScreenContent(
         ) { index ->
             OnBoardingPage(
                 page = state.pages[index],
-                image = state.image,
+                image = state.image[index],
             )
         }
 
@@ -87,9 +87,9 @@ private fun OnBoardingScreenContent(
             )
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                if (state.previewsText.isNotEmpty()) {
+                if (state.previewsText.asString().isNotEmpty()) {
                     NRTextButton(
-                        text = state.previewsText,
+                        text = state.previewsText.asString(),
                         onClick = {
                             event(OnBoardingEvent.GoToPreviewsPage)
                             scope.launch {
@@ -101,7 +101,7 @@ private fun OnBoardingScreenContent(
                     )
                 }
                 NRButton(
-                    text = state.nextText,
+                    text = state.nextText.asString(),
                     onClick = {
                         event(OnBoardingEvent.GoToNextPage)
                         scope.launch {

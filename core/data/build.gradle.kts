@@ -40,21 +40,19 @@ dependencies {
 
     implementation(project(Modules.coreDomain))
     implementation(project(":core:model"))
+    implementation(project(":core:datastore"))
 
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    implementation(project(":core:datastore"))
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
-//    implementation(libs.hilt.android)
-//    ksp(libs.hilt.android.compiler)
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 

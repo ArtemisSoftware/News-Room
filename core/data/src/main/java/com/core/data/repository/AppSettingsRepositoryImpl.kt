@@ -3,7 +3,9 @@ package com.core.data.repository
 import com.artemissoftware.newsroom.core.datastore.source.NRDataSource
 import com.artemissoftware.newsroom.core.model.AppSettings
 import com.core.data.mappers.toAppSettings
+import com.core.domain.repository.AppSettingsRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
