@@ -2,11 +2,10 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
-    namespace = "com.artemissoftware.feature.onboarding"
+    namespace = "com.artemissoftware.feature.bookmark"
     compileSdk = 34
 
     defaultConfig {
@@ -46,10 +45,8 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:ui"))
     implementation(project(":core:model"))
-    implementation(project(":core:domain"))
 
     implementation(libs.androidx.core.ktx)
-
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -58,15 +55,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.navigation.compose)
 
-    implementation(libs.foundation)
-
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.android.compiler)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    debugImplementation(libs.ui.tooling)
 }
