@@ -2,7 +2,7 @@ package com.core.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.core.domain.models.Source
+import com.artemissoftware.newsroom.core.model.Source
 
 @Entity
 data class ArticleEntity(

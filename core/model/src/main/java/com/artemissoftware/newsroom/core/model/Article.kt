@@ -1,4 +1,4 @@
-package com.core.domain.models
+package com.artemissoftware.newsroom.core.model
 
 data class Article(
     val author: String? = null,

@@ -2,7 +2,7 @@ package com.core.data.database.typeconvertor
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
-import com.core.domain.models.Source
+import com.artemissoftware.newsroom.core.model.Source
 
 @ProvidedTypeConverter
 class SourceTypeConvertor {
