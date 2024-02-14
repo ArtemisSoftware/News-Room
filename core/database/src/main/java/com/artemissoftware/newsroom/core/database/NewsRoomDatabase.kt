@@ -15,7 +15,7 @@ import com.artemissoftware.newsroom.core.database.typeconvertor.SourceTypeConver
     exportSchema = false,
 )
 @TypeConverters(SourceTypeConvertor::class)
-abstract class NewsDatabase : RoomDatabase() {
+abstract class NewsRoomDatabase : RoomDatabase() {
 
     abstract fun getNewsDao(): NewsDao
 }
