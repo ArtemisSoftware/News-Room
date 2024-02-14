@@ -42,7 +42,12 @@ android {
 
 dependencies {
 
-    implementation(libs.activity.compose)
+    implementation(project(":core:common"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:model"))
+
+    implementation(libs.androidx.core.ktx)
+
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
@@ -52,9 +57,6 @@ dependencies {
 
     api(libs.coil.compose)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

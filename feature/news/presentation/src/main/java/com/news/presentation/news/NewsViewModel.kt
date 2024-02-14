@@ -1,5 +1,5 @@
 package com.news.presentation.news
-
+/*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.core.domain.models.Article
@@ -58,3 +58,4 @@ class NewsViewModel @Inject constructor(
         }
     }
 }
+*/

@@ -28,7 +28,9 @@ data class ExtraColors(
     val OverlayWhite: Color,
     val BlueGray: Color,
     val textMedium: Color,
+    val textTitle: Color,
     val displaySmall: Color,
+    val body: Color,
 )
 
 internal val localPalette = staticCompositionLocalOf<Palette> { throw IllegalStateException("No theme installed") }
@@ -40,7 +42,9 @@ internal val extraColors = ExtraColors(
     OverlayWhite = WhiteGray,
     BlueGray = BlueGray,
     textMedium = TextMedium,
+    textTitle = TextTitle,
     displaySmall = DisplaySmall,
+    body = Body,
 )
 
 internal val paletteLight = Palette(

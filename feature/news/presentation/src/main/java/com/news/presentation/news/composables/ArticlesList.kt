@@ -3,13 +3,13 @@ package com.news.presentation.news.composables
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.core.domain.models.Article
+//import com.core.domain.models.Article
 
 @Composable
 fun ArticlesList(
-    articles: List<Article>,
-    onClick: (Article) -> Unit,
-    modifier: Modifier = Modifier,
+//    articles: List<Article>,
+//    onClick: (Article) -> Unit,
+//    modifier: Modifier = Modifier,
 ) {
 //    if (articles.isEmpty()) {
 //        // EmptyScreen() // TODO: completar

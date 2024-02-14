@@ -13,4 +13,15 @@ internal val BlueGray = Color(0xFFA0A3BD)
 internal val WhiteGray = Color(0xFFB0B3B8)
 
 internal val TextMedium = Color(0xFF4E4B66)
+internal val TextTitle = Color(0xFF4E4B66)
 internal val DisplaySmall = Color(0xFF000000)
+
+
+internal val Body = Color(0xFF4E4B66)
+
+//<color name="display_small">#000000</color>
+//<color name="text_medium">#FF4E4B66</color>
+//<color name="text_title">#000000</color>
+//<color name="input_background">#fff</color>
+//<color name="placeholder">#A0A3BD</color>
+//<color name="shimmer">#C3C3C3</color>

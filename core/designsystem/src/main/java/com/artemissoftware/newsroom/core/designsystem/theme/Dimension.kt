@@ -16,7 +16,7 @@ data class Dimension(
 
 val dimension = Dimension(
     indicatorSize = 14.dp,
-    smallIconSize = 11.dp,
+    smallIconSize = 12.dp,
     iconSize = 20.dp,
     articleCardSize = 96.dp,
     articleImageHeight = 248.dp,

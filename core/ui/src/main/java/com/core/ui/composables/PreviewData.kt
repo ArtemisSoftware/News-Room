@@ -1,15 +1,16 @@
-package com.news.presentation.news
+package com.core.ui.composables
 
-import com.core.domain.models.Article
+import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.model.Source
 
-object MockData {
+internal object PreviewData {
+
     val article = Article(
         author = "",
         content = "",
         description = "",
         publishedAt = "2 hours",
-        source = com.artemissoftware.newsroom.core.model.Source(name = "BBC"),
+        source = Source(name = "BBC"),
         title = "Her train broke down. Her phone died. And then she met her Saver in a",
         url = "",
         urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg",

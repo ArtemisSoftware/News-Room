@@ -1,7 +1,7 @@
 package com.news.data.repositories
 
 
-import com.core.domain.models.Article
+//import com.core.domain.models.Article
 import com.news.domain.repositories.NewsRepository
 
 class NewsRepositoryImpl constructor(
