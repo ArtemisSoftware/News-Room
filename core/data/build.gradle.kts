@@ -41,6 +41,7 @@ dependencies {
     implementation(project(Modules.coreDomain))
     implementation(project(":core:model"))
     implementation(project(":core:datastore"))
+    implementation(project(":core:database"))
 
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
@@ -52,7 +53,6 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 

@@ -1,7 +1,9 @@
 package com.core.data.mappers
 
+import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
 import com.artemissoftware.newsroom.core.datastore.models.AppSettingsStore
 import com.artemissoftware.newsroom.core.model.AppSettings
+import com.artemissoftware.newsroom.core.model.Article
 
 internal fun AppSettingsStore.toAppSettings() = AppSettings(
     onboardingDone = onboardingDone,
@@ -37,7 +39,7 @@ fun com.artemissoftware.newsroom.core.network.dto.ArticleDto.toArticle(): Articl
         urlToImage = this.urlToImage,
     )
 }
-
+*/
 fun ArticleEntity.toArticle(): Article {
     return Article(
         author = this.author,
@@ -50,4 +52,3 @@ fun ArticleEntity.toArticle(): Article {
         urlToImage = this.urlToImage,
     )
 }
-*/
