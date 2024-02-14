@@ -3,6 +3,7 @@ package com.artemissoftware.feature.bookmark
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.domain.usecases.GetSavedArticlesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
-//    private val getSavedArticlesUseCase: GetSavedArticles
+    private val getSavedArticlesUseCase: GetSavedArticlesUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(BookmarkState())
@@ -30,9 +31,9 @@ class BookmarkViewModel @Inject constructor(
 
     private fun getArticles() {
         viewModelScope.launch {
+            getSavedArticlesUseCase().collect{
+                updateArticles(articles = it)
+            }
         }
-//        getSavedArticlesUseCase().onEach {
-//            _state.value = _state.value.copy(articles = it)
-//        }.launchIn(viewModelScope)
     }
 }
