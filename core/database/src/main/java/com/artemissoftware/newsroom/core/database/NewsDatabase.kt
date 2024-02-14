@@ -1,11 +1,11 @@
-package com.core.data.database
+package com.artemissoftware.newsroom.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.core.data.database.dao.NewsDao
-import com.core.data.database.entities.ArticleEntity
-import com.core.data.database.typeconvertor.SourceTypeConvertor
+import com.artemissoftware.newsroom.core.database.dao.NewsDao
+import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
+import com.artemissoftware.newsroom.core.database.typeconvertor.SourceTypeConvertor
 
 @Database(
     entities = [

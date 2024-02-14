@@ -1,4 +1,4 @@
-package com.core.data.database.entities
+package com.artemissoftware.newsroom.core.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

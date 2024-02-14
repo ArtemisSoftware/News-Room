@@ -1,11 +1,11 @@
-package com.core.data.database.dao
+package com.artemissoftware.newsroom.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.core.data.database.entities.ArticleEntity
+import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

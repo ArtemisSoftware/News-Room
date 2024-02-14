@@ -1,4 +1,4 @@
-package com.core.data.database.typeconvertor
+package com.artemissoftware.newsroom.core.database.typeconvertor
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
