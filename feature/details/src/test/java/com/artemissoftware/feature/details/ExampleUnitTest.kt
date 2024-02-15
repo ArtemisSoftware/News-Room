@@ -1,4 +1,4 @@
-package com.detail.presentation
+package com.artemissoftware.feature.details
 
 import org.junit.Test
 

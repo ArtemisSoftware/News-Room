@@ -25,7 +25,9 @@
             <option value="$PROJECT_DIR$/build-logic/convention" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/common" />
             <option value="$PROJECT_DIR$/core/data" />
+            <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/datastore" />
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/core/domain" />
@@ -33,12 +35,13 @@
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
-            <option value="$PROJECT_DIR$/feature/detail" />
-            <option value="$PROJECT_DIR$/feature/detail/presentation" />
+            <option value="$PROJECT_DIR$/feature/bookmark" />
+            <option value="$PROJECT_DIR$/feature/details" />
             <option value="$PROJECT_DIR$/feature/news" />
             <option value="$PROJECT_DIR$/feature/news/data" />
             <option value="$PROJECT_DIR$/feature/news/domain" />
             <option value="$PROJECT_DIR$/feature/news/presentation" />
+            <option value="$PROJECT_DIR$/feature/onboarding" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

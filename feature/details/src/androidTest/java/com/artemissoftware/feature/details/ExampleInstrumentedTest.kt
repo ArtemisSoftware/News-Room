@@ -1,4 +1,4 @@
-package com.detail.presentation
+package com.artemissoftware.feature.details
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.detail.presentation.test", appContext.packageName)
+        assertEquals("com.artemissoftware.feature.details.test", appContext.packageName)
     }
 }
