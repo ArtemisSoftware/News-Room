@@ -48,6 +48,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
 
+    implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
