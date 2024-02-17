@@ -40,7 +40,21 @@ fun com.artemissoftware.newsroom.core.network.dto.ArticleDto.toArticle(): Articl
     )
 }
 */
-fun ArticleEntity.toArticle(): Article {
+
+internal fun Article.toEntity(): ArticleEntity {
+    return ArticleEntity(
+        author = this.author,
+        content = this.content,
+        description = this.description,
+        publishedAt = publishedAt,
+        source = this.source,
+        title = this.title,
+        url = url,
+        urlToImage = this.urlToImage,
+    )
+}
+
+internal fun ArticleEntity.toArticle(): Article {
     return Article(
         author = this.author,
         content = this.content,
@@ -52,3 +66,5 @@ fun ArticleEntity.toArticle(): Article {
         urlToImage = this.urlToImage,
     )
 }
+
+internal fun ArticleEntity?.toArticle() = this?.toArticle()

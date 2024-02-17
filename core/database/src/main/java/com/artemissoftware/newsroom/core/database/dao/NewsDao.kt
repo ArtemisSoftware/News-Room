@@ -22,4 +22,7 @@ interface NewsDao {
 
     @Query("SELECT * FROM ArticleEntity WHERE url=:url")
     suspend fun getArticle(url: String): ArticleEntity?
+
+    @Query("SELECT * FROM ArticleEntity WHERE id=:id")
+    suspend fun getArticle(id: Int): ArticleEntity?
 }

@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -25,6 +26,7 @@ internal fun DetailsTopBar(
     onBrowsingClick: () -> Unit,
     onShareClick: () -> Unit,
     onBookMarkClick: () -> Unit,
+    isBookmarked: Boolean = false,
     onBackClick: () -> Unit,
 ) {
     TopAppBar(
@@ -48,6 +50,7 @@ internal fun DetailsTopBar(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_bookmark),
                     contentDescription = null,
+                    tint = if (isBookmarked) MaterialTheme.palette.extraColors.bookmarked else LocalContentColor.current,
                 )
             }
             IconButton(onClick = onShareClick) {
@@ -76,6 +79,7 @@ private fun DetailsTopBarPreview() {
             onBookMarkClick = { /*TODO*/ },
             onBrowsingClick = {},
             onBackClick = {},
+            isBookmarked = true,
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.artemissoftware.newsroom.core.model
 
 data class Article(
+    val id: Int? = null,
     val author: String? = null,
     val content: String,
     val description: String,

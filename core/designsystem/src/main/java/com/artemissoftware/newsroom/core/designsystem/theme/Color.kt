@@ -16,7 +16,6 @@ internal val TextMedium = Color(0xFF4E4B66)
 internal val TextTitle = Color(0xFF4E4B66)
 internal val DisplaySmall = Color(0xFF000000)
 
-
 internal val Body = Color(0xFF4E4B66)
 
 //<color name="display_small">#000000</color>
