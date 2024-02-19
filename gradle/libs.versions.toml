@@ -15,7 +15,7 @@ assertk = "0.26.1"
 de-mannodermaus-android-junit5 = "1.9.3.0"
 org-jetbrains-kotlin-jvm = "1.8.20"
 hilt = "2.48"
-compose-bom = "2022.10.00"
+compose-bom = "2024.02.00"
 activity-compose = "1.7.2"
 coil-compose = "2.4.0"
 
