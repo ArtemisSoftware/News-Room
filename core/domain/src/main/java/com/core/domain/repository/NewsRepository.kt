@@ -12,4 +12,6 @@ interface NewsRepository {
     suspend fun deleteArticle(article: Article)
 
     suspend fun save(article: Article)
+
+    suspend fun searchArticles(searchQuery: String, sources: List<String>): List<Article>
 }

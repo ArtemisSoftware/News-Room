@@ -29,4 +29,8 @@ class NewsRepositoryImpl @Inject constructor(
     override suspend fun save(article: Article) {
         newsDao.upsert(article.toEntity())
     }
+
+    override suspend fun searchArticles(query: String, sources: List<String>): List<Article> {
+        return emptyList()//--newsApi.searchArticles(query = query).articles.map { it.toArticle() }
+    }
 }
