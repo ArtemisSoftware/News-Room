@@ -61,6 +61,7 @@ dependencies {
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:bookmark"))
     implementation(project(":feature:details"))
+    implementation(project(":feature:search"))
 
 
     implementation(libs.navigation.compose)

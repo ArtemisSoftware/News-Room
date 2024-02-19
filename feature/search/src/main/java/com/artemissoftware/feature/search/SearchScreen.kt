@@ -2,6 +2,7 @@ package com.artemissoftware.feature.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.core.ui.SearchBar
 import com.core.ui.composables.ArticlesList
@@ -38,13 +41,14 @@ private fun SearchContent(
 ) {
     Column(
         modifier = Modifier
+            .fillMaxSize()
             .padding(top = MaterialTheme.spacing.spacing3)
-            .padding(horizontal = MaterialTheme.spacing.spacing3)
             .statusBarsPadding(),
     ) {
         SearchBar(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(horizontal = if (state.isSearching) 0.dp else MaterialTheme.spacing.spacing3),
             text = state.searchQuery,
             historyItems = state.historyItems,
             onQueryChange = {
@@ -61,7 +65,9 @@ private fun SearchContent(
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing3))
 
         ArticlesList(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaterialTheme.spacing.spacing3),
             articles = state.articles,
             onClick = {
                 navigateToDetails.invoke(it.url)
@@ -83,9 +89,23 @@ private fun SearchContent(
 @Preview
 @Composable
 private fun SearchContentPreview() {
-    SearchContent(
-        state = PreviewData.searchState,
-        event = {},
-        navigateToDetails = {},
-    )
+    NewsRoomTheme {
+        SearchContent(
+            state = PreviewData.searchStateEmpty,
+            event = {},
+            navigateToDetails = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun SearchContent_with_history_Preview() {
+    NewsRoomTheme {
+        SearchContent(
+            state = PreviewData.searchState,
+            event = {},
+            navigateToDetails = {},
+        )
+    }
 }

@@ -30,8 +30,7 @@ fun SearchBar(
     historyItems: List<String> = emptyList(),
 ) {
     SearchBar(
-        modifier = modifier
-            .padding(horizontal = if (isSearching) 0.dp else 8.dp),
+        modifier = modifier,
         query = text,
         onQueryChange = onQueryChange,
         onSearch = onSearch,
