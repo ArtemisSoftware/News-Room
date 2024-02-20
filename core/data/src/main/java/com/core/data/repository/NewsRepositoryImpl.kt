@@ -19,7 +19,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getArticle(id: Int): Article? {
-        return newsDao.getArticle(id).toArticle()
+        return newsDao.getArticle(id)?.toArticle()
     }
 
     override suspend fun deleteArticle(article: Article) {

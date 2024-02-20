@@ -66,5 +66,3 @@ internal fun ArticleEntity.toArticle(): Article {
         urlToImage = this.urlToImage,
     )
 }
-
-internal fun ArticleEntity?.toArticle() = this?.toArticle()

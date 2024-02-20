@@ -3,4 +3,6 @@
     <string name="get_started">Get Started</string>
     <string name="back">Back</string>
     <string name="bookmark">Bookmark</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
 </resources>

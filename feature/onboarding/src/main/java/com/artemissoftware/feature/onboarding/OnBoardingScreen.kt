@@ -46,7 +46,7 @@ private fun OnBoardingScreenContent(
     event: (OnBoardingEvent) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(initialPage = 0)
+    val pagerState = rememberPagerState(initialPage = 0, pageCount = { state.pages.size })
     LaunchedEffect(pagerState) {
         var previousPage = pagerState.currentPage
         snapshotFlow { pagerState.currentPage }.collect {
@@ -62,7 +62,6 @@ private fun OnBoardingScreenContent(
     ) {
         HorizontalPager(
             state = pagerState,
-            pageCount = state.pages.size,
         ) { index ->
             OnBoardingPage(
                 page = state.pages[index],
