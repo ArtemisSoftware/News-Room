@@ -62,6 +62,7 @@ dependencies {
     implementation(project(":feature:bookmark"))
     implementation(project(":feature:details"))
     implementation(project(":feature:search"))
+    implementation(project(":feature:home"))
 
 
     implementation(libs.navigation.compose)

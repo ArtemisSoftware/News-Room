@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/bookmark" />
             <option value="$PROJECT_DIR$/feature/details" />
+            <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/news" />
             <option value="$PROJECT_DIR$/feature/news/data" />
             <option value="$PROJECT_DIR$/feature/news/domain" />
