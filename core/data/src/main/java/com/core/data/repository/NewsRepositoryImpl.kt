@@ -2,8 +2,10 @@ package com.core.data.repository
 
 import com.artemissoftware.newsroom.core.database.dao.NewsDao
 import com.artemissoftware.newsroom.core.model.Article
+import com.artemissoftware.newsroom.core.network.source.NewsApiSource
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity
+import com.core.data.mappers.toListArticles
 import com.core.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -11,6 +13,7 @@ import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
     private val newsDao: NewsDao,
+    private val newsApiSource: NewsApiSource,
 ) : NewsRepository {
     override fun getArticles(): Flow<List<Article>> {
         return newsDao.getArticles().map { articles ->
@@ -32,5 +35,9 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun searchArticles(query: String, sources: List<String>): List<Article> {
         return emptyList()//--newsApi.searchArticles(query = query).articles.map { it.toArticle() }
+    }
+
+    override suspend fun getNews(sources: List<String>): List<Article> {
+        return newsApiSource.getNews(sources = sources.joinToString(separator = ","), page = 1).toListArticles()
     }
 }
