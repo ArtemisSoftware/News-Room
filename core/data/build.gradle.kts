@@ -38,10 +38,12 @@ android {
 
 dependencies {
 
-    implementation(project(Modules.coreDomain))
     implementation(project(":core:model"))
     implementation(project(":core:datastore"))
     implementation(project(":core:database"))
+    implementation(project(":core:network"))
+
+    implementation(project(":core:domain"))
 
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)

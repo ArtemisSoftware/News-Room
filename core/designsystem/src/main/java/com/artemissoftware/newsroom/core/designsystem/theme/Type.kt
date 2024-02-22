@@ -55,7 +55,7 @@ internal val bodyMedium = TextStyle(
     lineHeight = 24.sp,
 )
 internal val labelSmall = TextStyle(
-    fontSize = 13.sp,
+    fontSize = 12.sp,
     fontFamily = fontFamily,
     fontWeight = FontWeight.Normal,
     lineHeight = 19.sp,
