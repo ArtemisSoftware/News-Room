@@ -34,7 +34,11 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun searchArticles(query: String, sources: List<String>): List<Article> {
-        return emptyList()//--newsApi.searchArticles(query = query).articles.map { it.toArticle() }
+        return newsApiSource.search(
+            searchQuery = query,
+            sources = sources.joinToString(separator = ","),
+            page = 1
+        ).articles.map { it.toArticle() }
     }
 
     override suspend fun getNews(sources: List<String>): List<Article> {

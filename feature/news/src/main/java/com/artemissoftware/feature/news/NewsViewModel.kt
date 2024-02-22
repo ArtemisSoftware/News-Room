@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewsViewModel @Inject constructor(
+internal class NewsViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
 ) : ViewModel() {
 
