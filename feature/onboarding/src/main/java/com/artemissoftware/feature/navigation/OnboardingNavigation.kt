@@ -6,8 +6,13 @@ import com.artemissoftware.feature.onboarding.OnBoardingScreen
 
 fun NavGraphBuilder.onboardingRoutes() {
     composable(
-        route = OnboardingDestinationScreen.Onboarding.route,
+        route = OnboardingScreen.Onboarding.route,
     ) {
         OnBoardingScreen()
     }
+}
+
+internal sealed class OnboardingScreen(val route: String) {
+
+    object Onboarding : OnboardingScreen(route = "onboarding")
 }

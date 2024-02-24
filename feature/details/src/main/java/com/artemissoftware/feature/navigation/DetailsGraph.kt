@@ -15,9 +15,9 @@ fun NavGraphBuilder.detailsGraph(
 ) {
     navigation(
         route = DETAILS_GRAPH,
-        startDestination = DetailScreen.Details.route,
+        startDestination = DetailRoute.Details.route,
     ) {
-        composable(route = DetailScreen.Details.route) {
+        composable(route = DetailRoute.Details.route) {
             DetailsScreen(
                 popBackStack = popBackStack,
             )
@@ -25,6 +25,6 @@ fun NavGraphBuilder.detailsGraph(
     }
 }
 
-sealed class DetailScreen(val route: String) {
-    object Details : DetailScreen(route = "details")
+internal sealed class DetailRoute(val route: String) {
+    object Details : DetailRoute(route = "details")
 }

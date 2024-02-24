@@ -7,10 +7,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 import com.artemissoftware.newsroom.core.designsystem.composables.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
@@ -28,21 +28,6 @@ internal fun RowScope.NRNavigationBarItem(
     label: @Composable (() -> Unit)? = null,
     alwaysShowLabel: Boolean = true,
 ) {
-//    Column(
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing0_5),
-//    ) {
-//        Icon(
-//            painter = painterResource(id = item.icon),
-//            contentDescription = null,
-//            modifier = Modifier.size(MaterialTheme.dimension.iconSize),
-//        )
-//        Text(
-//            text = stringResource(id = item.text),
-//            style = MaterialTheme.typography.labelSmall,
-//        )
-//    }
-
     NavigationBarItem(
         selected = selected,
         onClick = onClick,
@@ -71,9 +56,15 @@ private fun NavigationItemPreview() {
                 onClick = {},
                 icon = {
                     Icon(
-                        painter = painterResource(id = PreviewData.bottomNavigationItem.icon),
+                        painter = painterResource(id = PreviewData.destinationHome.icon),
                         contentDescription = null,
                         modifier = Modifier.size(MaterialTheme.dimension.iconSize),
+                    )
+                },
+                label = {
+                    Text(
+                        text = "label",
+                        style = MaterialTheme.typography.labelSmall,
                     )
                 },
             )

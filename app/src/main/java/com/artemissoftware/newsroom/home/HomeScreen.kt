@@ -1,12 +1,17 @@
-package com.artemissoftware.feature.home
+package com.artemissoftware.newsroom.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.artemissoftware.newsroom.NRAppState
+import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.NRNavigationBar
+import com.artemissoftware.newsroom.rememberNRAppState
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    appState: NRAppState = rememberNRAppState(),
+) {
 /*
     val bottomNavigationItems = remember {
         listOf(
@@ -39,6 +44,12 @@ fun HomeScreen() {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
+            NRNavigationBar(
+                destinations = appState.topLevelDestinations,
+                currentDestination = appState.currentTopLevelDestination,
+                onItemClick = {},
+            )
+
 //        if (isBottomBarVisible) {
 //            NewsBottomNavigation(
 //                items = bottomNavigationItems,

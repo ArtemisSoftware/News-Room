@@ -13,21 +13,19 @@ fun NavController.navigateToNewsGraph() = navigate(NEWS_GRAPH)
 fun NavGraphBuilder.newsGraph() {
     navigation(
         route = NEWS_GRAPH,
-        startDestination = Screen.News.route,
+        startDestination = NewsScreen.News.route,
     ) {
-        composable(route = Screen.News.route) {
+        composable(route = NewsScreen.News.route) {
             NewsScreen(
                 navigateToSearch = {
-
                 },
                 navigateToDetails = {
-
                 },
             )
         }
     }
 }
 
-internal sealed class Screen(val route: String) {
-    object News : Screen(route = "news")
+internal sealed class NewsScreen(val route: String) {
+    object News : NewsScreen(route = "news")
 }

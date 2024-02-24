@@ -19,25 +19,25 @@ import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 
 @Composable
 fun NRNavigationBar(
-    items: List<BottomNavigationItem>,
-    selectedItem: Int,
+    destinations: List<TopLevelDestination_>,
     onItemClick: (Int) -> Unit,
+    currentDestination: TopLevelDestination_?,
 ) {
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
         containerColor = MaterialTheme.colorScheme.background,
         tonalElevation = 10.dp,
     ) {
-        items.forEachIndexed { index, item ->
+        destinations.forEachIndexed { index, destination ->
 
             NRNavigationBarItem(
-                selected = /*selected*/true,
+                selected = currentDestination == destination,
                 onClick = {
                     // onNavigateToDestination(destination)
                 },
                 icon = {
                     Icon(
-                        painter = painterResource(id = item.icon),
+                        painter = painterResource(id = destination.icon),
                         contentDescription = null,
                         tint = Color.Cyan,
                         modifier = Modifier.size(MaterialTheme.dimension.iconSize),
@@ -45,7 +45,7 @@ fun NRNavigationBar(
                 },
                 selectedIcon = {
                     Icon(
-                        painter = painterResource(id = item.icon),
+                        painter = painterResource(id = destination.icon),
                         contentDescription = null,
                         tint = Color.Green,
                         modifier = Modifier.size(MaterialTheme.dimension.iconSize),
@@ -53,27 +53,13 @@ fun NRNavigationBar(
                 },
                 label = {
                     Text(
-                        text = stringResource(id = item.text),
+                        text = stringResource(id = destination.text),
                         style = MaterialTheme.typography.labelSmall,
                     )
                 },
                 // modifier = if (hasUnread) Modifier.notificationDot() else Modifier,
             )
 
-//            NavigationBarItem(
-//                selected = index == selectedItem,
-//                onClick = { onItemClick(index) },
-//                icon = {
-//                    NavigationItem(item = item)
-//                },
-//                colors = NavigationBarItemDefaults.colors(
-//                    selectedIconColor = MaterialTheme.colorScheme.primary,
-//                    selectedTextColor = MaterialTheme.colorScheme.primary,
-//                    unselectedIconColor = MaterialTheme.palette.extraColors.body,
-//                    unselectedTextColor = MaterialTheme.palette.extraColors.body,
-//                    indicatorColor = MaterialTheme.colorScheme.background,
-//                ),
-//            )
         }
     }
 }
@@ -83,8 +69,8 @@ fun NRNavigationBar(
 private fun BottomNavigationBarPreview() {
     NewsRoomTheme {
         NRNavigationBar(
-            items = PreviewData.listBottomNavigationItem,
-            selectedItem = 0,
+            destinations = PreviewData.listBottomNavigationItem,
+            currentDestination = PreviewData.destinationHome,
             onItemClick = {},
         )
     }
