@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.artemissoftware.newsroom.NRAppState
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.NRNavigationBar
+import com.artemissoftware.newsroom.navigation.HomeNavigationGraph
 import com.artemissoftware.newsroom.rememberNRAppState
 
 @Composable
@@ -47,7 +48,7 @@ fun HomeScreen(
             NRNavigationBar(
                 destinations = appState.topLevelDestinations,
                 currentDestination = appState.currentTopLevelDestination,
-                onItemClick = {},
+                onNavigateToDestination = appState::navigateToTopLevelDestination,
             )
 
 //        if (isBottomBarVisible) {
@@ -77,6 +78,8 @@ fun HomeScreen(
         },
     ) {
         val bottomPadding = it.calculateBottomPadding()
+
+        HomeNavigationGraph(navController = appState.navController)
 //        NavHost(
 //            navController = navController,
 //            startDestination = Route.HomeScreen.route,

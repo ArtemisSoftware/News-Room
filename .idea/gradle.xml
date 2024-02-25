@@ -39,9 +39,6 @@
             <option value="$PROJECT_DIR$/feature/details" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/news" />
-            <option value="$PROJECT_DIR$/feature/news/data" />
-            <option value="$PROJECT_DIR$/feature/news/domain" />
-            <option value="$PROJECT_DIR$/feature/news/presentation" />
             <option value="$PROJECT_DIR$/feature/onboarding" />
             <option value="$PROJECT_DIR$/feature/search" />
           </set>

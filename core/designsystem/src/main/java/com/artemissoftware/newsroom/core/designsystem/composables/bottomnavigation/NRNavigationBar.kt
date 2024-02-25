@@ -8,7 +8,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -20,7 +19,7 @@ import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 @Composable
 fun NRNavigationBar(
     destinations: List<TopLevelDestination_>,
-    onItemClick: (Int) -> Unit,
+    onNavigateToDestination: (TopLevelDestination_) -> Unit,
     currentDestination: TopLevelDestination_?,
 ) {
     NavigationBar(
@@ -33,13 +32,12 @@ fun NRNavigationBar(
             NRNavigationBarItem(
                 selected = currentDestination == destination,
                 onClick = {
-                    // onNavigateToDestination(destination)
+                    onNavigateToDestination(destination)
                 },
                 icon = {
                     Icon(
                         painter = painterResource(id = destination.icon),
                         contentDescription = null,
-                        tint = Color.Cyan,
                         modifier = Modifier.size(MaterialTheme.dimension.iconSize),
                     )
                 },
@@ -47,7 +45,6 @@ fun NRNavigationBar(
                     Icon(
                         painter = painterResource(id = destination.icon),
                         contentDescription = null,
-                        tint = Color.Green,
                         modifier = Modifier.size(MaterialTheme.dimension.iconSize),
                     )
                 },
@@ -57,9 +54,7 @@ fun NRNavigationBar(
                         style = MaterialTheme.typography.labelSmall,
                     )
                 },
-                // modifier = if (hasUnread) Modifier.notificationDot() else Modifier,
             )
-
         }
     }
 }
@@ -71,7 +66,7 @@ private fun BottomNavigationBarPreview() {
         NRNavigationBar(
             destinations = PreviewData.listBottomNavigationItem,
             currentDestination = PreviewData.destinationHome,
-            onItemClick = {},
+            onNavigateToDestination = {},
         )
     }
 }

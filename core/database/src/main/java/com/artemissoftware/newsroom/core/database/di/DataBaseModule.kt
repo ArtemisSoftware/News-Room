@@ -3,6 +3,7 @@ package com.artemissoftware.newsroom.core.database.di
 import android.content.Context
 import androidx.room.Room
 import com.artemissoftware.newsroom.core.database.NewsRoomDatabase
+import com.artemissoftware.newsroom.core.database.typeconvertor.SourceTypeConvertor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +26,7 @@ object DataBaseModule {
                 NewsRoomDatabase::class.java,
                 "news_room_db",
             )
+            .addTypeConverter(SourceTypeConvertor())
             .build()
     }
 

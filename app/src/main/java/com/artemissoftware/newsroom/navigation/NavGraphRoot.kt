@@ -3,7 +3,9 @@ package com.artemissoftware.newsroom.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.artemissoftware.newsroom.home.HomeScreen
 
 @Composable
 fun NavGraphRoot(
@@ -19,6 +21,8 @@ fun NavGraphRoot(
 
         // detailsGraph(popBackStack = navController::popBackStack)
 
-        homeGraph()
+        composable(route = HOME_GRAPH) {
+            HomeScreen()
+        }
     }
 }
