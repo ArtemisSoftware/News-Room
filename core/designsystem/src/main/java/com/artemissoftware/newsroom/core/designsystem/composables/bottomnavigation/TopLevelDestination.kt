@@ -3,7 +3,7 @@ package com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigat
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-data class TopLevelDestination_(
+data class TopLevelDestination(
     @DrawableRes val icon: Int,
     @StringRes val text: Int,
     val route: String,

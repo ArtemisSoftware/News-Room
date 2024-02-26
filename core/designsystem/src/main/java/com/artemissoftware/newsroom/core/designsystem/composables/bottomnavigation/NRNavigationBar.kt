@@ -18,43 +18,45 @@ import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 
 @Composable
 fun NRNavigationBar(
-    destinations: List<TopLevelDestination_>,
-    onNavigateToDestination: (TopLevelDestination_) -> Unit,
-    currentDestination: TopLevelDestination_?,
+    destinations: List<TopLevelDestination>,
+    onNavigateToDestination: (TopLevelDestination) -> Unit,
+    currentDestination: TopLevelDestination?,
 ) {
-    NavigationBar(
-        modifier = Modifier.fillMaxWidth(),
-        containerColor = MaterialTheme.colorScheme.background,
-        tonalElevation = 10.dp,
-    ) {
-        destinations.forEachIndexed { index, destination ->
+    currentDestination?.let {
+        NavigationBar(
+            modifier = Modifier.fillMaxWidth(),
+            containerColor = MaterialTheme.colorScheme.background,
+            tonalElevation = 1.dp,
+        ) {
+            destinations.forEachIndexed { index, destination ->
 
-            NRNavigationBarItem(
-                selected = currentDestination == destination,
-                onClick = {
-                    onNavigateToDestination(destination)
-                },
-                icon = {
-                    Icon(
-                        painter = painterResource(id = destination.icon),
-                        contentDescription = null,
-                        modifier = Modifier.size(MaterialTheme.dimension.iconSize),
-                    )
-                },
-                selectedIcon = {
-                    Icon(
-                        painter = painterResource(id = destination.icon),
-                        contentDescription = null,
-                        modifier = Modifier.size(MaterialTheme.dimension.iconSize),
-                    )
-                },
-                label = {
-                    Text(
-                        text = stringResource(id = destination.text),
-                        style = MaterialTheme.typography.labelSmall,
-                    )
-                },
-            )
+                NRNavigationBarItem(
+                    selected = currentDestination == destination,
+                    onClick = {
+                        onNavigateToDestination(destination)
+                    },
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = destination.icon),
+                            contentDescription = null,
+                            modifier = Modifier.size(MaterialTheme.dimension.iconSize),
+                        )
+                    },
+                    selectedIcon = {
+                        Icon(
+                            painter = painterResource(id = destination.icon),
+                            contentDescription = null,
+                            modifier = Modifier.size(MaterialTheme.dimension.iconSize),
+                        )
+                    },
+                    label = {
+                        Text(
+                            text = stringResource(id = destination.text),
+                            style = MaterialTheme.typography.labelSmall,
+                        )
+                    },
+                )
+            }
         }
     }
 }

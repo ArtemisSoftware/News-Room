@@ -2,6 +2,7 @@ package com.artemissoftware.feature.bookmark
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,22 +22,25 @@ import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.composables.ArticlesList
 
 @Composable
-internal fun BookmarkScreen(viewModel: BookmarkViewModel = hiltViewModel()) {
+internal fun BookmarkScreen(
+    navigateToDetails: (Int) -> Unit,
+    viewModel: BookmarkViewModel = hiltViewModel(),
+) {
     val state = viewModel.state.collectAsState().value
     BookmarkContent(
         state = state,
-        onClick = {},
+        navigateToDetails = navigateToDetails,
     )
 }
 
 @Composable
 private fun BookmarkContent(
     state: BookmarkState,
-    onClick: (Article) -> Unit,
+    navigateToDetails: (Int) -> Unit,
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .statusBarsPadding()
             .padding(horizontal = MaterialTheme.spacing.spacing3)
             .padding(top = MaterialTheme.spacing.spacing3),
@@ -51,7 +55,7 @@ private fun BookmarkContent(
         ArticlesList(
             articles = state.articles,
             onClick = { article ->
-                onClick.invoke(article)
+                article.id?.let { navigateToDetails(it) }
             },
             modifier = Modifier.fillMaxWidth(),
         )
@@ -64,7 +68,7 @@ private fun BookmarkContentPreview() {
     NewsRoomTheme {
         BookmarkContent(
             state = PreviewData.bookmarkState,
-            onClick = { },
+            navigateToDetails = { },
         )
     }
 }

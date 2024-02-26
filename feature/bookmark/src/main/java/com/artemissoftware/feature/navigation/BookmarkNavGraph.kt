@@ -12,24 +12,28 @@ const val BOOKMARK_ROUTE = "bookmark"
 
 fun NavController.navigateToBookmarkGraph(navOptions: NavOptions) = navigate(BOOKMARK_ROUTE, navOptions)
 
-fun NavGraphBuilder.bookmarkScreen() {
+fun NavGraphBuilder.bookmarkScreen(
+    navigateToDetails: (Int) -> Unit,
+) {
     composable(route = BOOKMARK_ROUTE) {
-        BookmarkScreen()
+        BookmarkScreen(
+            navigateToDetails = navigateToDetails,
+        )
     }
 }
 
-fun NavGraphBuilder.bookmarkGraph(
-    popBackStack: () -> Unit,
-) {
-    navigation(
-        route = BOOKMARK_GRAPH,
-        startDestination = Screen.Bookmark.route,
-    ) {
-        composable(route = Screen.Bookmark.route) {
-            BookmarkScreen()
-        }
-    }
-}
+// fun NavGraphBuilder.bookmarkGraph(
+//    popBackStack: () -> Unit,
+// ) {
+//    navigation(
+//        route = BOOKMARK_GRAPH,
+//        startDestination = Screen.Bookmark.route,
+//    ) {
+//        composable(route = Screen.Bookmark.route) {
+//            //BookmarkScreen()
+//        }
+//    }
+// }
 
 internal sealed class Screen(val route: String) {
     object Bookmark : Screen(route = BOOKMARK_ROUTE)

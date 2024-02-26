@@ -30,8 +30,8 @@ import com.core.ui.composables.UIEventsManager
 
 @Composable
 internal fun DetailsScreen(
-    viewModel: DetailsViewModel = hiltViewModel(),
     popBackStack: () -> Unit,
+    viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.collectAsState().value
 

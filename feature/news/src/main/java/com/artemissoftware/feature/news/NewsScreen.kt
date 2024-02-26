@@ -27,7 +27,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
-import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.composables.ArticlesList
 import kotlinx.coroutines.delay
 
@@ -35,7 +34,7 @@ import kotlinx.coroutines.delay
 internal fun NewsScreen(
 //    articles: LazyPagingItems<Article>,
     navigateToSearch: () -> Unit,
-    navigateToDetails: (Article) -> Unit,
+    navigateToDetails: (String) -> Unit,
     viewModel: NewsViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.collectAsState().value
@@ -54,7 +53,7 @@ private fun NewsContent(
     state: NewsState,
     event: (NewsEvent) -> Unit,
     navigateToSearch: () -> Unit,
-    navigateToDetails: (Article) -> Unit,
+    navigateToDetails: (String) -> Unit,
 ) {
     val scrollState = rememberScrollState(initial = state.scrollValue)
 
@@ -115,7 +114,9 @@ private fun NewsContent(
         ArticlesList(
             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing3),
             articles = state.articles,
-            onClick = navigateToDetails,
+            onClick = {
+                navigateToDetails(it.url)
+            },
         )
     }
 }
