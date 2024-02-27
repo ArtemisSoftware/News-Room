@@ -21,7 +21,7 @@ fun ArticlesList(
     onClick: (Article) -> Unit,
 ) {
     if (articles.isEmpty()) {
-//            EmptyScreen()
+        EmptyScreen()
     }
     LazyColumn(
         modifier = modifier,

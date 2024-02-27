@@ -49,7 +49,9 @@ fun ArticleCard(
             model = ImageRequest
                 .Builder(LocalContext.current)
                 .data(article.urlToImage)
-                .placeholder(R.drawable.news_1)
+                .error(R.drawable.ic_news_placeholder)
+                .placeholder(R.drawable.ic_news_placeholder)
+                .crossfade(true)
                 .build(),
             contentDescription = null,
             contentScale = ContentScale.Crop,

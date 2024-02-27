@@ -1,6 +1,8 @@
 package com.artemissoftware.newsroom.home
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -79,7 +81,17 @@ fun HomeScreen(
     ) {
         val bottomPadding = it.calculateBottomPadding()
 
-        HomeNavigationGraph(navController = appState.navController)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = bottomPadding),
+        ) {
+            HomeNavigationGraph(
+                navigateToTopLevel = appState::navigateToTopLevelDestination,
+                navController = appState.navController,
+            )
+        }
+
 //        NavHost(
 //            navController = navController,
 //            startDestination = Route.HomeScreen.route,
