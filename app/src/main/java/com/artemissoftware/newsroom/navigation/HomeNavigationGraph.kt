@@ -26,7 +26,9 @@ fun HomeNavigationGraph(
     ) {
         newsScreen(
             navigateToSearch = {
-                navigateToTopLevel(BottomBarDestinations.search)
+                //navigateToTopLevel(BottomBarDestinations.search)
+                //navController.navigateToDetailsGraph()
+                navController.navigate("details/456")
             },
             navigateToDetails = {
                 navController.navigateToDetailsGraph()

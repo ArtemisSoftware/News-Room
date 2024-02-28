@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
 
+    implementation(libs.navigation.compose)
+    implementation(libs.gson)
     api(libs.coil.compose)
 
     testImplementation(libs.junit)

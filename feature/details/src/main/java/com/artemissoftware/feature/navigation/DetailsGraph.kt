@@ -2,7 +2,9 @@ package com.artemissoftware.feature.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.artemissoftware.feature.details.DetailsScreen
 
@@ -17,7 +19,11 @@ fun NavGraphBuilder.detailsGraph(
         route = DETAILS_GRAPH,
         startDestination = DetailRoute.Details.route,
     ) {
-        composable(route = DetailRoute.Details.route) {
+        composable(
+            route = DetailRoute.Details.route + "/{argument}",
+            arguments = listOf(navArgument("argument") { type = NavType.StringType }),
+        ) {
+            val argumentValue = it.arguments?.getString("argument")
             DetailsScreen(
                 popBackStack = popBackStack,
             )

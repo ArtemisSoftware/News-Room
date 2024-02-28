@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     alias(libs.plugins.com.google.devtools.ksp)
     alias(libs.plugins.com.google.dagger.hilt.android)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -67,6 +68,7 @@ dependencies {
 
 
     implementation(libs.navigation.compose)
+    implementation(libs.gson)
 
     implementation(libs.androidx.core.ktx)
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
