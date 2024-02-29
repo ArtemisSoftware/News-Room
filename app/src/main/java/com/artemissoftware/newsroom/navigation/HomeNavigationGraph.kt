@@ -28,7 +28,7 @@ fun HomeNavigationGraph(
             navigateToSearch = {
                 //navigateToTopLevel(BottomBarDestinations.search)
                 //navController.navigateToDetailsGraph()
-                navController.navigate("details/456")
+                navController.navigate("details?argument=456")
             },
             navigateToDetails = {
                 navController.navigateToDetailsGraph()

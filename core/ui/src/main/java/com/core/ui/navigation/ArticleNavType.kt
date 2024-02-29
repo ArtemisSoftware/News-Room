@@ -1,9 +1,9 @@
-package com.artemissoftware.newsroom.navigation.navtypes
+package com.core.ui.navigation
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.navigation.NavType
-import com.artemissoftware.newsroom.core.model.Article
 import com.google.gson.Gson
 import kotlinx.parcelize.Parcelize
 
@@ -19,15 +19,13 @@ class ArticleNavType : NavType<GalleryUI>(isNullableAllowed = true) {
     override fun put(bundle: Bundle, key: String, value: GalleryUI) {
         bundle.putParcelable(key, value)
     }
-
 }
 
 @Parcelize
 data class GalleryUI(
     val id: Int,
-    val name: String
+    val name: String,
 ) : Parcelable
-
 
 abstract class JsonNavType<T> : NavType<T>(isNullableAllowed = false) {
     abstract fun fromJsonParse(value: String): T
@@ -43,13 +41,12 @@ abstract class JsonNavType<T> : NavType<T>(isNullableAllowed = false) {
     }
 }
 
-data class Profile(val firstName:String, val lastName:String){
+data class Profile(val firstName: String, val lastName: String) {
     override fun toString(): String = Uri.encode(Gson().toJson(this))
 }
 
 class ProfileArgType : JsonNavType<Profile>() {
-        override fun fromJsonParse(value: String): Profile = Gson().fromJson(value, Profile::class.java)
+    override fun fromJsonParse(value: String): Profile = Gson().fromJson(value, Profile::class.java)
 
     override fun Profile.getJsonParse(): String = Gson().toJson(this)
-
 }
