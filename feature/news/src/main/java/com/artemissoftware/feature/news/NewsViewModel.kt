@@ -24,7 +24,7 @@ internal class NewsViewModel @Inject constructor(
 //    ).cachedIn(viewModelScope)
 
     init {
-        getNews()
+        //--getNews()
     }
 
     fun onTriggerEvent(event: NewsEvent) {

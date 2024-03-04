@@ -50,3 +50,29 @@ class ProfileArgType : JsonNavType<Profile>() {
 
     override fun Profile.getJsonParse(): String = Gson().toJson(this)
 }
+
+
+data class ProductParameters(
+    val id: Int = -1
+) {
+//    override fun toString(): String {
+//        return Gson().toJson(this)
+//    }
+}
+
+val ProductParametersType: NavType<ProductParameters?> = object : NavType<ProductParameters?>(
+    isNullableAllowed = false
+) {
+    override fun get(bundle: Bundle, key: String): ProductParameters? {
+        return  bundle.getString(key)?.let { parseValue(it) }
+    }
+    override fun parseValue(value: String): ProductParameters {
+        return Gson().fromJson(value, ProductParameters::class.java)
+    }
+    override fun put(bundle: Bundle, key: String, value: ProductParameters?) {
+        bundle.putString(key, Gson().toJson(value))
+    }
+//    override fun serializeAsValue(value: ProductParameters?): String {
+//        return Gson().toJson(value)
+//    }
+}

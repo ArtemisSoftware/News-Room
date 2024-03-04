@@ -52,31 +52,6 @@ fun HomeScreen(
                 currentDestination = appState.currentTopLevelDestination,
                 onNavigateToDestination = appState::navigateToTopLevelDestination,
             )
-
-//        if (isBottomBarVisible) {
-//            NewsBottomNavigation(
-//                items = bottomNavigationItems,
-//                selectedItem = selectedItem,
-//                onItemClick = { index ->
-//                    when (index) {
-//                        0 -> navigateToTab(
-//                            navController = navController,
-//                            route = Route.HomeScreen.route
-//                        )
-//
-//                        1 -> navigateToTab(
-//                            navController = navController,
-//                            route = Route.SearchScreen.route
-//                        )
-//
-//                        2 -> navigateToTab(
-//                            navController = navController,
-//                            route = Route.BookmarkScreen.route
-//                        )
-//                    }
-//                }
-//            )
-//        }
         },
     ) {
         val bottomPadding = it.calculateBottomPadding()

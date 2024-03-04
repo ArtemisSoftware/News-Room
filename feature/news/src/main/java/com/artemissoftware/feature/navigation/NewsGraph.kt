@@ -1,5 +1,6 @@
 package com.artemissoftware.feature.navigation
 
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -46,7 +47,7 @@ fun NavGraphBuilder.newsScreen(
 
 internal sealed class NewsScreen(
     route: String,
-    customArguments: List<CustomArguments> = emptyList(),
+    customArguments: List<NamedNavArgument> = emptyList(),
 ) : BaseDestination(route = route, customArguments = customArguments) {
     object News : NewsScreen(route = NEWS_ROUTE)
     // object Pictures : Destination(route = "PICTURES", listOf(CustomArguments(key = NavigationArguments.GALLERY_ID, type = GalleryUINavType())))

@@ -6,10 +6,13 @@ import androidx.navigation.compose.NavHost
 import com.artemissoftware.feature.navigation.NEWS_ROUTE
 import com.artemissoftware.feature.navigation.bookmarkScreen
 import com.artemissoftware.feature.navigation.detailsGraph
+import com.artemissoftware.feature.navigation.lolo
 import com.artemissoftware.feature.navigation.navigateToDetailsGraph
 import com.artemissoftware.feature.navigation.newsScreen
 import com.artemissoftware.feature.navigation.searchScreen
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.TopLevelDestination
+import com.core.ui.navigation.GalleryUI
+import com.core.ui.navigation.ProductParameters
 
 const val HOME_GRAPH = "home_graph"
 const val HOME_ROUTE = "home"
@@ -28,7 +31,9 @@ fun HomeNavigationGraph(
             navigateToSearch = {
                 //navigateToTopLevel(BottomBarDestinations.search)
                 //navController.navigateToDetailsGraph()
-                navController.navigate("details?argument=456")
+                //-navController.navigate("details?argument=456")
+                navController.lolo(ProductParameters(12))
+
             },
             navigateToDetails = {
                 navController.navigateToDetailsGraph()
