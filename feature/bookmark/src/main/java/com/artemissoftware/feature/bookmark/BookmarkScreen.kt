@@ -18,7 +18,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
-import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.composables.ArticlesList
 
 @Composable

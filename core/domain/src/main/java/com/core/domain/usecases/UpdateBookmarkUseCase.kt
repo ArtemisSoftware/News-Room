@@ -7,13 +7,10 @@ import javax.inject.Inject
 class UpdateBookmarkUseCase @Inject constructor(private val newsRepository: NewsRepository) {
 
     suspend operator fun invoke(article: Article) = with(newsRepository) {
-        article.id?.let { id ->
-            val result = getArticle(id = id)
-            if (result == null) {
-                save(article = article)
-            } else {
-                deleteArticle(article = result)
-            }
+        if (article.id == null) {
+            save(article = article)
+        } else {
+            deleteArticle(article = article)
         }
     }
 }

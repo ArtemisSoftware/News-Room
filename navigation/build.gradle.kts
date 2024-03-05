@@ -45,6 +45,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.navigation.compose)
+    implementation(libs.gson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

@@ -1,5 +1,7 @@
 package com.artemissoftware.feature.search
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,15 +16,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
+import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.SearchBar
 import com.core.ui.composables.ArticlesList
 
 @Composable
 internal fun SearchScreen(
+    navigateToDetails: (Article) -> Unit,
     viewModel: SearchViewModel = hiltViewModel(),
-    navigateToDetails: (String) -> Unit,
 ) {
     val state = viewModel.state.collectAsState().value
 
@@ -37,20 +41,29 @@ internal fun SearchScreen(
 private fun SearchContent(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigateToDetails: (String) -> Unit,
+    navigateToDetails: (Article) -> Unit,
 ) {
+    val searchBarSize = animateDpAsState(
+        targetValue = if (state.isSearching) 0.dp else MaterialTheme.spacing.spacing3,
+        animationSpec = tween(
+            durationMillis = 1000,
+        ),
+        label = "",
+    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = MaterialTheme.spacing.spacing3)
+            .padding(top = searchBarSize.value)
             .statusBarsPadding(),
     ) {
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = if (state.isSearching) 0.dp else MaterialTheme.spacing.spacing3),
-            text = state.searchQuery,
+                .padding(horizontal = searchBarSize.value),
             historyItems = state.historyItems,
+            text = state.searchQuery,
+            isSearching = state.isSearching,
             onQueryChange = {
                 event(SearchEvent.UpdateSearchQuery(searchQuery = it))
             },
@@ -70,19 +83,19 @@ private fun SearchContent(
                 .padding(horizontal = MaterialTheme.spacing.spacing3),
             articles = state.articles,
             onClick = {
-                navigateToDetails.invoke(it.url)
+                navigateToDetails.invoke(it)
             },
         )
 
         // TODO: quando houver paginação
 
-//        state.articles?.let {
-// //            val articles = it.collectAsLazyPagingItems()
-//            ArticlesList(
-//                articles = articles,
-//                onClick = navigateToDetails
-//            )
-//        }
+        //        state.articles?.let {
+        // //            val articles = it.collectAsLazyPagingItems()
+        //            ArticlesList(
+        //                articles = articles,
+        //                onClick = navigateToDetails
+        //            )
+        //        }
     }
 }
 

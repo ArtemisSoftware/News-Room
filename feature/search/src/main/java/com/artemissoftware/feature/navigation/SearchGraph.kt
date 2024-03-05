@@ -6,6 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.artemissoftware.feature.search.SearchScreen
+import com.artemissoftware.newsroom.core.model.Article
 
 private const val SEARCH_GRAPH = "search_graph"
 const val SEARCH_ROUTE = "search"
@@ -13,12 +14,12 @@ const val SEARCH_ROUTE = "search"
 fun NavController.navigateToSearchGraph(navOptions: NavOptions) = navigate(SEARCH_ROUTE, navOptions)
 
 fun NavGraphBuilder.searchScreen(
-    navigateToDetails: () -> Unit,
+    navigateToDetails: (Article) -> Unit,
 ) {
     composable(route = SEARCH_ROUTE) {
         SearchScreen(
-            navigateToDetails = { url ->
-                navigateToDetails()
+            navigateToDetails = { article ->
+                navigateToDetails(article)
             },
         )
     }

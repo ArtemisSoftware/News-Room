@@ -47,6 +47,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:model"))
     implementation(project(":core:domain"))
+    implementation(project(":navigation"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.activity.compose)

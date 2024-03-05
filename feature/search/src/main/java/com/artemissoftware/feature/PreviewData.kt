@@ -1,5 +1,6 @@
-package com.artemissoftware.feature.search
+package com.artemissoftware.feature
 
+import com.artemissoftware.feature.search.SearchState
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.model.Source
 

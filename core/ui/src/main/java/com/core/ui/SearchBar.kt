@@ -9,13 +9,15 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
+import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,10 +37,13 @@ fun SearchBar(
         onQueryChange = onQueryChange,
         onSearch = onSearch,
         active = isSearching,
+        colors = SearchBarDefaults.colors(
+            containerColor = MaterialTheme.palette.background,
+        ),
         onActiveChange = onActiveChange,
         placeholder = {
             Text(
-                text = "Search",
+                text = stringResource(id = R.string.search),
                 style = MaterialTheme.typography.bodySmall,
             )
         },

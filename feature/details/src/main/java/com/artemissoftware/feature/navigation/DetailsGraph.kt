@@ -7,16 +7,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.artemissoftware.feature.details.DetailsScreen
-import com.core.ui.navigation.BaseDestination
-import com.core.ui.navigation.GalleryUI
-import com.core.ui.navigation.ProductParameters
-import com.core.ui.navigation.ProductParametersType
+import com.artemissoftware.navigation.ArticleNavType
+import com.artemissoftware.navigation.BaseDestination
+import com.artemissoftware.newsroom.core.model.Article
 
 private const val DETAILS_GRAPH = "details_graph"
 
 fun NavController.navigateToDetailsGraph() = navigate(DETAILS_GRAPH)
 
-fun NavController.lolo(person: ProductParameters) = navigate(DetailRoute.Details.withCustomArgs(person))
+fun NavController.navigateToDetail(article: Article) = navigate(DetailRoute.Details.withCustomArgs(article))
 
 fun NavGraphBuilder.detailsGraph(
     popBackStack: () -> Unit,
@@ -45,12 +44,10 @@ internal sealed class DetailRoute(
     customArguments = arguments,
 ) {
     object Details : DetailRoute(
-        route = "details/argument",
+        route = "details",
         arguments = listOf(
-            navArgument(
-                name = "argument",
-            ) {
-                type = ProductParametersType
+            navArgument(name = NavArguments.article) {
+                type = ArticleNavType
             },
         ),
     )

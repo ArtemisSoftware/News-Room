@@ -2,6 +2,9 @@ package com.artemissoftware.feature.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.artemissoftware.feature.navigation.NavArguments
+import com.artemissoftware.navigation.ArticleNavType
+import com.artemissoftware.navigation.getValue
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.domain.usecases.GetArticleUseCase
 import com.core.domain.usecases.UpdateBookmarkUseCase
@@ -26,8 +29,9 @@ internal class DetailsViewModel @Inject constructor(
     val state: StateFlow<DetailsState> = _state.asStateFlow()
 
     init {
-        val id = savedStateHandle.get<Int>("id")
-        id?.let { getArticle(it) }
+        ArticleNavType.getValue(savedStateHandle, NavArguments.article)?.let {
+            updateArticle(it)
+        }
     }
 
     fun onTriggerEvent(event: DetailsEvent) {
@@ -47,7 +51,7 @@ internal class DetailsViewModel @Inject constructor(
 
     private fun updateArticle(article: Article? = null) = with(_state) {
         update {
-            it.copy(article = article, isBookmarked = article != null)
+            it.copy(article = article, isBookmarked = article?.id != null)
         }
     }
 
