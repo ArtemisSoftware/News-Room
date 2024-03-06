@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.artemissoftware.feature.navigation.onboardingRoutes
 import com.artemissoftware.newsroom.home.HomeScreen
 
 @Composable
@@ -13,11 +14,11 @@ fun NavGraphRoot(
     startDestination: String = HOME_ROUTE,
 ) {
     NavHost(
-        startDestination = HOME_GRAPH,
+        startDestination = startDestination,
         navController = navController,
         route = HOME_ROUTE,
     ) {
-        // onboardingRoutes()
+        onboardingRoutes()
 
         // detailsGraph(popBackStack = navController::popBackStack)
 

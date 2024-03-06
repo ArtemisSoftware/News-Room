@@ -2,7 +2,7 @@ package com.artemissoftware.feature.news
 
 import com.artemissoftware.newsroom.core.model.Article
 
-data class NewsState(
+internal data class NewsState(
     val isLoading: Boolean = false,
     val articles: List<Article> = emptyList(),
     val newsTicker: String = "",

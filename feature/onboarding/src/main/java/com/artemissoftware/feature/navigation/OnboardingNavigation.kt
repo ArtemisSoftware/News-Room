@@ -4,6 +4,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.artemissoftware.feature.onboarding.OnBoardingScreen
 
+const val ONBOARDING_ROUTE = "onboarding"
+
 fun NavGraphBuilder.onboardingRoutes() {
     composable(
         route = OnboardingScreen.Onboarding.route,
@@ -14,5 +16,5 @@ fun NavGraphBuilder.onboardingRoutes() {
 
 internal sealed class OnboardingScreen(val route: String) {
 
-    object Onboarding : OnboardingScreen(route = "onboarding")
+    object Onboarding : OnboardingScreen(route = ONBOARDING_ROUTE)
 }
