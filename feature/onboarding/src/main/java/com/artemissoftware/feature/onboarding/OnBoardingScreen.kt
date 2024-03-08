@@ -27,15 +27,24 @@ import com.artemissoftware.newsroom.core.designsystem.composables.buttons.NRButt
 import com.artemissoftware.newsroom.core.designsystem.composables.buttons.NRTextButton
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
+import com.core.ui.composables.UIEventsManager
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun OnBoardingScreen(viewModel: OnBoardingViewModel = hiltViewModel()) {
+internal fun OnBoardingScreen(
+    navigateToHome: () -> Unit,
+    viewModel: OnBoardingViewModel = hiltViewModel(),
+) {
     val state = viewModel.state.collectAsState().value
 
     OnBoardingScreenContent(
         state = state,
         event = viewModel::onTriggerEvent,
+    )
+
+    UIEventsManager(
+        uiEvent = viewModel.uiEvent,
+        navigate = navigateToHome
     )
 }
 
@@ -101,10 +110,16 @@ private fun OnBoardingScreenContent(
                 NRButton(
                     text = state.nextText.asString(),
                     onClick = {
-                        scope.launch {
-                            pagerState.animateScrollToPage(
-                                page = pagerState.currentPage + 1,
-                            )
+
+                        if(state.reachedLastPage()){
+                            event(OnBoardingEvent.Finish)
+                        }
+                        else {
+                            scope.launch {
+                                pagerState.animateScrollToPage(
+                                    page = pagerState.currentPage + 1,
+                                )
+                            }
                         }
                     },
                 )

@@ -11,5 +11,5 @@ data class OnBoardingState(
     val nextText: UiText = UiText.DynamicString(""),
     val pages: List<Page> = emptyList(),
 ) {
-    fun reachedLastPage() = currentPage == pages.size
+    fun reachedLastPage() = currentPage == pages.size - 1
 }

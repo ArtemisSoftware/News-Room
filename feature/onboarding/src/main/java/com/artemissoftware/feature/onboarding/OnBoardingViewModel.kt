@@ -1,12 +1,13 @@
 package com.artemissoftware.feature.onboarding
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.model.OnboardingType
 import com.core.domain.usecases.GetOnboardingPagesUseCase
 import com.core.domain.usecases.SaveOnboardingUseCase
 import com.core.ui.composables.UiText
+import com.core.ui.uievents.UiEvent
+import com.core.ui.uievents.UiEventViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +20,7 @@ import javax.inject.Inject
 class OnBoardingViewModel @Inject constructor(
     private val getOnboardingPagesUseCase: GetOnboardingPagesUseCase,
     private val saveOnboardingUseCase: SaveOnboardingUseCase,
-) : ViewModel() {
+) : UiEventViewModel() {
 
     private val _state = MutableStateFlow(OnBoardingState())
     val state: StateFlow<OnBoardingState> = _state.asStateFlow()
@@ -31,6 +32,7 @@ class OnBoardingViewModel @Inject constructor(
     fun onTriggerEvent(event: OnBoardingEvent) {
         when (event) {
             is OnBoardingEvent.SwipePage -> swipePage(event.index)
+            OnBoardingEvent.Finish -> updateNextPage()
         }
     }
     private fun swipePage(index: Int) = with(_state.value) {
@@ -57,6 +59,7 @@ class OnBoardingViewModel @Inject constructor(
         if (value.reachedLastPage()) {
             viewModelScope.launch {
                 saveOnboardingUseCase()
+                sendUiEvent(UiEvent.Navigate)
             }
         } else {
             updateTexts(currentPage = (value.currentPage + 1))

@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.collectLatest
 fun UIEventsManager(
     uiEvent: Flow<UiEvent>,
     context: Context = LocalContext.current,
+    navigate: () -> Unit = {}
 ) {
     LaunchedEffect(key1 = Unit) {
         uiEvent.collectLatest { event ->
@@ -56,6 +57,7 @@ fun UIEventsManager(
 //
 //                }
                 }
+
                 is UiEvent.Share -> {
 
                     Intent().apply {
@@ -72,6 +74,10 @@ fun UIEventsManager(
                         }
                     //---------
 
+                }
+
+                is UiEvent.Navigate -> {
+                    navigate()
                 }
             }
         }

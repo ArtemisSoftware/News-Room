@@ -2,7 +2,8 @@ package com.artemissoftware.newsroom
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.artemissoftware.feature.navigation.ONBOARDING_ROUTE
+import com.artemissoftware.feature.navigation.ONBOARDING_GRAPH
+import com.artemissoftware.newsroom.navigation.HOME_GRAPH
 import com.artemissoftware.newsroom.navigation.HOME_ROUTE
 import com.core.domain.usecases.GetAppSettingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,14 +29,14 @@ class MainViewModel @Inject constructor(
 
     private fun getStartRoute() {
         viewModelScope.launch {
-            getAppSettingsUseCase().collect { appSettings ->
+            val result = getAppSettingsUseCase()
 
-                if (appSettings.onboardingDone) {
-                    _state.update { it.copy(showSplash = false, startRoute = HOME_ROUTE) }
-                } else {
-                    _state.update { it.copy(showSplash = false, startRoute = ONBOARDING_ROUTE) }
-                }
+            if (result.onboardingDone) {
+                _state.update { it.copy(showSplash = false, startRoute = HOME_GRAPH) }
+            } else {
+                _state.update { it.copy(showSplash = false, startRoute = ONBOARDING_GRAPH) }
             }
+
             delay(300)
         }
     }
