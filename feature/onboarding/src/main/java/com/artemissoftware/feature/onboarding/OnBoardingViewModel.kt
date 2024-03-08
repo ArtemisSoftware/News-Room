@@ -30,8 +30,6 @@ class OnBoardingViewModel @Inject constructor(
 
     fun onTriggerEvent(event: OnBoardingEvent) {
         when (event) {
-            OnBoardingEvent.GoToNextPage -> updateNextPage()
-            OnBoardingEvent.GoToPreviewsPage -> updatePreviewsPage()
             is OnBoardingEvent.SwipePage -> swipePage(event.index)
         }
     }

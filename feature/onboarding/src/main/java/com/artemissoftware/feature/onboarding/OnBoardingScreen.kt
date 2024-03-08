@@ -90,7 +90,6 @@ private fun OnBoardingScreenContent(
                     NRTextButton(
                         text = state.previewsText.asString(),
                         onClick = {
-                            event(OnBoardingEvent.GoToPreviewsPage)
                             scope.launch {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage - 1,
@@ -102,7 +101,6 @@ private fun OnBoardingScreenContent(
                 NRButton(
                     text = state.nextText.asString(),
                     onClick = {
-                        event(OnBoardingEvent.GoToNextPage)
                         scope.launch {
                             pagerState.animateScrollToPage(
                                 page = pagerState.currentPage + 1,
