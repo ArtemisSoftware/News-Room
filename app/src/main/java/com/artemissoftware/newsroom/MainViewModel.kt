@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.feature.navigation.ONBOARDING_GRAPH
 import com.artemissoftware.newsroom.navigation.HOME_GRAPH
-import com.artemissoftware.newsroom.navigation.HOME_ROUTE
 import com.core.domain.usecases.GetAppSettingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

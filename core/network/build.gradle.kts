@@ -36,6 +36,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core:common"))
+
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
 
