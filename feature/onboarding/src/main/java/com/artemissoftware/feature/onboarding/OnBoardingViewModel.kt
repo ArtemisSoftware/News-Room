@@ -1,10 +1,10 @@
 package com.artemissoftware.feature.onboarding
 
 import androidx.lifecycle.viewModelScope
-import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.model.OnboardingType
 import com.core.domain.usecases.GetOnboardingPagesUseCase
 import com.core.domain.usecases.SaveOnboardingUseCase
+import com.core.ui.R
 import com.core.ui.composables.UiText
 import com.core.ui.uievents.UiEvent
 import com.core.ui.uievents.UiEventViewModel

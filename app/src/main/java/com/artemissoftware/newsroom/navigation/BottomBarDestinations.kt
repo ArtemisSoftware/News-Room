@@ -3,8 +3,8 @@ package com.artemissoftware.newsroom.navigation
 import com.artemissoftware.feature.navigation.BOOKMARK_ROUTE
 import com.artemissoftware.feature.navigation.NEWS_ROUTE
 import com.artemissoftware.feature.navigation.SEARCH_ROUTE
-import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.TopLevelDestination
+import com.core.ui.R
 
 object BottomBarDestinations {
 

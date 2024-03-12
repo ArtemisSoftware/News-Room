@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.artemissoftware.newsroom.core.common.R
+import com.core.ui.R
 
 @Composable
 fun EmptyScreen(/*error: LoadState.Error? = null*/) {

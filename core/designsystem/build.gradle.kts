@@ -41,7 +41,7 @@ android {
 
 dependencies {
 
-    implementation(project(":core:common"))
+    //implementation(project(":core:common"))
 
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))

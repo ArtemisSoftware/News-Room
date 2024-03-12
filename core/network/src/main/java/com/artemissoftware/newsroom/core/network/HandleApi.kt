@@ -1,14 +1,12 @@
 package com.artemissoftware.newsroom.core.network
 
-import com.artemissoftware.newsroom.core.common.DataResponse
-
 object HandleApi {
 
-    inline fun <T> safeApiCall(apiCall: () -> T): DataResponse<T> {
-        return try {
-            DataResponse.Success(data = apiCall())
-        } catch (e: Exception) {
-            DataResponse.Failure(exception = e)
-        }
-    }
+//    inline fun <T> safeApiCall(apiCall: () -> T): com.core.ui.DataResponse<T> {
+//        return try {
+//            com.core.ui.DataResponse.Success(data = apiCall())
+//        } catch (e: Exception) {
+//            com.core.ui.DataResponse.Failure(exception = e)
+//        }
+//    }
 }

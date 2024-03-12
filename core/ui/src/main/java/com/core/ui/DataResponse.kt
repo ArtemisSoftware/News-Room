@@ -1,4 +1,4 @@
-package com.artemissoftware.newsroom.core.common
+package com.core.ui
 
 sealed interface DataResponse<T> {
     data class Success<T>(val data: T) : DataResponse<T>

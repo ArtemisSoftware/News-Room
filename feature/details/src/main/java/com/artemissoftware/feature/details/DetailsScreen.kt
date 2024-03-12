@@ -21,11 +21,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.artemissoftware.feature.details.composables.DetailsTopBar
-import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
+import com.core.ui.R
 import com.core.ui.composables.UIEventsManager
 
 @Composable

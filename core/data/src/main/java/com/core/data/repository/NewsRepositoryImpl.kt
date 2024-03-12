@@ -37,7 +37,7 @@ class NewsRepositoryImpl @Inject constructor(
         return newsApiSource.search(
             searchQuery = query,
             sources = sources.joinToString(separator = ","),
-            page = 1
+            page = 1,
         ).articles.map { it.toArticle() }
     }
 

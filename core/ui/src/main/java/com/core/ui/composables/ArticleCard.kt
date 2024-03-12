@@ -25,12 +25,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.artemissoftware.newsroom.core.common.R
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.ui.R
 
 @Composable
 fun ArticleCard(
