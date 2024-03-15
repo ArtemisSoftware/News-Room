@@ -2,6 +2,7 @@ package com.artemissoftware.feature.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.artemissoftware.newsroom.core.model.Article
 import com.core.domain.usecases.GetNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,10 +37,13 @@ internal class NewsViewModel @Inject constructor(
 
     private fun getNews() = with(_state) {
         viewModelScope.launch {
-            val result = getNewsUseCase(sources = listOf("bbc-news", "abc-news", "al-jazeera-english"))
-            update {
-                it.copy(articles = result)
-            }
+            getNewsUseCase(sources = listOf("bbc-news", "abc-news", "al-jazeera-english"))
+                .onSuccess {
+                    updateArticles(it)
+                }
+                .onFailure {
+                    // TODO: adicionar erro
+                }
         }
     }
 
@@ -52,6 +56,12 @@ internal class NewsViewModel @Inject constructor(
     private fun updateMaxScrollingValue(newValue: Int) = with(_state) {
         update {
             it.copy(maxScrollingValue = newValue)
+        }
+    }
+
+    private fun updateArticles(articles: List<Article>) = with(_state) {
+        update {
+            it.copy(articles = articles)
         }
     }
 }

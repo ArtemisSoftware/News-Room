@@ -1,8 +1,10 @@
 package com.core.data.repository
 
+import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.database.dao.NewsDao
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
+import com.core.data.HandleNetwork
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity
 import com.core.data.mappers.toListArticles
@@ -33,15 +35,17 @@ class NewsRepositoryImpl @Inject constructor(
         newsDao.upsert(article.toEntity())
     }
 
-    override suspend fun searchArticles(query: String, sources: List<String>): List<Article> {
+    override suspend fun searchArticles(searchQuery: String, sources: List<String>): List<Article> {
         return newsApiSource.search(
-            searchQuery = query,
+            searchQuery = searchQuery,
             sources = sources.joinToString(separator = ","),
             page = 1,
         ).articles.map { it.toArticle() }
     }
 
-    override suspend fun getNews(sources: List<String>): List<Article> {
-        return newsApiSource.getNews(sources = sources.joinToString(separator = ","), page = 1).toListArticles()
+    override suspend fun getNews(sources: List<String>): DataResponse<List<Article>> {
+        return HandleNetwork.safeNetworkCall {
+            newsApiSource.getNews(sources = sources.joinToString(separator = ","), page = 1).toListArticles()
+        }
     }
 }

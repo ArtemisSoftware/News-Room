@@ -1,5 +1,6 @@
 package com.core.domain.repository
 
+import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.model.Article
 import kotlinx.coroutines.flow.Flow
 
@@ -15,5 +16,5 @@ interface NewsRepository {
 
     suspend fun searchArticles(searchQuery: String, sources: List<String>): List<Article>
 
-    suspend fun getNews(sources: List<String>): List<Article>
+    suspend fun getNews(sources: List<String>): DataResponse<List<Article>>
 }
