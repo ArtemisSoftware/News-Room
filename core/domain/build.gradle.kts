@@ -9,6 +9,7 @@ java {
 
 dependencies {
 
+    implementation(project(":core:common"))
     implementation(project(":core:model"))
     implementation(libs.dagger)
     implementation(libs.kotlinx.coroutines.core)
