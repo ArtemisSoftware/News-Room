@@ -20,6 +20,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.feature.onboarding.composables.OnBoardingPage
 import com.artemissoftware.feature.onboarding.composables.PagerIndicator
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
@@ -44,7 +45,7 @@ internal fun OnBoardingScreen(
 
     UIEventsManager(
         uiEvent = viewModel.uiEvent,
-        navigate = navigateToHome
+        navigate = navigateToHome,
     )
 }
 
@@ -110,11 +111,9 @@ private fun OnBoardingScreenContent(
                 NRButton(
                     text = state.nextText.asString(),
                     onClick = {
-
-                        if(state.reachedLastPage()){
+                        if (state.reachedLastPage()) {
                             event(OnBoardingEvent.Finish)
-                        }
-                        else {
+                        } else {
                             scope.launch {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1,

@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import com.artemissoftware.feature.onboarding.PreviewData
+import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.palette

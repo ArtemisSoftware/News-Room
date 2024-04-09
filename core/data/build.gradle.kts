@@ -57,6 +57,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    implementation(libs.paging.compose)
+    implementation(libs.paging.runtime)
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 
 //    implementation(libs.androidx.core.ktx)

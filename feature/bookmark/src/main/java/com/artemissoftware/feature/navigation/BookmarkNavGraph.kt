@@ -7,34 +7,25 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.artemissoftware.feature.bookmark.BookmarkScreen
 
-private const val BOOKMARK_GRAPH = "bookmark_graph"
-const val BOOKMARK_ROUTE = "bookmark"
+const val BOOKMARK_GRAPH = "bookmark_graph"
 
-fun NavController.navigateToBookmarkGraph(navOptions: NavOptions) = navigate(BOOKMARK_ROUTE, navOptions)
+fun NavController.navigateToBookmarkGraph(navOptions: NavOptions) = navigate(BOOKMARK_GRAPH, navOptions)
 
-fun NavGraphBuilder.bookmarkScreen(
+fun NavGraphBuilder.bookmarkNavGraph(
     navigateToDetails: (Int) -> Unit,
 ) {
-    composable(route = BOOKMARK_ROUTE) {
-        BookmarkScreen(
-            navigateToDetails = navigateToDetails,
-        )
+    navigation(
+        route = BOOKMARK_GRAPH,
+        startDestination = BookmarkRoute.Bookmark.route,
+    ) {
+        composable(route = BookmarkRoute.Bookmark.route) {
+            BookmarkScreen(
+                navigateToDetails = navigateToDetails,
+            )
+        }
     }
 }
 
-// fun NavGraphBuilder.bookmarkGraph(
-//    popBackStack: () -> Unit,
-// ) {
-//    navigation(
-//        route = BOOKMARK_GRAPH,
-//        startDestination = Screen.Bookmark.route,
-//    ) {
-//        composable(route = Screen.Bookmark.route) {
-//            //BookmarkScreen()
-//        }
-//    }
-// }
-
-internal sealed class Screen(val route: String) {
-    object Bookmark : Screen(route = BOOKMARK_ROUTE)
+sealed class BookmarkRoute(val route: String) {
+    object Bookmark : BookmarkRoute(route = "bookmark")
 }

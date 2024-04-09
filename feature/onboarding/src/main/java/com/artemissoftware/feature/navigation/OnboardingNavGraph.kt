@@ -7,8 +7,8 @@ import com.artemissoftware.feature.onboarding.OnBoardingScreen
 
 const val ONBOARDING_GRAPH = "onboarding_graph"
 
-fun NavGraphBuilder.onboardingGraph(
-    navigateToHome: () -> Unit
+fun NavGraphBuilder.onboardingNavGraph(
+    navigateToHome: () -> Unit,
 ) {
     navigation(
         route = ONBOARDING_GRAPH,
@@ -18,7 +18,7 @@ fun NavGraphBuilder.onboardingGraph(
             route = OnboardingRoute.Onboarding.route,
         ) {
             OnBoardingScreen(
-                navigateToHome = navigateToHome
+                navigateToHome = navigateToHome,
             )
         }
     }

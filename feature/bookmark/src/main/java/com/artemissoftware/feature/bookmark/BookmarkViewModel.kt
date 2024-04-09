@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
-    private val getSavedArticlesUseCase: GetSavedArticlesUseCase
+    private val getSavedArticlesUseCase: GetSavedArticlesUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(BookmarkState())
@@ -31,7 +31,7 @@ class BookmarkViewModel @Inject constructor(
 
     private fun getArticles() {
         viewModelScope.launch {
-            getSavedArticlesUseCase().collect{
+            getSavedArticlesUseCase().collect {
                 updateArticles(articles = it)
             }
         }

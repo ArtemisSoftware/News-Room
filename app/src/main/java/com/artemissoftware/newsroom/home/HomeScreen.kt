@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.artemissoftware.newsroom.NRAppState
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.NRNavigationBar
-import com.artemissoftware.newsroom.navigation.HomeNavigationGraph
+import com.artemissoftware.newsroom.navigation.HomeNavGraph
 import com.artemissoftware.newsroom.rememberNRAppState
 
 @Composable
@@ -32,7 +32,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(bottom = bottomPadding),
         ) {
-            HomeNavigationGraph(
+            HomeNavGraph(
                 navigateToTopLevel = appState::navigateToTopLevelDestination,
                 navController = appState.navController,
             )

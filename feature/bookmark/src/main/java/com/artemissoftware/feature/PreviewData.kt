@@ -1,5 +1,6 @@
-package com.artemissoftware.feature.bookmark
+package com.artemissoftware.feature
 
+import com.artemissoftware.feature.bookmark.BookmarkState
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.model.Source
 

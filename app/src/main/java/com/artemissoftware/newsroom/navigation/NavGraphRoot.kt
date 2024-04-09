@@ -4,30 +4,25 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.artemissoftware.feature.navigation.ONBOARDING_GRAPH
-import com.artemissoftware.feature.navigation.onboardingGraph
+import com.artemissoftware.feature.navigation.onboardingNavGraph
 import com.artemissoftware.newsroom.home.HomeScreen
+import com.core.ui.util.extensions.popUpTo
 
 @Composable
 fun NavGraphRoot(
     navController: NavHostController,
-    startDestination: String = HOME_ROUTE,
+    startDestination: String,
 ) {
     NavHost(
         startDestination = startDestination,
         navController = navController,
         route = HOME_ROUTE,
     ) {
-        //onboardingRoutes()
-
-        // detailsGraph(popBackStack = navController::popBackStack)
-        onboardingGraph(
+        onboardingNavGraph(
             navigateToHome = {
-                navController.navigate(HOME_GRAPH) {
-                    popUpTo(ONBOARDING_GRAPH) { inclusive = true }
-                }
-            }
+                navController.popUpTo(fromRoute = ONBOARDING_GRAPH, toRoute = HOME_GRAPH)
+            },
         )
 
         composable(route = HOME_GRAPH) {

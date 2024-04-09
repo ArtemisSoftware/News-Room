@@ -1,8 +1,10 @@
-package com.artemissoftware.feature.onboarding
+package com.artemissoftware.feature
 
+import com.artemissoftware.feature.onboarding.OnBoardingState
 import com.artemissoftware.newsroom.core.model.OnboardingType
 import com.artemissoftware.newsroom.core.model.Page
 import com.core.ui.composables.UiText
+import com.core.ui.R
 
 internal object PreviewData {
 
@@ -29,5 +31,6 @@ internal object PreviewData {
         nextText = UiText.DynamicString("Next"),
         currentPage = 0,
         pages = pages,
+        image = listOf(R.drawable.news_1, R.drawable.news_1, R.drawable.news_1),
     )
 }

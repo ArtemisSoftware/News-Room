@@ -25,4 +25,7 @@ interface NewsDao {
 
     @Query("SELECT * FROM ArticleEntity WHERE id=:id")
     suspend fun getArticle(id: Int): ArticleEntity?
+
+    @Query("SELECT * FROM ArticleEntity")
+    fun getArticlesPaged(): List<Item>
 }
