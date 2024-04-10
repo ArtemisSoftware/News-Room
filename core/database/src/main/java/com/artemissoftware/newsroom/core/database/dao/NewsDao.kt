@@ -1,5 +1,6 @@
 package com.artemissoftware.newsroom.core.database.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -27,5 +28,5 @@ interface NewsDao {
     suspend fun getArticle(id: Int): ArticleEntity?
 
     @Query("SELECT * FROM ArticleEntity")
-    fun getArticlesPaged(): List<Item>
+    fun getArticlesPaged(): PagingSource<Int, ArticleEntity>
 }

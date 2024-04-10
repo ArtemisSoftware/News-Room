@@ -1,7 +1,12 @@
 package com.core.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.database.dao.NewsDao
+import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
 import com.core.data.HandleNetwork
@@ -21,6 +26,21 @@ class NewsRepositoryImpl @Inject constructor(
         return newsDao.getArticles().map { articles ->
             articles.map { it.toArticle() }
         }
+    }
+
+    override fun getArticlesPaged(): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                prefetchDistance = 20,
+            ),
+            pagingSourceFactory = {
+                newsDao.getArticlesPaged()
+            },
+        ).flow
+            .map { value: PagingData<ArticleEntity> ->
+                value.map { articleEntity -> articleEntity.toArticle() }
+            }
     }
 
     override suspend fun getArticle(id: Int): Article? {

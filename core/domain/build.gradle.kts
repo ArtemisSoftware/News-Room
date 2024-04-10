@@ -13,4 +13,5 @@ dependencies {
     implementation(project(":core:model"))
     implementation(libs.dagger)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.paging.common)
 }

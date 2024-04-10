@@ -2,7 +2,9 @@ package com.artemissoftware.feature.bookmark
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.domain.usecases.GetPagedSavedArticlesUseCase
 import com.core.domain.usecases.GetSavedArticlesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,10 +17,13 @@ import javax.inject.Inject
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val getSavedArticlesUseCase: GetSavedArticlesUseCase,
+    private val getPagedSavedArticlesUseCase: GetPagedSavedArticlesUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(BookmarkState())
     val state: StateFlow<BookmarkState> = _state.asStateFlow()
+
+    val articlesPaged = getPagedSavedArticlesUseCase().cachedIn(viewModelScope)
 
     init {
         getArticles()
