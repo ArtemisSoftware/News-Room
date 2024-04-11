@@ -60,6 +60,9 @@ dependencies {
     implementation(libs.gson)
     api(libs.coil.compose)
 
+    implementation(libs.paging.compose)
+    implementation(libs.paging.runtime)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

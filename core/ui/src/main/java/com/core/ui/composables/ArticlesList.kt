@@ -10,6 +10,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
@@ -32,11 +35,81 @@ fun ArticlesList(
             ArticleCard(
                 article = article,
                 onClick = { onClick(article) },
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
 }
+
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
+    articles: LazyPagingItems<Article>,
+    onClick: (Article) -> Unit,
+) {
+    // --val handlePagingResult = handlePagingResult(articles)
+
+    // if (handlePagingResult) {
+    LazyColumn(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3),
+        contentPadding = PaddingValues(all = MaterialTheme.spacing.spacing1),
+    ) {
+        items(
+            count = articles.itemCount,
+            key = articles.itemKey { it.url },
+            contentType = articles.itemContentType { "Article" },
+        ) {
+            articles[it]?.let { article ->
+                ArticleCard(
+                    article = article,
+                    onClick = { onClick(article) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        }
+        //  }
+    }
+}
+/*
+@Composable
+fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
+    val loadState = articles.loadState
+    val error = when {
+        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+        else -> null
+    }
+
+    return when {
+        loadState.refresh is LoadState.Loading -> {
+            ShimmerEffect()
+            false
+        }
+
+        error != null -> {
+            EmptyScreen(error = error)
+            false
+        }
+
+        else -> {
+            true
+        }
+    }
+}
+
+@Composable
+fun ShimmerEffect() {
+    Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
+        repeat(10) {
+            ArticleCardShimmerEffect(
+                modifier = Modifier.padding(horizontal = MediumPadding1)
+            )
+        }
+    }
+}
+*/
 
 @Preview(showBackground = true)
 @Composable

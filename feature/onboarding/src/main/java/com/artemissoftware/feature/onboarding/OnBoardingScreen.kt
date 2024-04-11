@@ -20,7 +20,6 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.feature.onboarding.composables.OnBoardingPage
 import com.artemissoftware.feature.onboarding.composables.PagerIndicator
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews

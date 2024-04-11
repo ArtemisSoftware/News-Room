@@ -15,11 +15,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.artemissoftware.feature.PreviewData
+import androidx.paging.PagingData
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
+import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.R
 import com.core.ui.composables.ArticlesList
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 internal fun BookmarkScreen(
@@ -27,7 +31,10 @@ internal fun BookmarkScreen(
     viewModel: BookmarkViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.collectAsState().value
+    val articlesPagingItems: LazyPagingItems<Article> = viewModel.articlesPaged.collectAsLazyPagingItems()
+
     BookmarkContent(
+        articlesPagingItems = articlesPagingItems,
         state = state,
         navigateToDetails = navigateToDetails,
     )
@@ -37,6 +44,7 @@ internal fun BookmarkScreen(
 private fun BookmarkContent(
     state: BookmarkState,
     navigateToDetails: (Int) -> Unit,
+    articlesPagingItems: LazyPagingItems<Article>,
 ) {
     Column(
         modifier = Modifier
@@ -53,7 +61,7 @@ private fun BookmarkContent(
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing3))
 
         ArticlesList(
-            articles = state.articles,
+            articles = articlesPagingItems,
             onClick = { article ->
                 article.id?.let { navigateToDetails(it) }
             },
@@ -65,8 +73,11 @@ private fun BookmarkContent(
 @Preview(showBackground = true)
 @Composable
 private fun BookmarkContentPreview() {
+    val lo = flowOf(PagingData.from(PreviewData.bookmarkState.articles)).collectAsLazyPagingItems()
+
     NewsRoomTheme {
         BookmarkContent(
+            articlesPagingItems = lo,
             state = PreviewData.bookmarkState,
             navigateToDetails = { },
         )

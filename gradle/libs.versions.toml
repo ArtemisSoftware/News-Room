@@ -34,6 +34,7 @@ core-splashscreen ="1.0.1"
 paging-runtime = "3.1.1"
 paging-compose = "3.2.0-rc01"
 paging-common = "3.1.0"
+room-paging = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -83,8 +84,13 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 # Paging 3
 
 paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging-runtime" }
+paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging-runtime" }
+
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging-compose" }
 paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "paging-common" }
+room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room-paging" }
+
+
 
 
 # foundation

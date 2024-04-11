@@ -46,6 +46,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
-    implementation(libs.paging.compose)
-    implementation(libs.paging.runtime)
+    //implementation(libs.paging.compose)
+    //implementation(libs.paging.runtime)
+    implementation(libs.paging.common)
+    implementation(libs.room.paging)
 }

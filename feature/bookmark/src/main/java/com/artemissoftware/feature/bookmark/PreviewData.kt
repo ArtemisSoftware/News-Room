@@ -1,10 +1,9 @@
-package com.artemissoftware.feature
+package com.artemissoftware.feature.bookmark
 
-import com.artemissoftware.feature.bookmark.BookmarkState
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.model.Source
 
-object PreviewData {
+internal object PreviewData {
     private val article = Article(
         author = "",
         content = "",

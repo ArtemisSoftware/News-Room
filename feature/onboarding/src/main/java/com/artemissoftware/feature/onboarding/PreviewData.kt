@@ -1,10 +1,9 @@
-package com.artemissoftware.feature
+package com.artemissoftware.feature.onboarding
 
-import com.artemissoftware.feature.onboarding.OnBoardingState
 import com.artemissoftware.newsroom.core.model.OnboardingType
 import com.artemissoftware.newsroom.core.model.Page
-import com.core.ui.composables.UiText
 import com.core.ui.R
+import com.core.ui.composables.UiText
 
 internal object PreviewData {
 
