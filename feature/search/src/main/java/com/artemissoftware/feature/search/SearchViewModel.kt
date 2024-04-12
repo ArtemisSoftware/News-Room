@@ -2,8 +2,10 @@ package com.artemissoftware.feature.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.domain.usecases.SearchNewsUseCase
+import com.core.domain.usecases.SearchPagedArticledUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchNewsUseCase: SearchNewsUseCase,
+    private val searchPagedArticledUseCase: SearchPagedArticledUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SearchState())
@@ -29,7 +32,7 @@ class SearchViewModel @Inject constructor(
             }
 
             is SearchEvent.SearchNews -> {
-                searchNews()
+                search()
             }
 
             is SearchEvent.ActivateSearch -> activateSearch(event.isActive)
@@ -62,20 +65,26 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun searchNews() = with(_state) {
+    private fun search() {
         updateHistory()
+        searchPagedArticles()
+    }
 
+    private fun searchNews() = with(_state) {
         viewModelScope.launch {
             val result = searchNewsUseCase(searchQuery = value.searchQuery, sources = sources)
             updateArticles(result)
         }
+    }
 
-        // TODO: fazer quando houver paginaçao
-//        val articles = searchNewsUseCase(
-//            searchQuery = _state.value.searchQuery,
-//            sources = listOf("bbc-news", "abc-news", "al-jazeera-english")
-//        ).cachedIn(viewModelScope)
+    private fun searchPagedArticles() = with(_state) {
+        val articles = searchPagedArticledUseCase(
+            searchQuery = value.searchQuery,
+            sources = sources,
+        ).cachedIn(viewModelScope)
 
-        // --updateArticles(articles = articles)
+        update {
+            it.copy(articlesPaged = articles)
+        }
     }
 }

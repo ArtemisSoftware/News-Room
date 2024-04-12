@@ -2,18 +2,16 @@ package com.core.ui.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
 
@@ -47,31 +45,31 @@ fun ArticlesList(
     articles: LazyPagingItems<Article>,
     onClick: (Article) -> Unit,
 ) {
-    // --val handlePagingResult = handlePagingResult(articles)
+    val handlePagingResult = handlePagingResult(articles)
 
-    // if (handlePagingResult) {
-    LazyColumn(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3),
-        contentPadding = PaddingValues(all = MaterialTheme.spacing.spacing1),
-    ) {
-        items(
-            count = articles.itemCount,
-            key = articles.itemKey { it.url },
-            contentType = articles.itemContentType { "Article" },
+    if (handlePagingResult) {
+        LazyColumn(
+            modifier = modifier,
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3),
+            contentPadding = PaddingValues(all = MaterialTheme.spacing.spacing1),
         ) {
-            articles[it]?.let { article ->
-                ArticleCard(
-                    article = article,
-                    onClick = { onClick(article) },
-                    modifier = Modifier.fillMaxWidth(),
-                )
+            items(
+                count = articles.itemCount,
+                key = articles.itemKey { it.url },
+                contentType = articles.itemContentType { "Article" },
+            ) {
+                articles[it]?.let { article ->
+                    ArticleCard(
+                        article = article,
+                        onClick = { onClick(article) },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
             }
         }
-        //  }
     }
 }
-/*
+
 @Composable
 fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
     val loadState = articles.loadState
@@ -84,12 +82,12 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
 
     return when {
         loadState.refresh is LoadState.Loading -> {
-            ShimmerEffect()
+            // ShimmerEffect()
             false
         }
 
         error != null -> {
-            EmptyScreen(error = error)
+            // EmptyScreen(error = error)
             false
         }
 
@@ -98,7 +96,7 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
         }
     }
 }
-
+/*
 @Composable
 fun ShimmerEffect() {
     Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
@@ -109,7 +107,7 @@ fun ShimmerEffect() {
         }
     }
 }
-*/
+
 
 @Preview(showBackground = true)
 @Composable
@@ -122,3 +120,4 @@ private fun ArticlesListPreview() {
         )
     }
 }
+*/

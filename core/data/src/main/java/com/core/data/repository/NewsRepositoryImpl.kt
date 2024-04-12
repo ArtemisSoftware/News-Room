@@ -8,11 +8,13 @@ import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.database.dao.NewsDao
 import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
 import com.artemissoftware.newsroom.core.model.Article
+import com.artemissoftware.newsroom.core.network.dto.ArticleDto
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
 import com.core.data.HandleNetwork
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity
 import com.core.data.mappers.toListArticles
+import com.core.data.pagination.SearchArticlesPagingSource
 import com.core.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -61,6 +63,22 @@ class NewsRepositoryImpl @Inject constructor(
             sources = sources.joinToString(separator = ","),
             page = 1,
         ).articles.map { it.toArticle() }
+    }
+
+    override fun searchPagedArticles(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchArticlesPagingSource(
+                    newsApiSource = newsApiSource,
+                    searchQuery = searchQuery,
+                    sources = sources.joinToString(separator = ",")
+                )
+            }
+        ).flow
+            .map { value: PagingData<ArticleDto> ->
+                value.map { it.toArticle() }
+            }
     }
 
     override suspend fun getNews(sources: List<String>): DataResponse<List<Article>> {

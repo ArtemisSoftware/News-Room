@@ -42,7 +42,6 @@ android {
 
 dependencies {
 
-    //implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:ui"))
     implementation(project(":core:model"))
@@ -60,6 +59,9 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
+
+    implementation(libs.paging.compose)
+    implementation(libs.paging.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

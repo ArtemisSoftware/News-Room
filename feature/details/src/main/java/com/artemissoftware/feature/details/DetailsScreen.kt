@@ -84,7 +84,8 @@ private fun DetailsContent(
                     AsyncImage(
                         model = ImageRequest.Builder(context = context)
                             .data(article.urlToImage)
-                            .placeholder(R.drawable.news_1)
+                            .placeholder(R.drawable.ic_news)
+                            .error(R.drawable.ic_news)
                             .build(),
                         contentDescription = null,
                         modifier = Modifier

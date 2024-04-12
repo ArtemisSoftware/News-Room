@@ -19,5 +19,7 @@ interface NewsRepository {
 
     suspend fun searchArticles(searchQuery: String, sources: List<String>): List<Article>
 
+    fun searchPagedArticles(searchQuery: String, sources: List<String>): Flow<PagingData<Article>>
+
     suspend fun getNews(sources: List<String>): DataResponse<List<Article>>
 }

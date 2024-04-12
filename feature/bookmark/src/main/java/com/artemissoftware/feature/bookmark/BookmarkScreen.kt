@@ -73,11 +73,11 @@ private fun BookmarkContent(
 @Preview(showBackground = true)
 @Composable
 private fun BookmarkContentPreview() {
-    val lo = flowOf(PagingData.from(PreviewData.bookmarkState.articles)).collectAsLazyPagingItems()
+    val mock = flowOf(PagingData.from(PreviewData.bookmarkState.articles)).collectAsLazyPagingItems()
 
     NewsRoomTheme {
         BookmarkContent(
-            articlesPagingItems = lo,
+            articlesPagingItems = mock,
             state = PreviewData.bookmarkState,
             navigateToDetails = { },
         )

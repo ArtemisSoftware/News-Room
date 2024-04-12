@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
@@ -77,25 +78,26 @@ private fun SearchContent(
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing3))
 
-        ArticlesList(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = MaterialTheme.spacing.spacing3),
-            articles = state.articles,
-            onClick = {
-                navigateToDetails.invoke(it)
-            },
-        )
-
-        // TODO: quando houver paginação
-
-        //        state.articles?.let {
-        // //            val articles = it.collectAsLazyPagingItems()
-        //            ArticlesList(
-        //                articles = articles,
-        //                onClick = navigateToDetails
-        //            )
-        //        }
+//        ArticlesList(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(horizontal = MaterialTheme.spacing.spacing3),
+//            articles = state.articles,
+//            onClick = {
+//                navigateToDetails.invoke(it)
+//            },
+//        )
+        state.articlesPaged?.let {
+            ArticlesList(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.spacing.spacing3),
+                articles = it.collectAsLazyPagingItems(),
+                onClick = {
+                    navigateToDetails.invoke(it)
+                },
+            )
+        }
     }
 }
 
