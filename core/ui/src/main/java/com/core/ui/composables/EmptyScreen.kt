@@ -1,5 +1,6 @@
 package com.core.ui.composables
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
@@ -21,27 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.artemissoftware.newsroom.core.designsystem.theme.dimension
+import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.core.ui.R
 
 @Composable
-fun EmptyScreen(/*error: LoadState.Error? = null*/) {
-    var message by remember {
-        mutableStateOf(parseErrorMessage(/*error = error*/))
-    }
-
-    var icon by remember {
-        mutableStateOf(R.drawable.ic_network_error)
-    }
-
+fun EmptyScreen(
+    message: String,
+    @DrawableRes icon: Int = R.drawable.ic_news,
+) {
     var startAnimation by remember {
         mutableStateOf(false)
     }
-
-//    if (error == null){
-//        message = "You have not saved news so far !"
-//        icon = R.drawable.ic_search_document
-//    }
 
     val alphaAnimation by animateFloatAsState(
         targetValue = if (startAnimation) 0.3f else 0f,
@@ -66,37 +58,18 @@ private fun EmptyContent(alphaAnim: Float, message: String, iconId: Int) {
         Icon(
             painter = painterResource(id = iconId),
             contentDescription = null,
-            // tint = if (isSystemInDarkTheme()) LightGray else DarkGray,
             modifier = Modifier
-                .size(120.dp)
+                .size(MaterialTheme.dimension.iconSizeBig)
                 .alpha(alphaAnim),
         )
         Text(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(MaterialTheme.spacing.spacing1_5)
                 .alpha(alphaAnim),
             text = message,
             style = MaterialTheme.typography.bodyMedium,
-            // color = if (isSystemInDarkTheme()) LightGray else DarkGray,
         )
     }
-}
-
-private fun parseErrorMessage(/*error: LoadState.Error?*/): String {
-    return "Unknown Error."
-//    when (error?.error) {
-//        is SocketTimeoutException -> {
-//            "Server Unavailable."
-//        }
-//
-//        is ConnectException -> {
-//            "Internet Unavailable."
-//        }
-//
-//        else -> {*/
-//            "Unknown Error."
-//        }
-//    }
 }
 
 @Preview(showBackground = true)

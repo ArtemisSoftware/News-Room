@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -19,12 +20,12 @@ object NewsNetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-//        val logging = HttpLoggingInterceptor()
-//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         return OkHttpClient.Builder()
             // --.addInterceptor(ApiKeyInterceptor())
-//            .addInterceptor(logging)
+            .addInterceptor(logging)
             .readTimeout(15L, TimeUnit.SECONDS)
             .connectTimeout(15L, TimeUnit.SECONDS)
             .build()

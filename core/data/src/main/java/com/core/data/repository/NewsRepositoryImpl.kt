@@ -72,9 +72,9 @@ class NewsRepositoryImpl @Inject constructor(
                 SearchArticlesPagingSource(
                     newsApiSource = newsApiSource,
                     searchQuery = searchQuery,
-                    sources = sources.joinToString(separator = ",")
+                    sources = sources.joinToString(separator = ","),
                 )
-            }
+            },
         ).flow
             .map { value: PagingData<ArticleDto> ->
                 value.map { it.toArticle() }

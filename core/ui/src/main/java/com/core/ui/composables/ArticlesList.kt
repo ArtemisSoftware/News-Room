@@ -22,7 +22,7 @@ fun ArticlesList(
     onClick: (Article) -> Unit,
 ) {
     if (articles.isEmpty()) {
-        EmptyScreen()
+        EmptyScreen("Ainda não definido")
     }
     LazyColumn(
         modifier = modifier,
@@ -70,32 +70,7 @@ fun ArticlesList(
     }
 }
 
-@Composable
-fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
-    val loadState = articles.loadState
-    val error = when {
-        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-        else -> null
-    }
 
-    return when {
-        loadState.refresh is LoadState.Loading -> {
-            // ShimmerEffect()
-            false
-        }
-
-        error != null -> {
-            // EmptyScreen(error = error)
-            false
-        }
-
-        else -> {
-            true
-        }
-    }
-}
 /*
 @Composable
 fun ShimmerEffect() {

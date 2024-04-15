@@ -12,6 +12,7 @@ data class Dimension(
     val iconSize: Dp,
     val articleCardSize: Dp,
     val articleImageHeight: Dp,
+    val iconSizeBig: Dp,
 )
 
 val dimension = Dimension(
@@ -20,6 +21,7 @@ val dimension = Dimension(
     iconSize = 20.dp,
     articleCardSize = 96.dp,
     articleImageHeight = 248.dp,
+    iconSizeBig = 120.dp,
 )
 
 internal val localDimension = staticCompositionLocalOf<Dimension> { throw IllegalStateException("No theme installed") }
