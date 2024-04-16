@@ -60,7 +60,7 @@ class NewsRepositoryImpl @Inject constructor(
     override suspend fun searchArticles(searchQuery: String, sources: List<String>): List<Article> {
         return newsApiSource.search(
             searchQuery = searchQuery,
-            sources = sources.joinToString(separator = ","),
+            sources = sources.toRequestFormat(),
             page = 1,
         ).articles.map { it.toArticle() }
     }
@@ -72,7 +72,7 @@ class NewsRepositoryImpl @Inject constructor(
                 SearchArticlesPagingSource(
                     newsApiSource = newsApiSource,
                     searchQuery = searchQuery,
-                    sources = sources.joinToString(separator = ","),
+                    sources = sources.toRequestFormat(),
                 )
             },
         ).flow
@@ -83,7 +83,9 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun getNews(sources: List<String>): DataResponse<List<Article>> {
         return HandleNetwork.safeNetworkCall {
-            newsApiSource.getNews(sources = sources.joinToString(separator = ","), page = 1).toListArticles()
+            newsApiSource.getNews(sources = sources.toRequestFormat(), page = 1).toListArticles()
         }
     }
+
+    private fun List<String>.toRequestFormat() = this.joinToString(separator = ",")
 }

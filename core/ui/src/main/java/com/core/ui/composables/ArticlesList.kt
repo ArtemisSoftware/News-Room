@@ -8,10 +8,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.paging.LoadState
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
 
@@ -82,7 +83,7 @@ fun ShimmerEffect() {
         }
     }
 }
-
+*/
 
 @Preview(showBackground = true)
 @Composable
@@ -95,4 +96,16 @@ private fun ArticlesListPreview() {
         )
     }
 }
-*/
+
+@Preview(showBackground = true)
+@Composable
+private fun ArticlesListEmptyPreview() {
+    NewsRoomTheme {
+        ArticlesList(
+            articles = emptyList(),
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {},
+        )
+    }
+}
+

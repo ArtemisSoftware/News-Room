@@ -8,6 +8,7 @@ internal data class NewsState(
     val newsTicker: String = "",
     val scrollValue: Int = 0,
     val maxScrollingValue: Int = 0,
+    val showDialog: Boolean = false,
 ) {
 
     fun getTitles() = if (articles.size > 10) {

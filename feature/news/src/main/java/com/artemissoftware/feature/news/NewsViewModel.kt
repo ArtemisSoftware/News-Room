@@ -32,17 +32,18 @@ internal class NewsViewModel @Inject constructor(
         when (event) {
             is NewsEvent.UpdateScrollValue -> updateScrollValue(event.newValue)
             is NewsEvent.UpdateMaxScrollingValue -> updateMaxScrollingValue(event.newValue)
+            NewsEvent.CloseDialog -> updateDialog(show = false)
         }
     }
 
     private fun getNews() = with(_state) {
         viewModelScope.launch {
-            getNewsUseCase(sources = listOf("bbc-news", "abc-news", "al-jazeera-english"))
+            getNewsUseCase()
                 .onSuccess {
                     updateArticles(it)
                 }
                 .onFailure {
-                    // TODO: adicionar erro
+                    updateDialog(show = true)
                 }
         }
     }
@@ -62,6 +63,12 @@ internal class NewsViewModel @Inject constructor(
     private fun updateArticles(articles: List<Article>) = with(_state) {
         update {
             it.copy(articles = articles)
+        }
+    }
+
+    private fun updateDialog(show: Boolean) = with(_state) {
+        update {
+            it.copy(showDialog = show)
         }
     }
 }

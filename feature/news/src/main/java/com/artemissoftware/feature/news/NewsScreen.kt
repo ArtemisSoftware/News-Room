@@ -29,6 +29,7 @@ import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.composables.ArticlesList
+import com.core.ui.composables.Dialog
 import kotlinx.coroutines.delay
 
 @Composable
@@ -120,6 +121,13 @@ private fun NewsContent(
             },
         )
     }
+
+    Dialog(
+        showDialog = state.showDialog,
+        onDismiss = {
+            event(NewsEvent.CloseDialog)
+        },
+    )
 }
 
 @Preview(showBackground = true)
