@@ -124,6 +124,7 @@ private fun NewsContent(
 
     Dialog(
         showDialog = state.showDialog,
+        dialogData = state.dialogData,
         onDismiss = {
             event(NewsEvent.CloseDialog)
         },

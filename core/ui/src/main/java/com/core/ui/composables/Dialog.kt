@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun Dialog(
     showDialog: Boolean,
+    dialogData: DialogData,
     onDismiss: () -> Unit,
 ) {
     if (showDialog) {
@@ -17,7 +18,7 @@ fun Dialog(
                 Text(text = "Dialog Title Will Show Here")
             },
             text = {
-                Text("Here is a description text of the dialog")
+                Text(dialogData.description.asString())
             },
             confirmButton = { },
             dismissButton = {

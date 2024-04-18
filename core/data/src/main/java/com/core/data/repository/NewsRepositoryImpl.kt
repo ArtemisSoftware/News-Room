@@ -11,10 +11,12 @@ import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.network.dto.ArticleDto
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
 import com.core.data.HandleNetwork
+import com.core.data.HandleNetwork2
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity
 import com.core.data.mappers.toListArticles
 import com.core.data.pagination.SearchArticlesPagingSource
+import com.core.domain.DataResponse2
 import com.core.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -81,8 +83,8 @@ class NewsRepositoryImpl @Inject constructor(
             }
     }
 
-    override suspend fun getNews(sources: List<String>): DataResponse<List<Article>> {
-        return HandleNetwork.safeNetworkCall {
+    override suspend fun getNews(sources: List<String>): DataResponse2<List<Article>> {
+        return HandleNetwork2.safeNetworkCall {
             newsApiSource.getNews(sources = sources.toRequestFormat(), page = 1).toListArticles()
         }
     }

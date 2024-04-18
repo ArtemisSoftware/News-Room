@@ -1,6 +1,7 @@
 package com.artemissoftware.feature.news
 
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.ui.composables.DialogData
 
 internal data class NewsState(
     val isLoading: Boolean = false,
@@ -9,6 +10,7 @@ internal data class NewsState(
     val scrollValue: Int = 0,
     val maxScrollingValue: Int = 0,
     val showDialog: Boolean = false,
+    val dialogData: DialogData = DialogData()
 ) {
 
     fun getTitles() = if (articles.size > 10) {

@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.domain.usecases.GetNewsUseCase
+import com.core.ui.composables.DialogData
+import com.core.ui.composables.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -43,7 +45,7 @@ internal class NewsViewModel @Inject constructor(
                     updateArticles(it)
                 }
                 .onFailure {
-                    updateDialog(show = true)
+                    updateDialog(show = true, message = it.asUiText())
                 }
         }
     }
@@ -66,9 +68,15 @@ internal class NewsViewModel @Inject constructor(
         }
     }
 
-    private fun updateDialog(show: Boolean) = with(_state) {
-        update {
-            it.copy(showDialog = show)
+    private fun updateDialog(show: Boolean, message: UiText? = null) = with(_state) {
+        message?.let { text ->
+            update {
+                it.copy(showDialog = show, dialogData = DialogData(text))
+            }
+        } ?: run {
+            update {
+                it.copy(showDialog = show)
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.core.domain.repository
 import androidx.paging.PagingData
 import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.domain.DataResponse2
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
@@ -21,5 +22,5 @@ interface NewsRepository {
 
     fun searchPagedArticles(searchQuery: String, sources: List<String>): Flow<PagingData<Article>>
 
-    suspend fun getNews(sources: List<String>): DataResponse<List<Article>>
+    suspend fun getNews(sources: List<String>): DataResponse2<List<Article>>
 }
