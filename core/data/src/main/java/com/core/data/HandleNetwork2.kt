@@ -1,6 +1,6 @@
 package com.core.data
 
-import com.artemissoftware.newsroom.core.network.exceptions.NewsNetworkException
+import com.artemissoftware.newsroom.core.common.exceptions.NewsRoomException
 import com.core.domain.DataResponse2
 import com.core.domain.NetworkError
 import java.net.ConnectException
@@ -15,7 +15,7 @@ object HandleNetwork2 {
             DataResponse2.Success(data = apiCall())
         } catch (ex: Exception) {
             val error = when (ex) {
-                is NewsNetworkException -> {
+                is NewsRoomException -> {
                     NetworkError.Error(message = ex.description)
                 }
                 is UnknownHostException -> {

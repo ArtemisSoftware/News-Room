@@ -122,13 +122,14 @@ private fun NewsContent(
         )
     }
 
-    Dialog(
-        showDialog = state.showDialog,
-        dialogData = state.dialogData,
-        onDismiss = {
-            event(NewsEvent.CloseDialog)
-        },
-    )
+    state.dialogData?.let {
+        Dialog(
+            dialogData = it,
+            onDismiss = {
+                event(NewsEvent.CloseDialog)
+            },
+        )
+    }
 }
 
 @Preview(showBackground = true)

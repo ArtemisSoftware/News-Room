@@ -1,7 +1,7 @@
 package com.artemissoftware.newsroom.core.network
 
 import com.artemissoftware.newsroom.core.network.dto.ErrorDto
-import com.artemissoftware.newsroom.core.network.exceptions.NewsNetworkException
+import com.artemissoftware.newsroom.core.common.exceptions.NewsRoomException
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import retrofit2.HttpException
@@ -15,7 +15,7 @@ internal object HandleApi_2 {
             when (ex) {
                 is HttpException -> {
                     convertErrorBody(ex)?.let { error ->
-                        throw NewsNetworkException(
+                        throw NewsRoomException(
                             code = ex.code(),
                             description = error.message,
                         )

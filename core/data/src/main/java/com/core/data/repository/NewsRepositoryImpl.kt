@@ -4,13 +4,11 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.database.dao.NewsDao
 import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.network.dto.ArticleDto
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
-import com.core.data.HandleNetwork
 import com.core.data.HandleNetwork2
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity

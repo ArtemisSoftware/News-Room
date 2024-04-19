@@ -6,7 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import com.artemissoftware.newsroom.core.common.exceptions.NewsRoomException
 import com.artemissoftware.newsroom.core.model.Article
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 @Composable
 fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
@@ -18,7 +21,7 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
         else -> null
     }
 
-    val message by remember {
+    val message by remember(error) {
         mutableStateOf(parseErrorMessage(pagingError = error))
     }
 
@@ -40,29 +43,23 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
 }
 
 private fun parseErrorMessage(pagingError: LoadState.Error?): String {
-
     pagingError?.let {
-        //val error = it.error as News
+        return when (val error = it.error) {
+            is NewsRoomException -> {
+                error.description
+            }
+            is SocketTimeoutException -> {
+                "Server Unavailable."
+            }
+
+            is ConnectException -> {
+                "Internet Unavailable."
+            }
+            else -> {
+                error.message ?: "Unknown Error."
+            }
+        }
     }
 
-
-//    if (error == null){
-//        message = "You have not saved news so far !"
-//        icon = R.drawable.ic_search_document
-//    }
-
     return "Unknown Error."
-//    when (error?.error) {
-//        is SocketTimeoutException -> {
-//            "Server Unavailable."
-//        }
-//
-//        is ConnectException -> {
-//            "Internet Unavailable."
-//        }
-//
-//        else -> {*/
-//            "Unknown Error."
-//        }
-//    }
 }
