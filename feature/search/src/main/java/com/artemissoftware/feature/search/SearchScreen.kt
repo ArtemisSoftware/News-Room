@@ -21,8 +21,12 @@ import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.domain.PaginationException
 import com.core.ui.SearchBar
 import com.core.ui.composables.ArticlesList
+import com.core.ui.composables.ArticlesList_
+import com.core.ui.composables.EmptyScreen
+import com.core.ui.composables.Paging
 
 @Composable
 internal fun SearchScreen(
@@ -88,15 +92,34 @@ private fun SearchContent(
 //            },
 //        )
         state.articlesPaged?.let {
-            ArticlesList(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = MaterialTheme.spacing.spacing3),
-                articles = it.collectAsLazyPagingItems(),
-                onClick = {
-                    navigateToDetails.invoke(it)
+
+            val pagingItems = it.collectAsLazyPagingItems()
+
+            Paging(
+                loadState = pagingItems.loadState,
+                loadingContent = { /*TODO*/ },
+                errorContent = { error ->
+                    val lolo = error?.let {
+                        (it.error as PaginationException).networkError.toString()
+                    } ?: run {
+                        "lololololoo"
+                    }
+                    EmptyScreen(message = lolo)
                 },
+                content =  {
+                    ArticlesList_(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = MaterialTheme.spacing.spacing3),
+                        articles = pagingItems,
+                        onClick = {
+                            navigateToDetails.invoke(it)
+                        },
+                    )
+                }
             )
+
+
         }
     }
 }

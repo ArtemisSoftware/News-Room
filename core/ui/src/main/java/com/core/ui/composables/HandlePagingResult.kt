@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.artemissoftware.newsroom.core.common.exceptions.NewsRoomException
@@ -12,7 +13,60 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 @Composable
-fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
+fun Paging(
+    loadState: CombinedLoadStates,
+    loadingContent: @Composable () -> Unit,
+    errorContent: @Composable (LoadState.Error?) -> Unit,
+    content: @Composable () -> Unit,
+) {
+    val error = when {
+        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+        else -> null
+    }
+
+    when {
+        loadState.refresh is LoadState.Loading -> {
+            loadingContent()
+        }
+
+        error != null -> {
+            errorContent(error)
+        }
+
+        else -> {
+            content()
+        }
+    }
+}
+
+@Composable
+fun handlePagingResult(loadState: CombinedLoadStates): PaginationResult {
+    val error = when {
+        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+        else -> null
+    }
+
+    return when {
+        loadState.refresh is LoadState.Loading -> {
+            PaginationResult.LOADING
+        }
+
+        error != null -> {
+            PaginationResult.ERROR
+        }
+
+        else -> {
+            PaginationResult.COMPLETE
+        }
+    }
+}
+
+@Composable
+fun handlePagingResult__(articles: LazyPagingItems<Article>): Boolean {
     val loadState = articles.loadState
     val error = when {
         loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
@@ -42,7 +96,7 @@ fun handlePagingResult(articles: LazyPagingItems<Article>): Boolean {
     }
 }
 
-private fun parseErrorMessage(pagingError: LoadState.Error?): String {
+fun parseErrorMessage(pagingError: LoadState.Error?): String {
     pagingError?.let {
         return when (val error = it.error) {
             is NewsRoomException -> {
