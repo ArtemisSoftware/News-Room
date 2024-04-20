@@ -18,6 +18,8 @@ internal val DisplaySmall = Color(0xFF000000)
 
 internal val Body = Color(0xFF4E4B66)
 internal val Placeholder = Color(0xFFA0A3BD)
+internal val Shimmer = Color(0xFFC3C3C3)
+
 
 //<color name="display_small">#000000</color>
 //<color name="text_medium">#FF4E4B66</color>

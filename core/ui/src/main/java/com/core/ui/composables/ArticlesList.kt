@@ -41,7 +41,7 @@ fun ArticlesList(
 }
 
 @Composable
-fun ArticlesList_(
+fun ArticlesList(
     modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
     onClick: (Article) -> Unit,
@@ -67,51 +67,6 @@ fun ArticlesList_(
     }
 }
 
-@Composable
-fun ArticlesList(
-    modifier: Modifier = Modifier,
-    articles: LazyPagingItems<Article>,
-    onClick: (Article) -> Unit,
-) {
-    val handlePagingResult = true//handlePagingResult(articles)
-
-    if (handlePagingResult) {
-        LazyColumn(
-            modifier = modifier,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3),
-            contentPadding = PaddingValues(all = MaterialTheme.spacing.spacing1),
-        ) {
-            items(
-                count = articles.itemCount,
-                key = articles.itemKey { it.url },
-                contentType = articles.itemContentType { "Article" },
-            ) {
-                articles[it]?.let { article ->
-                    ArticleCard(
-                        article = article,
-                        onClick = { onClick(article) },
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-            }
-        }
-    }
-}
-
-
-/*
-@Composable
-fun ShimmerEffect() {
-    Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
-        repeat(10) {
-            ArticleCardShimmerEffect(
-                modifier = Modifier.padding(horizontal = MediumPadding1)
-            )
-        }
-    }
-}
-*/
-
 @Preview(showBackground = true)
 @Composable
 private fun ArticlesListPreview() {
@@ -135,4 +90,3 @@ private fun ArticlesListEmptyPreview() {
         )
     }
 }
-

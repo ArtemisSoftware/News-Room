@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.domain.usecases.GetNewsUseCase
+import com.core.presentation.util.asUiText
 import com.core.ui.composables.DialogData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

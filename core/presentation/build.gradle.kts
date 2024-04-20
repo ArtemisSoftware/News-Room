@@ -2,12 +2,11 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
-    namespace = "com.artemissoftware.feature.search"
-    compileSdk = 34
+    namespace = "com.core.presentation"
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         minSdk = 31
@@ -42,24 +41,18 @@ android {
 
 dependencies {
 
+    implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":core:ui"))
-    implementation(project(":core:model"))
     implementation(project(":core:domain"))
-    implementation(project(":core:presentation"))
 
-    implementation(libs.androidx.core.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
-    implementation(libs.navigation.compose)
-
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.android.compiler)
 
     implementation(libs.paging.compose)
     implementation(libs.paging.runtime)
