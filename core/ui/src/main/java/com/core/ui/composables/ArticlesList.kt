@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -15,6 +16,7 @@ import androidx.paging.compose.itemKey
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.ui.R
 
 @Composable
 fun ArticlesList(
@@ -23,7 +25,7 @@ fun ArticlesList(
     onClick: (Article) -> Unit,
 ) {
     if (articles.isEmpty()) {
-        EmptyScreen("Ainda não definido")
+        EmptyScreen(stringResource(id = R.string.no_articles_found))
     }
     LazyColumn(
         modifier = modifier,

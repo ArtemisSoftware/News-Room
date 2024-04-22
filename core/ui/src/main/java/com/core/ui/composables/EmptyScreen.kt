@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.core.ui.R
@@ -75,5 +76,10 @@ private fun EmptyContent(alphaAnim: Float, message: String, iconId: Int) {
 @Preview(showBackground = true)
 @Composable
 private fun EmptyScreenPreview() {
-    EmptyContent(alphaAnim = 0.3f, message = "Internet Unavailable.", R.drawable.ic_network_error)
+    NewsRoomTheme {
+        EmptyScreen(
+            message = "Internet Unavailable.",
+            R.drawable.ic_network_error
+        )
+    }
 }

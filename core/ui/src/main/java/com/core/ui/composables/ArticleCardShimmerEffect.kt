@@ -40,7 +40,7 @@ fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(30.dp)
+                    .height(MaterialTheme.spacing.spacing3)
                     .padding(horizontal = MaterialTheme.spacing.spacing0_5)
                     .shimmerEffect(),
             )
@@ -51,7 +51,7 @@ fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth(0.5f)
                         .padding(horizontal = MaterialTheme.spacing.spacing0_5)
-                        .height(15.dp)
+                        .height(MaterialTheme.spacing.spacing2)
                         .shimmerEffect(),
                 )
             }

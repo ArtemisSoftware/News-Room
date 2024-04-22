@@ -7,4 +7,5 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="close">Close</string>
+    <string name="no_articles_found">No articles found</string>
 </resources>

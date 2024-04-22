@@ -1,21 +1,35 @@
 package com.artemissoftware.newsroom.core.network
 
+import com.artemissoftware.newsroom.core.common.DataError
+import com.artemissoftware.newsroom.core.common.DataResponse
 import com.artemissoftware.newsroom.core.network.dto.ErrorDto
-import com.artemissoftware.newsroom.core.network.exceptions.NewsNetworkException
+import com.artemissoftware.newsroom.core.common.exceptions.NewsRoomException
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import retrofit2.HttpException
 import java.util.concurrent.CancellationException
+import com.artemissoftware.newsroom.core.common.Result
 
 internal object HandleApi {
 
-    //    inline fun <T> safeApiCall(apiCall: () -> T): com.core.ui.DataResponse<T> {
+    inline fun <T> s_afeNetworkCall(apiCall: () -> T): DataResponse<T> {
+        return DataResponse.Success(apiCall.invoke())
+    }
+
+    suspend fun <T> register(apiCall: suspend () -> T): Result<T, DataError.Network> {
+        return Result.Success(apiCall.invoke())
+//        // API call logic
 //        return try {
-//            com.core.ui.DataResponse.Success(data = apiCall())
-//        } catch (e: Exception) {
-//            com.core.ui.DataResponse.Failure(exception = e)
+//            val user = User("dummy", "dummy", "dummy")
+//            Result.Success(user)
+//        } catch(e: HttpException) {
+//            when(e.code()) {
+//                408 -> Result.Error(DataError.Network.REQUEST_TIMEOUT)
+//                413 -> Result.Error(DataError.Network.PAYLOAD_TOO_LARGE)
+//                else -> Result.Error(DataError.Network.UNKNOWN)
+//            }
 //        }
-//    }
+    }
 
     suspend fun <T> safeApiCall(callFunction: suspend () -> T): T {
         return try {
@@ -28,12 +42,12 @@ internal object HandleApi {
 
                 is HttpException -> {
                     convertErrorBody(ex)?.let { error ->
-                        throw NewsNetworkException(
+                        throw NewsRoomException(
                             code = ex.code(),
                             description = error.message,
                         )
                     } ?: run {
-                        throw NewsNetworkException(code = ex.code(), description = ex.message())
+                        throw NewsRoomException(code = ex.code(), description = ex.message())
                     }
                 }
                 // TODO : terminar isto
@@ -50,7 +64,7 @@ internal object HandleApi {
 //                }
 
                 else -> {
-                    throw NewsNetworkException()
+                    throw NewsRoomException()
                 }
             }
         }

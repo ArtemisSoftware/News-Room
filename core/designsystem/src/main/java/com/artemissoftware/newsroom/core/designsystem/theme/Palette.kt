@@ -11,15 +11,6 @@ data class Palette(
     val error: Color,
     val surface: Color,
     val onSurface: Color,
-
-//    val Body: Color,
-//    val DisplaySmall: Color,
-
-//    val TextTitle: Color,
-//    val InputBackground: Color,
-//    val Placeholder: Color,
-//    val Shimmer: Color,
-
     val extraColors: ExtraColors,
 
 )
@@ -50,7 +41,7 @@ internal val extraColors = ExtraColors(
     body = Body,
     bookmarked = Blue,
     placeHolder = Placeholder,
-    shimmer = Shimmer
+    shimmer = Shimmer,
 )
 
 internal val paletteLight = Palette(
@@ -61,13 +52,6 @@ internal val paletteLight = Palette(
     error = LightRed,
     surface = White,
     onSurface = Black,
-//    Body = Color(0xFF4E4B66),
-//    DisplaySmall = Color(0xFF000000),
-//    TextMedium = Color(0xFF4E4B66),
-//    TextTitle = Color(0xFF000000),
-//    InputBackground = Color(0xFFffffff),
-//    Placeholder = Color(0xFFA0A3BD),
-//    Shimmer = Color(0xFFC3C3C3),
     extraColors = extraColors,
 )
 
@@ -79,12 +63,5 @@ internal val paletteDark = Palette(
     error = DarkRed,
     surface = LightBlack,
     onSurface = White,
-//    Body = Color(0xFFB0B3B8),
-//    DisplaySmall = Color(0xFFFFFFFF),
-//    TextMedium = Color(0xFFB0B3B8),
-//    TextTitle = Color(0xFFE4E6EB),
-//    InputBackground = Color(0xFF3A3B3C),
-//    Placeholder = Color(0xFFDDDDDD),
-//    Shimmer = Color(0xFF414243),
     extraColors = extraColors,
 )
