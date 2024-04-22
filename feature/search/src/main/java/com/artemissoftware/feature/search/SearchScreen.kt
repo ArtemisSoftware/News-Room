@@ -26,6 +26,7 @@ import com.core.presentation.PaginationContent
 import com.core.ui.SearchBar
 import com.core.ui.composables.ArticleCardShimmerEffect
 import com.core.ui.composables.ArticlesList
+import com.core.ui.composables.Dialog
 import com.core.ui.composables.EmptyScreen
 
 @Composable
@@ -82,15 +83,6 @@ private fun SearchContent(
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing3))
 
-//        ArticlesList(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(horizontal = MaterialTheme.spacing.spacing3),
-//            articles = state.articles,
-//            onClick = {
-//                navigateToDetails.invoke(it)
-//            },
-//        )
         state.articlesPaged?.let {
             PaginationContent(
                 items = it.collectAsLazyPagingItems(),
@@ -114,13 +106,32 @@ private fun SearchContent(
                             .fillMaxWidth()
                             .padding(horizontal = MaterialTheme.spacing.spacing3),
                         articles = pagingItems,
-                        onClick = {
-                            navigateToDetails.invoke(it)
+                        onClick = { article ->
+                            navigateToDetails.invoke(article)
                         },
                     )
                 },
             )
+        } ?: run {
+            ArticlesList(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.spacing.spacing3),
+                articles = state.articles,
+                onClick = {
+                    navigateToDetails.invoke(it)
+                },
+            )
         }
+    }
+
+    state.dialogData?.let {
+        Dialog(
+            dialogData = it,
+            onDismiss = {
+                event(SearchEvent.CloseDialog)
+            },
+        )
     }
 }
 

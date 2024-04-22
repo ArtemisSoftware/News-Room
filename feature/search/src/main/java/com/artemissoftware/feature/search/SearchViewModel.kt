@@ -3,9 +3,11 @@ package com.artemissoftware.feature.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.core.domain.usecases.SearchNewsUseCase
+import com.core.domain.usecases.SearchArticlesUseCase
 import com.core.domain.usecases.SearchPagedArticledUseCase
+import com.core.presentation.util.asUiText
 import com.core.presentation.util.constants.PresentationConstants.PAGINATION
+import com.core.ui.composables.DialogData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,14 +18,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchNewsUseCase: SearchNewsUseCase,
+    private val searchArticlesUseCase: SearchArticlesUseCase,
     private val searchPagedArticledUseCase: SearchPagedArticledUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SearchState())
     val state: StateFlow<SearchState> = _state.asStateFlow()
-
-    val sources = listOf("bbc-news", "abc-news", "al-jazeera-english")
 
     fun onTriggerEvent(event: SearchEvent) {
         when (event) {
@@ -36,6 +36,7 @@ class SearchViewModel @Inject constructor(
             }
 
             is SearchEvent.ActivateSearch -> activateSearch(event.isActive)
+            SearchEvent.CloseDialog -> updateDialog()
         }
     }
 
@@ -64,27 +65,36 @@ class SearchViewModel @Inject constructor(
         if (PAGINATION) {
             searchPagedArticles()
         } else {
-            searchNews()
+            searchArticles()
         }
     }
 
-    private fun searchNews() = with(_state) {
+    private fun searchArticles() = with(_state) {
         viewModelScope.launch {
-            val result = searchNewsUseCase(searchQuery = value.searchQuery, sources = sources)
-            update {
-                it.copy(articles = result)
-            }
+            searchArticlesUseCase(searchQuery = value.searchQuery)
+                .onSuccess { articles ->
+                    update {
+                        it.copy(articles = articles)
+                    }
+                }
+                .onFailure {
+                    updateDialog(dialogData = DialogData(it.asUiText()))
+                }
         }
     }
 
     private fun searchPagedArticles() = with(_state) {
-        val articles = searchPagedArticledUseCase(
-            searchQuery = value.searchQuery,
-            sources = sources,
-        ).cachedIn(viewModelScope)
+        val articles = searchPagedArticledUseCase(searchQuery = value.searchQuery)
+            .cachedIn(viewModelScope)
 
         update {
             it.copy(articlesPaged = articles)
+        }
+    }
+
+    private fun updateDialog(dialogData: DialogData? = null) = with(_state) {
+        update {
+            it.copy(dialogData = dialogData)
         }
     }
 }

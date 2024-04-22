@@ -24,6 +24,33 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsDao: NewsDao,
     private val newsApiSource: NewsApiSource,
 ) : NewsRepository {
+
+    override suspend fun searchArticles(searchQuery: String, sources: List<String>): DataResponse2<List<Article>> {
+        return HandleNetwork2.safeNetworkCall {
+            newsApiSource.search(
+                searchQuery = searchQuery,
+                sources = sources.toRequestFormat(),
+                page = 1,
+            ).toListArticles()
+        }
+    }
+
+    override fun searchPagedArticles(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchArticlesPagingSource(
+                    newsApiSource = newsApiSource,
+                    searchQuery = searchQuery,
+                    sources = sources.toRequestFormat(),
+                )
+            },
+        ).flow
+            .map { value: PagingData<ArticleDto> ->
+                value.map { it.toArticle() }
+            }
+    }
+
     override fun getArticles(): Flow<List<Article>> {
         return newsDao.getArticles().map { articles ->
             articles.map { it.toArticle() }
@@ -55,30 +82,6 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun save(article: Article) {
         newsDao.upsert(article.toEntity())
-    }
-
-    override suspend fun searchArticles(searchQuery: String, sources: List<String>): List<Article> {
-        return newsApiSource.search(
-            searchQuery = searchQuery,
-            sources = sources.toRequestFormat(),
-            page = 1,
-        ).articles.map { it.toArticle() }
-    }
-
-    override fun searchPagedArticles(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
-        return Pager(
-            config = PagingConfig(pageSize = 10),
-            pagingSourceFactory = {
-                SearchArticlesPagingSource(
-                    newsApiSource = newsApiSource,
-                    searchQuery = searchQuery,
-                    sources = sources.toRequestFormat(),
-                )
-            },
-        ).flow
-            .map { value: PagingData<ArticleDto> ->
-                value.map { it.toArticle() }
-            }
     }
 
     override suspend fun getNews(sources: List<String>): DataResponse2<List<Article>> {
