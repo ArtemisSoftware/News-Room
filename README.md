@@ -24,7 +24,7 @@ App that searches for news and allows the user to bookmark news, share them and 
 
 
 
-Image #1            |  Image #2             |  Image #3           
+Image #1            |  Image #2             |  Image #3            |  Image #4                        
 :-------------------------:|:----------------------------:|:----------------------------:
-<img src="images/news_room_1.jpg">    |  <img src="images/news_room_2.jpg">     |  <img src="images/news_room_3.jpg"> 
+<img src="images/news_room_1.jpg">    |  <img src="images/news_room_2.jpg">     |  <img src="images/news_room_3.jpg">     |  <img src="images/news_room_4.jpg">     
 
