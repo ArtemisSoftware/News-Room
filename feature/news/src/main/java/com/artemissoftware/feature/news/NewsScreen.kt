@@ -28,7 +28,7 @@ import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.ui.composables.ArticlesList
+import com.core.presentation.composables.article.ArticlesList
 import com.core.ui.composables.Dialog
 import kotlinx.coroutines.delay
 

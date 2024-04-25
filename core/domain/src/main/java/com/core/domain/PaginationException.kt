@@ -1,7 +1,7 @@
 package com.core.domain
 
-import com.core.domain.error.DataError
+import com.core.domain.error.Error
 
 class PaginationException(
-    val networkError: DataError.NetworkError,
+    val error: Error,
 ) : RuntimeException()

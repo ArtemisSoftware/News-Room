@@ -1,4 +1,4 @@
-package com.core.ui.composables
+package com.core.presentation.composables
 
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.model.Source

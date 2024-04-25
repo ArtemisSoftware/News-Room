@@ -15,16 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.PagingData
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
-import com.artemissoftware.newsroom.core.model.Article
+import com.core.presentation.composables.article.ArticleList
 import com.core.ui.R
-import com.core.ui.composables.ArticlesList
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 @Composable
 internal fun BookmarkScreen(
@@ -32,10 +26,8 @@ internal fun BookmarkScreen(
     viewModel: BookmarkViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.collectAsState().value
-    val articlesPagingItems: LazyPagingItems<Article> = viewModel.articlesPaged.collectAsLazyPagingItems()
 
     BookmarkContent(
-        articlesPagingItems = articlesPagingItems,
         state = state,
         navigateToDetails = navigateToDetails,
     )
@@ -45,7 +37,6 @@ internal fun BookmarkScreen(
 private fun BookmarkContent(
     state: BookmarkState,
     navigateToDetails: (Int) -> Unit,
-    articlesPagingItems: LazyPagingItems<Article>,
 ) {
     Column(
         modifier = Modifier
@@ -61,12 +52,15 @@ private fun BookmarkContent(
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing3))
 
-        ArticlesList(
-            articles = articlesPagingItems,
+        ArticleList(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaterialTheme.spacing.spacing3),
+            articles = state.articles,
+            pagedArticles = state.articlesPaged,
             onClick = { article ->
                 article.id?.let { navigateToDetails(it) }
             },
-            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
@@ -74,11 +68,8 @@ private fun BookmarkContent(
 @Preview(showBackground = true)
 @Composable
 private fun BookmarkContentPreview() {
-    val mock = flowOf(PagingData.from(PreviewData.bookmarkState.articles)).collectAsLazyPagingItems()
-
     NewsRoomTheme {
         BookmarkContent(
-            articlesPagingItems = mock,
             state = PreviewData.bookmarkState,
             navigateToDetails = { },
         )

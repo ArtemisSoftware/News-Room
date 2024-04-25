@@ -1,4 +1,4 @@
-package com.core.ui.composables
+package com.core.presentation.composables.article
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +31,7 @@ import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.ui.R
+import com.core.presentation.composables.PreviewData
 
 @Composable
 fun ArticleCard(

@@ -3,7 +3,8 @@ package com.artemissoftware.feature.bookmark
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.core.domain.repository.NewsRepository
+import com.core.domain.usecases.GetPagedSavedArticlesUseCase
+import com.core.domain.usecases.GetSavedArticlesUseCase
 import com.core.presentation.util.constants.PresentationConstants.PAGINATION
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,13 +16,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
-    private val newsRepository: NewsRepository,
+    private val getSavedArticlesUseCase: GetSavedArticlesUseCase,
+    private val getPagedSavedArticlesUseCase: GetPagedSavedArticlesUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(BookmarkState())
     val state: StateFlow<BookmarkState> = _state.asStateFlow()
-
-    val articlesPaged = newsRepository.getArticlesPaged().cachedIn(viewModelScope)
 
     init {
         getBookmarks()
@@ -36,7 +36,7 @@ class BookmarkViewModel @Inject constructor(
     }
 
     private fun getPagedArticles() = with(_state) {
-        val articles = newsRepository.getArticlesPaged().cachedIn(viewModelScope)
+        val articles = getPagedSavedArticlesUseCase().cachedIn(viewModelScope)
 
         update {
             it.copy(articlesPaged = articles)
@@ -45,7 +45,7 @@ class BookmarkViewModel @Inject constructor(
 
     private fun getArticles() = with(_state) {
         viewModelScope.launch {
-            newsRepository.getArticles().collect { articles ->
+            getSavedArticlesUseCase().collect { articles ->
                 update {
                     it.copy(articles = articles)
                 }

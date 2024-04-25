@@ -5,7 +5,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.artemissoftware.newsroom.core.common.exceptions.NewsRoomException
 import com.core.domain.PaginationException
-import com.core.presentation.util.asUiText
+import com.core.presentation.util.toUiText
 import com.core.ui.composables.UiText
 
 @Composable
@@ -46,7 +46,7 @@ private fun parseErrorMessage(pagingError: LoadState.Error?): UiText {
                 UiText.DynamicString(error.description)
             }
             is PaginationException -> {
-                error.networkError.asUiText()
+                error.error.toUiText()
             }
             else -> {
                 UiText.DynamicString(error.message ?: "Unknown Error.")

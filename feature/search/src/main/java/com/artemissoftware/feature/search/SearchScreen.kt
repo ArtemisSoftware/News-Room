@@ -24,7 +24,7 @@ import com.artemissoftware.newsroom.core.model.Article
 import com.core.presentation.PaginationContent
 import com.core.ui.SearchBar
 import com.core.presentation.composables.article.ArticleCardListShimmerEffect
-import com.core.ui.composables.ArticlesList
+import com.core.presentation.composables.article.ArticlesList
 import com.core.ui.composables.Dialog
 import com.core.ui.composables.EmptyScreen
 
