@@ -36,7 +36,7 @@ fun HomeNavGraph(
 
         bookmarkNavGraph(
             navigateToDetails = {
-                navController.navigateToDetailsGraph()
+                navController.navigateToDetail(id = it)
             },
         )
 

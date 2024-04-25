@@ -46,8 +46,6 @@ fun com.artemissoftware.newsroom.core.network.dto.ArticleDto.toEntity(): Article
 }
 */
 
-
-
 internal fun Article.toEntity(): ArticleEntity {
     return ArticleEntity(
         author = this.author,
@@ -71,5 +69,6 @@ internal fun ArticleEntity.toArticle(): Article {
         title = this.title,
         url = url,
         urlToImage = this.urlToImage,
+        id = id,
     )
 }

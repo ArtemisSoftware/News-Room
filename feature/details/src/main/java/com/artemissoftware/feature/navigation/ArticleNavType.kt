@@ -7,13 +7,17 @@ import com.artemissoftware.newsroom.core.model.Article
 import com.google.gson.Gson
 
 val ArticleNavType: NavType<Article?> = object : NavType<Article?>(
-    isNullableAllowed = false,
+    isNullableAllowed = true,
 ) {
     override fun get(bundle: Bundle, key: String): Article? {
         return bundle.getString(key)?.let { parseValue(it) }
     }
-    override fun parseValue(value: String): Article {
-        return Gson().fromJson(value, Article::class.java)
+    override fun parseValue(value: String): Article? {
+        return if (value == "null") {
+            null
+        } else {
+            return Gson().fromJson(value, Article::class.java)
+        }
     }
     override fun put(bundle: Bundle, key: String, value: Article?) {
         bundle.putString(key, Gson().toJson(value))

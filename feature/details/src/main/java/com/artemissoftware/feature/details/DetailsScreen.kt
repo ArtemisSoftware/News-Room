@@ -102,6 +102,9 @@ private fun DetailsContent(
                         style = MaterialTheme.typography.displaySmall,
                         color = MaterialTheme.palette.extraColors.textTitle,
                     )
+
+                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing2))
+
                     Text(
                         text = article.content,
                         style = MaterialTheme.typography.bodyMedium,

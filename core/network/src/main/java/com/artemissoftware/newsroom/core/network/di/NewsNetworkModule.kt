@@ -2,6 +2,7 @@ package com.artemissoftware.newsroom.core.network.di
 
 import com.artemissoftware.newsroom.core.network.Constants
 import com.artemissoftware.newsroom.core.network.NewsApi
+import com.artemissoftware.newsroom.core.network.interceptors.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +25,7 @@ object NewsNetworkModule {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
         return OkHttpClient.Builder()
-            // --.addInterceptor(ApiKeyInterceptor())
+            .addInterceptor(ApiKeyInterceptor())
             .addInterceptor(logging)
             .readTimeout(15L, TimeUnit.SECONDS)
             .connectTimeout(15L, TimeUnit.SECONDS)

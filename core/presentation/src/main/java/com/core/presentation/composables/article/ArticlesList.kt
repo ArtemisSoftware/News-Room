@@ -37,7 +37,7 @@ fun ArticleList(
             items = it.collectAsLazyPagingItems(),
             loadingContent = {
                 ArticleCardListShimmerEffect(
-                    modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing1),
+                    modifier = modifier,
                 )
             },
             errorContent = { error ->

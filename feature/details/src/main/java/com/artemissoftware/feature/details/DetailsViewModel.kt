@@ -7,6 +7,8 @@ import com.artemissoftware.feature.navigation.NavArguments
 import com.artemissoftware.feature.navigation.getValue
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.domain.repository.NewsRepository
+import com.core.domain.usecases.BookmarkArticleUseCase
+import com.core.domain.usecases.GetArticleUseCase
 import com.core.ui.uievents.UiEvent
 import com.core.ui.uievents.UiEventViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class DetailsViewModel @Inject constructor(
-    private val newsRepository: NewsRepository,
+    private val bookmarkArticleUseCase: BookmarkArticleUseCase,
+    private val getArticleUseCase: GetArticleUseCase,
     savedStateHandle: SavedStateHandle,
 ) : UiEventViewModel() {
 
@@ -29,6 +32,9 @@ internal class DetailsViewModel @Inject constructor(
     init {
         ArticleNavType.getValue(savedStateHandle, NavArguments.ARTICLE)?.let {
             updateArticle(it)
+        }
+        savedStateHandle.get<Int>(NavArguments.ARTICLE_ID)?.let {
+            getArticle(it)
         }
     }
 
@@ -42,14 +48,24 @@ internal class DetailsViewModel @Inject constructor(
 
     private fun getArticle(id: Int) {
         viewModelScope.launch {
-            //val result = getArticleUseCase(id = id)
-            //updateArticle(article = result)
+            getArticleUseCase(id = id)?.let {
+                updateArticle(article = it)
+            }
         }
     }
 
-    private fun updateArticle(article: Article? = null) = with(_state) {
+    private fun updateBookMark() = with(_state) {
+        viewModelScope.launch {
+            value.article?.let { bookmarkArticleUseCase(it) }
+            update {
+                it.copy(isBookmarked = !it.isBookmarked)
+            }
+        }
+    }
+
+    private fun updateArticle(article: Article) = with(_state) {
         update {
-            it.copy(article = article, isBookmarked = article?.id != null)
+            it.copy(article = article, isBookmarked = article.id != null)
         }
     }
 
@@ -65,15 +81,6 @@ internal class DetailsViewModel @Inject constructor(
         article?.let {
             viewModelScope.launch {
                 sendUiEvent(UiEvent.Share(url = it.url))
-            }
-        }
-    }
-
-    private fun updateBookMark() = with(_state) {
-        viewModelScope.launch {
-            value.article?.let { newsRepository.updateBookmark(it) }
-            update {
-                it.copy(isBookmarked = !it.isBookmarked)
             }
         }
     }

@@ -75,8 +75,8 @@ internal fun DetailsTopBar(
 private fun DetailsTopBarPreview() {
     NewsRoomTheme {
         DetailsTopBar(
-            onShareClick = { /*TODO*/ },
-            onBookMarkClick = { /*TODO*/ },
+            onShareClick = {},
+            onBookMarkClick = {},
             onBrowsingClick = {},
             onBackClick = {},
             isBookmarked = true,

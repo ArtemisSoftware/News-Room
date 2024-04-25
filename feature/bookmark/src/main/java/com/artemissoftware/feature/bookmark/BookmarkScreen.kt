@@ -54,8 +54,7 @@ private fun BookmarkContent(
 
         ArticleList(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = MaterialTheme.spacing.spacing3),
+                .fillMaxWidth(),
             articles = state.articles,
             pagedArticles = state.articlesPaged,
             onClick = { article ->

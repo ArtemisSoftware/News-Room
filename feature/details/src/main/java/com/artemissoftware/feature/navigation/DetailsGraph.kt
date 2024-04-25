@@ -3,6 +3,7 @@ package com.artemissoftware.feature.navigation
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
@@ -14,7 +15,8 @@ private const val DETAILS_GRAPH = "details_graph"
 
 fun NavController.navigateToDetailsGraph() = navigate(DETAILS_GRAPH)
 
-fun NavController.navigateToDetail(article: Article) = navigate(DetailRoute.Details.withCustomArgs(article))
+fun NavController.navigateToDetail(article: Article) = navigate(DetailRoute.Details.withCustomArgs(article, null))
+fun NavController.navigateToDetail(id: Int) = navigate(DetailRoute.Details.withCustomArgs(null, id))
 
 fun NavGraphBuilder.detailsGraph(
     popBackStack: () -> Unit,
@@ -46,6 +48,11 @@ internal sealed class DetailRoute(
         arguments = listOf(
             navArgument(name = NavArguments.ARTICLE) {
                 type = ArticleNavType
+                nullable = true
+            },
+            navArgument(name = NavArguments.ARTICLE_ID) {
+                type = NavType.IntType
+                defaultValue = -1
             },
         ),
     )
