@@ -1,4 +1,4 @@
-package com.artemissoftware.util.extensions
+package com.core.presentation.util
 
 import androidx.navigation.NavHostController
 

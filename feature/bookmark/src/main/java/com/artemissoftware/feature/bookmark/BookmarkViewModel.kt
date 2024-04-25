@@ -3,8 +3,8 @@ package com.artemissoftware.feature.bookmark
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.core.domain.usecases.GetPagedSavedArticlesUseCase
 import com.core.domain.usecases.GetBookmarkedArticlesUseCase
+import com.core.domain.usecases.GetPagedSavedArticlesUseCase
 import com.core.presentation.util.constants.PresentationConstants.PAGINATION
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -8,12 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.artemissoftware.feature.details.DetailsScreen
-import com.artemissoftware.navigation.BaseDestination
 import com.artemissoftware.newsroom.core.model.Article
+import com.core.presentation.navigation.BaseDestination
 
 private const val DETAILS_GRAPH = "details_graph"
-
-fun NavController.navigateToDetailsGraph() = navigate(DETAILS_GRAPH)
 
 fun NavController.navigateToDetail(article: Article) = navigate(DetailRoute.Details.withCustomArgs(article, null))
 fun NavController.navigateToDetail(id: Int) = navigate(DetailRoute.Details.withCustomArgs(null, id))

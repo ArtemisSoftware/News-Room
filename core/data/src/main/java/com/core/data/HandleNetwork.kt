@@ -24,7 +24,7 @@ internal object HandleNetwork {
                 DataError.NetworkError.Error(message = ex.description)
             }
             is UnknownHostException -> {
-                DataError.NetworkError.Unknown
+                DataError.NetworkError.UnknownHost
             }
 
             is ConnectException -> {

@@ -58,6 +58,9 @@ dependencies {
     implementation(libs.paging.compose)
     implementation(libs.paging.runtime)
 
+    implementation(libs.navigation.compose)
+    implementation(libs.gson)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

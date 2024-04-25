@@ -7,7 +7,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.artemissoftware.feature.news.NewsScreen
-import com.artemissoftware.navigation.BaseDestination
+import com.core.presentation.navigation.BaseDestination
 import com.artemissoftware.newsroom.core.model.Article
 
 const val NEWS_GRAPH = "news_graph"

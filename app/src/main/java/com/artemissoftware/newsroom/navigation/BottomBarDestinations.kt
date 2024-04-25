@@ -4,24 +4,25 @@ import com.artemissoftware.feature.navigation.BookmarkRoute
 import com.artemissoftware.feature.navigation.NewsRoute
 import com.artemissoftware.feature.navigation.SearchRoute
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.TopLevelDestination
-import com.core.ui.R
+import com.core.presentation.R
+import com.core.ui.R as CoreUiR
 
 object BottomBarDestinations {
 
     val search = TopLevelDestination(
-        icon = R.drawable.ic_search,
-        text = R.string.search,
+        icon = CoreUiR.drawable.ic_search,
+        text = CoreUiR.string.search,
         route = SearchRoute.Search.route,
     )
 
     val bookmark = TopLevelDestination(
-        icon = R.drawable.ic_bookmark,
+        icon = CoreUiR.drawable.ic_bookmark,
         text = R.string.bookmark,
         route = BookmarkRoute.Bookmark.route,
     )
 
     val news = TopLevelDestination(
-        icon = R.drawable.ic_home,
+        icon = CoreUiR.drawable.ic_home,
         text = R.string.home,
         route = NewsRoute.News.fullRoute(),
     )

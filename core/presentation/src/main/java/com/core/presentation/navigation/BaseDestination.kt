@@ -1,4 +1,4 @@
-package com.artemissoftware.navigation
+package com.core.presentation.navigation
 
 import android.net.Uri
 import androidx.navigation.NamedNavArgument

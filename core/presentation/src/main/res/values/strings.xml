@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="back">Back</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="home">Home</string>
+    <string name="no_articles_found">No articles found</string>
+    <string name="connection_error">Connection error</string>
+    <string name="connection_socket_time_out">Socket timeout</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="unknown_host_error">Unknown host error</string>
+    <string name="error_not_mapped">Error not mapped</string>
+</resources>

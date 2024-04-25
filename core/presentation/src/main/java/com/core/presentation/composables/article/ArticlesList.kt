@@ -3,7 +3,6 @@ package com.core.presentation.composables.article
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -19,9 +18,9 @@ import androidx.paging.compose.itemKey
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.presentation.PaginationContent
+import com.core.presentation.R
 import com.core.presentation.composables.PreviewData
-import com.core.ui.R
+import com.core.presentation.composables.pagination.PaginationContent
 import com.core.ui.composables.EmptyScreen
 import kotlinx.coroutines.flow.Flow
 

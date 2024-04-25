@@ -17,8 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
+import com.core.presentation.R
 import com.core.presentation.composables.article.ArticleList
-import com.core.ui.R
 
 @Composable
 internal fun BookmarkScreen(

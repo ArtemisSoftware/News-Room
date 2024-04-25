@@ -1,4 +1,4 @@
-package com.core.presentation
+package com.core.presentation.composables.pagination
 
 import androidx.compose.runtime.Composable
 import androidx.paging.LoadState

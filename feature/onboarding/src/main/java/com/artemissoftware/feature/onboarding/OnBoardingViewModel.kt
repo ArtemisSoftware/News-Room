@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.artemissoftware.newsroom.core.model.OnboardingType
 import com.core.domain.repository.AppSettingsRepository
 import com.core.domain.usecases.GetOnboardingPagesUseCase
-import com.core.ui.R
 import com.core.ui.composables.UiText
 import com.core.ui.uievents.UiEvent
 import com.core.ui.uievents.UiEventViewModel
@@ -15,6 +14,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.core.presentation.R as CorePresentationR
+import com.core.ui.R as CoreUiR
 
 @HiltViewModel
 class OnBoardingViewModel @Inject constructor(
@@ -78,9 +79,9 @@ class OnBoardingViewModel @Inject constructor(
 
     private fun updateTexts(currentPage: Int = 0) = with(_state) {
         val (previews, next) = when (currentPage) {
-            0 -> UiText.DynamicString("") to UiText.StringResource(R.string.next)
-            1 -> UiText.StringResource(R.string.back) to UiText.StringResource(R.string.next)
-            2 -> UiText.StringResource(R.string.back) to UiText.StringResource(R.string.get_started)
+            0 -> UiText.DynamicString("") to UiText.StringResource(CorePresentationR.string.next)
+            1 -> UiText.StringResource(CorePresentationR.string.back) to UiText.StringResource(CorePresentationR.string.next)
+            2 -> UiText.StringResource(CorePresentationR.string.back) to UiText.StringResource(CorePresentationR.string.get_started)
             else -> UiText.DynamicString("") to UiText.DynamicString("")
         }
         update {
@@ -93,9 +94,9 @@ class OnBoardingViewModel @Inject constructor(
 
     private fun OnboardingType.toImage(): Int {
         return when (this) {
-            OnboardingType.WORLD -> R.drawable.news_1
-            OnboardingType.WAR -> R.drawable.news_3
-            OnboardingType.FASHION -> R.drawable.news_2
+            OnboardingType.WORLD -> CoreUiR.drawable.news_1
+            OnboardingType.WAR -> CoreUiR.drawable.news_3
+            OnboardingType.FASHION -> CoreUiR.drawable.news_2
         }
     }
 }
