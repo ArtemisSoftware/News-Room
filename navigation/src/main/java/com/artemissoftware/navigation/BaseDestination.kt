@@ -9,11 +9,11 @@ abstract class BaseDestination(
     private val customArguments: List<NamedNavArgument> = emptyList(),
 ) {
 
-    fun getRouteInFull(): String {
-        return if (customArguments.isEmpty()) route else fullRoute
+    fun fullRoute(): String {
+        return if (customArguments.isEmpty()) route else completeRoute
     }
 
-    private val fullRoute: String = buildString {
+    private val completeRoute: String = buildString {
         append(route)
         customArguments.forEachIndexed { index, custom ->
             val symbol = if (index == 0) "?" else "&"

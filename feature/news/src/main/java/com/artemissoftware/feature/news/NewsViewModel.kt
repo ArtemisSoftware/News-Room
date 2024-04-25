@@ -3,8 +3,9 @@ package com.artemissoftware.feature.news
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.domain.usecases.GetNewsUseCase
+import com.core.domain.repository.NewsRepository
 import com.core.presentation.util.asUiText
+import com.core.presentation.util.constants.PresentationConstants
 import com.core.ui.composables.DialogData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class NewsViewModel @Inject constructor(
-    private val getNewsUseCase: GetNewsUseCase,
+    private val newsRepository: NewsRepository,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(NewsState())
@@ -27,7 +28,7 @@ internal class NewsViewModel @Inject constructor(
 //    ).cachedIn(viewModelScope)
 
     init {
-        getNews()
+        getArticles()
     }
 
     fun onTriggerEvent(event: NewsEvent) {
@@ -38,9 +39,17 @@ internal class NewsViewModel @Inject constructor(
         }
     }
 
+    private fun getArticles() {
+        if (PresentationConstants.PAGINATION) {
+            getPagedNews()
+        } else {
+            getNews()
+        }
+    }
+
     private fun getNews() {
         viewModelScope.launch {
-            getNewsUseCase()
+            newsRepository.getNews()
                 .onSuccess {
                     updateArticles(it)
                 }
@@ -48,6 +57,15 @@ internal class NewsViewModel @Inject constructor(
                     updateDialog(dialogData = DialogData(it.asUiText()))
                 }
         }
+    }
+
+    private fun getPagedNews() = with(_state) {
+//        val articles = searchPagedArticledUseCase(searchQuery = value.searchQuery)
+//            .cachedIn(viewModelScope)
+//
+//        update {
+//            it.copy(articlesPaged = articles)
+//        }
     }
 
     private fun updateScrollValue(newValue: Int) = with(_state) {

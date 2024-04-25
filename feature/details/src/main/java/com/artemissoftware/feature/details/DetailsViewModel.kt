@@ -2,12 +2,11 @@ package com.artemissoftware.feature.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.artemissoftware.feature.navigation.ArticleNavType
 import com.artemissoftware.feature.navigation.NavArguments
-import com.artemissoftware.navigation.ArticleNavType
-import com.artemissoftware.navigation.getValue
+import com.artemissoftware.feature.navigation.getValue
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.domain.usecases.GetArticleUseCase
-import com.core.domain.usecases.UpdateBookmarkUseCase
+import com.core.domain.repository.NewsRepository
 import com.core.ui.uievents.UiEvent
 import com.core.ui.uievents.UiEventViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class DetailsViewModel @Inject constructor(
-    private val getArticleUseCase: GetArticleUseCase,
-    private val updateBookmarkUseCase: UpdateBookmarkUseCase,
+    private val newsRepository: NewsRepository,
     savedStateHandle: SavedStateHandle,
 ) : UiEventViewModel() {
 
@@ -29,7 +27,7 @@ internal class DetailsViewModel @Inject constructor(
     val state: StateFlow<DetailsState> = _state.asStateFlow()
 
     init {
-        ArticleNavType.getValue(savedStateHandle, NavArguments.article)?.let {
+        ArticleNavType.getValue(savedStateHandle, NavArguments.ARTICLE)?.let {
             updateArticle(it)
         }
     }
@@ -44,8 +42,8 @@ internal class DetailsViewModel @Inject constructor(
 
     private fun getArticle(id: Int) {
         viewModelScope.launch {
-            val result = getArticleUseCase(id = id)
-            updateArticle(article = result)
+            //val result = getArticleUseCase(id = id)
+            //updateArticle(article = result)
         }
     }
 
@@ -73,7 +71,7 @@ internal class DetailsViewModel @Inject constructor(
 
     private fun updateBookMark() = with(_state) {
         viewModelScope.launch {
-            value.article?.let { updateBookmarkUseCase.invoke(it) }
+            value.article?.let { newsRepository.updateBookmark(it) }
             update {
                 it.copy(isBookmarked = !it.isBookmarked)
             }

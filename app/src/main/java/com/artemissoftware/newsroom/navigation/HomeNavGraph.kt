@@ -3,17 +3,16 @@ package com.artemissoftware.newsroom.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.artemissoftware.feature.navigation.NEWS_ROUTE
+import com.artemissoftware.feature.navigation.NewsRoute
 import com.artemissoftware.feature.navigation.bookmarkNavGraph
 import com.artemissoftware.feature.navigation.detailsGraph
 import com.artemissoftware.feature.navigation.navigateToDetail
 import com.artemissoftware.feature.navigation.navigateToDetailsGraph
-import com.artemissoftware.feature.navigation.newsScreen
+import com.artemissoftware.feature.navigation.newsNavGraph
 import com.artemissoftware.feature.navigation.searchNavGraph
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.TopLevelDestination
 
 const val HOME_GRAPH = "home_graph"
-const val HOME_ROUTE = "home"
 
 @Composable
 fun HomeNavGraph(
@@ -23,9 +22,9 @@ fun HomeNavGraph(
     NavHost(
         navController = navController,
         route = HOME_GRAPH,
-        startDestination = NEWS_ROUTE,
+        startDestination = NewsRoute.News.fullRoute(),
     ) {
-        newsScreen(
+        newsNavGraph(
             navigateToSearch = {
                 navigateToTopLevel(BottomBarDestinations.search)
             },

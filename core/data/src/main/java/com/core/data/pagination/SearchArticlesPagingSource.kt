@@ -4,9 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.artemissoftware.newsroom.core.network.dto.ArticleDto
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
-import com.core.data.HandleNetwork2
+import com.core.data.HandleNetwork
 import com.core.domain.PaginationException
-import com.core.domain.DataResponse2
+import com.core.domain.DataResponse
+import com.core.domain.error.DataError
 
 class SearchArticlesPagingSource(
     private val newsApiSource: NewsApiSource,
@@ -23,15 +24,15 @@ class SearchArticlesPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleDto> {
         val currentPage = params.key ?: 1
 
-        val result = HandleNetwork2.safeNetworkCall {
+        val result = HandleNetwork.safeNetworkCall {
             newsApiSource.search(searchQuery = searchQuery, sources = sources, page = currentPage)
         }
 
         return when (result) {
-            is DataResponse2.Failure -> {
-                LoadResult.Error(throwable = PaginationException(result.exception))
+            is DataResponse.Failure -> {
+                LoadResult.Error(throwable = PaginationException(result.error as DataError.NetworkError))
             }
-            is DataResponse2.Success -> {
+            is DataResponse.Success -> {
                 val news = result.data
                 totalNewsCount += news.articles.size
                 val articles = news.articles.distinctBy { it.title } // Remove duplicates

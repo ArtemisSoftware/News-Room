@@ -2,7 +2,6 @@ package com.artemissoftware.feature.search
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +23,7 @@ import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
 import com.core.presentation.PaginationContent
 import com.core.ui.SearchBar
-import com.core.ui.composables.ArticleCardShimmerEffect
+import com.core.presentation.composables.article.ArticleCardListShimmerEffect
 import com.core.ui.composables.ArticlesList
 import com.core.ui.composables.Dialog
 import com.core.ui.composables.EmptyScreen
@@ -87,15 +86,9 @@ private fun SearchContent(
             PaginationContent(
                 items = it.collectAsLazyPagingItems(),
                 loadingContent = {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3),
-                    ) {
-                        repeat(10) {
-                            ArticleCardShimmerEffect(
-                                modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing1),
-                            )
-                        }
-                    }
+                    ArticleCardListShimmerEffect(
+                        modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing1),
+                    )
                 },
                 errorContent = { error ->
                     EmptyScreen(message = error.asString())

@@ -7,7 +7,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.artemissoftware.feature.details.DetailsScreen
-import com.artemissoftware.navigation.ArticleNavType
 import com.artemissoftware.navigation.BaseDestination
 import com.artemissoftware.newsroom.core.model.Article
 
@@ -22,13 +21,12 @@ fun NavGraphBuilder.detailsGraph(
 ) {
     navigation(
         route = DETAILS_GRAPH,
-        startDestination = "details",
+        startDestination = DetailRoute.Details.fullRoute(),
     ) {
         composable(
-            route = DetailRoute.Details.getRouteInFull(),
+            route = DetailRoute.Details.fullRoute(),
             arguments = DetailRoute.Details.arguments,
         ) {
-            val argumentValue = it.arguments?.getString("argument")
             DetailsScreen(
                 popBackStack = popBackStack,
             )
@@ -46,7 +44,7 @@ internal sealed class DetailRoute(
     object Details : DetailRoute(
         route = "details",
         arguments = listOf(
-            navArgument(name = NavArguments.article) {
+            navArgument(name = NavArguments.ARTICLE) {
                 type = ArticleNavType
             },
         ),

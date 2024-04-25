@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
-import com.artemissoftware.newsroom.navigation.NavGraphRoot
+import com.artemissoftware.newsroom.navigation.RootNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     val navController = rememberNavController()
                     state.startRoute?.let {
-                        NavGraphRoot(
+                        RootNavGraph(
                             navController = navController,
                             startDestination = it,
                         )

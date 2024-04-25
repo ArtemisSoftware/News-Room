@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.artemissoftware.feature.navigation.NEWS_ROUTE
 import com.artemissoftware.feature.navigation.navigateToBookmarkGraph
 import com.artemissoftware.feature.navigation.navigateToNewsGraph
 import com.artemissoftware.feature.navigation.navigateToSearchGraph
@@ -30,7 +29,7 @@ class NRAppState(
         @Composable get() = when (currentDestination?.route) {
             search.route -> search
             bookmark.route -> bookmark
-            NEWS_ROUTE -> news
+            news.route -> news
             else -> null
         }
 

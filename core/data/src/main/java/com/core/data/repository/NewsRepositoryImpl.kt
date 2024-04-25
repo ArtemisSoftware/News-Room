@@ -9,24 +9,24 @@ import com.artemissoftware.newsroom.core.database.entities.ArticleEntity
 import com.artemissoftware.newsroom.core.model.Article
 import com.artemissoftware.newsroom.core.network.dto.ArticleDto
 import com.artemissoftware.newsroom.core.network.source.NewsApiSource
-import com.core.data.HandleNetwork2
+import com.core.data.HandleNetwork
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity
 import com.core.data.mappers.toListArticles
 import com.core.data.pagination.SearchArticlesPagingSource
-import com.core.domain.DataResponse2
+import com.core.domain.DataResponse
 import com.core.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class NewsRepositoryImpl @Inject constructor(
+internal class NewsRepositoryImpl @Inject constructor(
     private val newsDao: NewsDao,
     private val newsApiSource: NewsApiSource,
 ) : NewsRepository {
 
-    override suspend fun searchArticles(searchQuery: String, sources: List<String>): DataResponse2<List<Article>> {
-        return HandleNetwork2.safeNetworkCall {
+    override suspend fun searchArticles(searchQuery: String, sources: List<String>): DataResponse<List<Article>> {
+        return HandleNetwork.safeNetworkCall {
             newsApiSource.search(
                 searchQuery = searchQuery,
                 sources = sources.toRequestFormat(),
@@ -84,9 +84,17 @@ class NewsRepositoryImpl @Inject constructor(
         newsDao.upsert(article.toEntity())
     }
 
-    override suspend fun getNews(sources: List<String>): DataResponse2<List<Article>> {
-        return HandleNetwork2.safeNetworkCall {
+    override suspend fun getNews(sources: List<String>): DataResponse<List<Article>> {
+        return HandleNetwork.safeNetworkCall {
             newsApiSource.getNews(sources = sources.toRequestFormat(), page = 1).toListArticles()
+        }
+    }
+
+    override suspend fun updateBookmark(article: Article) {
+        if (article.id == null) {
+            save(article = article)
+        } else {
+            deleteArticle(article = article)
         }
     }
 

@@ -3,8 +3,7 @@ package com.artemissoftware.feature.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.core.domain.usecases.SearchArticlesUseCase
-import com.core.domain.usecases.SearchPagedArticledUseCase
+import com.core.domain.repository.NewsRepository
 import com.core.presentation.util.asUiText
 import com.core.presentation.util.constants.PresentationConstants.PAGINATION
 import com.core.ui.composables.DialogData
@@ -18,8 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchArticlesUseCase: SearchArticlesUseCase,
-    private val searchPagedArticledUseCase: SearchPagedArticledUseCase,
+    private val newsRepository: NewsRepository,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SearchState())
@@ -71,7 +69,7 @@ class SearchViewModel @Inject constructor(
 
     private fun searchArticles() = with(_state) {
         viewModelScope.launch {
-            searchArticlesUseCase(searchQuery = value.searchQuery)
+            newsRepository.searchArticles(searchQuery = value.searchQuery)
                 .onSuccess { articles ->
                     update {
                         it.copy(articles = articles)
@@ -84,7 +82,7 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun searchPagedArticles() = with(_state) {
-        val articles = searchPagedArticledUseCase(searchQuery = value.searchQuery)
+        val articles = newsRepository.searchPagedArticles(searchQuery = value.searchQuery)
             .cachedIn(viewModelScope)
 
         update {

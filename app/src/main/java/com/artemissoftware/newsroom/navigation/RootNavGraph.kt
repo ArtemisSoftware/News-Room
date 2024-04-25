@@ -7,17 +7,16 @@ import androidx.navigation.compose.composable
 import com.artemissoftware.feature.navigation.ONBOARDING_GRAPH
 import com.artemissoftware.feature.navigation.onboardingNavGraph
 import com.artemissoftware.newsroom.home.HomeScreen
-import com.core.ui.util.extensions.popUpTo
+import com.artemissoftware.util.extensions.popUpTo
 
 @Composable
-fun NavGraphRoot(
+fun RootNavGraph(
     navController: NavHostController,
     startDestination: String,
 ) {
     NavHost(
         startDestination = startDestination,
         navController = navController,
-        route = HOME_ROUTE,
     ) {
         onboardingNavGraph(
             navigateToHome = {

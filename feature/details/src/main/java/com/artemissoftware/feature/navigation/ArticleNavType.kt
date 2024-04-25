@@ -1,4 +1,4 @@
-package com.artemissoftware.navigation
+package com.artemissoftware.feature.navigation
 
 import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle
@@ -18,9 +18,6 @@ val ArticleNavType: NavType<Article?> = object : NavType<Article?>(
     override fun put(bundle: Bundle, key: String, value: Article?) {
         bundle.putString(key, Gson().toJson(value))
     }
-//    override fun serializeAsValue(value: ProductParameters?): String {
-//        return Gson().toJson(value)
-//    }
 }
 
 fun NavType<Article?>.getValue(savedStateHandle: SavedStateHandle, arg: String): Article? {

@@ -1,4 +1,4 @@
-package com.core.ui.composables
+package com.core.presentation.composables.article
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.dimension
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
@@ -59,11 +58,34 @@ fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun ArticleCardListShimmerEffect(modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.spacing3),
+    ) {
+        repeat(10) {
+            ArticleCardShimmerEffect(
+                modifier = modifier.padding(horizontal = MaterialTheme.spacing.spacing1),
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun ArticleCardShimmerEffectPreview() {
     NewsRoomTheme {
         ArticleCardShimmerEffect(
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ArticleCardListShimmerEffectPreview() {
+    NewsRoomTheme {
+        ArticleCardListShimmerEffect(
             modifier = Modifier.fillMaxWidth(),
         )
     }

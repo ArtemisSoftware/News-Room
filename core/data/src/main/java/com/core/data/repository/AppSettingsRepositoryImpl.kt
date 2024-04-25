@@ -5,11 +5,10 @@ import com.artemissoftware.newsroom.core.model.AppSettings
 import com.core.data.mappers.toAppSettings
 import com.core.domain.repository.AppSettingsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class AppSettingsRepositoryImpl @Inject constructor(
+internal class AppSettingsRepositoryImpl @Inject constructor(
     private val nrDataSource: NRDataSource,
 ) : AppSettingsRepository {
     override fun getAppSettings(): Flow<AppSettings> {

@@ -1,7 +1,7 @@
 package com.artemissoftware.newsroom.navigation
 
 import com.artemissoftware.feature.navigation.BookmarkRoute
-import com.artemissoftware.feature.navigation.NEWS_ROUTE
+import com.artemissoftware.feature.navigation.NewsRoute
 import com.artemissoftware.feature.navigation.SearchRoute
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.TopLevelDestination
 import com.core.ui.R
@@ -23,7 +23,7 @@ object BottomBarDestinations {
     val news = TopLevelDestination(
         icon = R.drawable.ic_home,
         text = R.string.home,
-        route = NEWS_ROUTE,
+        route = NewsRoute.News.fullRoute(),
     )
 
     val destinations = listOf(news, bookmark, search)

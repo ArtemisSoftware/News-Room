@@ -46,8 +46,10 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:ui"))
     implementation(project(":core:model"))
+    implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:presentation"))
+    implementation(project(":navigation"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.activity.compose)
@@ -61,6 +63,9 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
+
+    implementation(libs.paging.compose)
+    implementation(libs.paging.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
