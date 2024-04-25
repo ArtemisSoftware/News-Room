@@ -18,6 +18,7 @@ App that searches for news and allows the user to bookmark news, share them and 
     - Pagination
     - DataStore Preferences
     - Flow
+    - safe api calls
 
 ## App preview:
 
