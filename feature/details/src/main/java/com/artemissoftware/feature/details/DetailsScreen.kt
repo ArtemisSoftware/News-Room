@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.artemissoftware.feature.details.composables.DetailsTopBar
@@ -33,7 +34,7 @@ internal fun DetailsScreen(
     popBackStack: () -> Unit,
     viewModel: DetailsViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsState().value
+    val state = viewModel.state.collectAsStateWithLifecycle().value
 
     DetailsContent(
         state = state,

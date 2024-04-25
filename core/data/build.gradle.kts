@@ -59,12 +59,7 @@ dependencies {
 
     implementation(libs.paging.compose)
     implementation(libs.paging.runtime)
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
-
-//    implementation(libs.androidx.core.ktx)
-//    implementation(libs.appcompat)
-//    implementation(libs.material)
+    implementation(libs.kotlinx.coroutines.core)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

@@ -11,11 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
@@ -29,7 +29,7 @@ internal fun SearchScreen(
     navigateToDetails: (Article) -> Unit,
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsState().value
+    val state = viewModel.state.collectAsStateWithLifecycle().value
 
     SearchContent(
         state = state,

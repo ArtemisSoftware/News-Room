@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.core.presentation.R
@@ -25,7 +26,7 @@ internal fun BookmarkScreen(
     navigateToDetails: (Int) -> Unit,
     viewModel: BookmarkViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsState().value
+    val state = viewModel.state.collectAsStateWithLifecycle().value
 
     BookmarkContent(
         state = state,

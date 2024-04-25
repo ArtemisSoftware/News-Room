@@ -34,8 +34,10 @@ core-splashscreen ="1.0.1"
 paging-runtime = "3.2.1"
 paging-compose = "3.2.1"
 paging-common = "3.2.1"
-room-paging = "2.4.0"
+room-paging = "2.4.3"
 okhttp = "5.0.0-alpha.11"
+
+lifecycle-runtime-compose = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -104,6 +106,9 @@ kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
+
+lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
+
 
 # test
 

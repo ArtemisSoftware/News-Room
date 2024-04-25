@@ -14,12 +14,12 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.artemissoftware.feature.onboarding.composables.OnBoardingPage
 import com.artemissoftware.feature.onboarding.composables.PagerIndicator
 import com.artemissoftware.newsroom.core.designsystem.ThemePreviews
@@ -35,7 +35,7 @@ internal fun OnBoardingScreen(
     navigateToHome: () -> Unit,
     viewModel: OnBoardingViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsState().value
+    val state = viewModel.state.collectAsStateWithLifecycle().value
 
     OnBoardingScreenContent(
         state = state,

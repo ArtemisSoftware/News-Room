@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
@@ -38,7 +39,7 @@ internal fun NewsScreen(
     navigateToDetails: (Article) -> Unit,
     viewModel: NewsViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.state.collectAsState().value
+    val state = viewModel.state.collectAsStateWithLifecycle().value
 
     NewsContent(
         state = state,
