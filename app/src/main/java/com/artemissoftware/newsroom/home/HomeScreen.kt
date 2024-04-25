@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.artemissoftware.feature.navigation.NEWS_GRAPH
 import com.artemissoftware.newsroom.NRAppState
 import com.artemissoftware.newsroom.core.designsystem.composables.bottomnavigation.NRNavigationBar
 import com.artemissoftware.newsroom.navigation.HomeNavGraph
@@ -33,6 +34,7 @@ fun HomeScreen(
                 .padding(bottom = bottomPadding),
         ) {
             HomeNavGraph(
+                startDestination = NEWS_GRAPH,
                 navigateToTopLevel = appState::navigateToTopLevelDestination,
                 navController = appState.navController,
             )

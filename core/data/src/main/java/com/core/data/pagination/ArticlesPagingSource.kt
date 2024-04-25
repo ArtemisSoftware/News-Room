@@ -9,9 +9,8 @@ import com.core.domain.DataResponse
 import com.core.domain.PaginationException
 import com.core.domain.error.DataError
 
-class SearchArticlesPagingSource(
+class ArticlesPagingSource(
     private val newsApiSource: NewsApiSource,
-    private val searchQuery: String,
     private val sources: String,
 ) : PagingSource<Int, ArticleDto>() {
 
@@ -25,7 +24,7 @@ class SearchArticlesPagingSource(
         val currentPage = params.key ?: 1
 
         val result = HandleNetwork.safeNetworkCall {
-            newsApiSource.search(searchQuery = searchQuery, sources = sources, page = currentPage)
+            newsApiSource.getNews(sources = sources, page = currentPage)
         }
 
         return when (result) {

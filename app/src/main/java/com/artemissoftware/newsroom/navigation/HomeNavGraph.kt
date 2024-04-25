@@ -16,13 +16,14 @@ const val HOME_GRAPH = "home_graph"
 
 @Composable
 fun HomeNavGraph(
+    startDestination: String,
     navController: NavHostController,
     navigateToTopLevel: (TopLevelDestination) -> Unit,
 ) {
     NavHost(
         navController = navController,
         route = HOME_GRAPH,
-        startDestination = NewsRoute.News.fullRoute(),
+        startDestination = startDestination,
     ) {
         newsNavGraph(
             navigateToSearch = {
@@ -52,20 +53,3 @@ fun HomeNavGraph(
         )
     }
 }
-
-// fun NavController.navigateToHomeGraph() = navigate(HOME_GRAPH)
-//
-// fun NavGraphBuilder.homeGraph() {
-//    navigation(
-//        route = HOME_GRAPH,
-//        startDestination = HomeRoute.Home.route,
-//    ) {
-//        composable(route = HomeRoute.Home.route) {
-//            HomeScreen()
-//        }
-//    }
-// }
-//
-// internal sealed class HomeRoute(val route: String) {
-//    object Home : HomeRoute(route = HOME_ROUTE)
-// }

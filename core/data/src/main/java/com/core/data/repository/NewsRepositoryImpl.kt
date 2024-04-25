@@ -13,6 +13,7 @@ import com.core.data.HandleNetwork
 import com.core.data.mappers.toArticle
 import com.core.data.mappers.toEntity
 import com.core.data.mappers.toListArticles
+import com.core.data.pagination.ArticlesPagingSource
 import com.core.data.pagination.SearchArticlesPagingSource
 import com.core.domain.DataResponse
 import com.core.domain.repository.NewsRepository
@@ -88,6 +89,21 @@ internal class NewsRepositoryImpl @Inject constructor(
         return HandleNetwork.safeNetworkCall {
             newsApiSource.getNews(sources = sources.toRequestFormat(), page = 1).toListArticles()
         }
+    }
+
+    override fun getPagedNews(sources: List<String>): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                ArticlesPagingSource(
+                    newsApiSource = newsApiSource,
+                    sources = sources.toRequestFormat(),
+                )
+            },
+        ).flow
+            .map { value: PagingData<ArticleDto> ->
+                value.map { it.toArticle() }
+            }
     }
 
     override suspend fun updateBookmark(article: Article) {

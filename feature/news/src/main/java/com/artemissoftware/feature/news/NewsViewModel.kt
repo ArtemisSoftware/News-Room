@@ -2,10 +2,12 @@ package com.artemissoftware.feature.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.domain.repository.NewsRepository
-import com.core.presentation.util.asUiText
+import com.core.domain.usecases.GetNewsUseCase
+import com.core.domain.usecases.GetPagedNewsUseCase
 import com.core.presentation.util.constants.PresentationConstants
+import com.core.presentation.util.toUiText
 import com.core.ui.composables.DialogData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,15 +19,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class NewsViewModel @Inject constructor(
-    private val newsRepository: NewsRepository,
+    private val getNewsUseCase: GetNewsUseCase,
+    private val getPagedNewsUseCase: GetPagedNewsUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(NewsState())
     val state: StateFlow<NewsState> = _state.asStateFlow()
-
-//    val news = getNewsUseCase(
-//        sources = listOf("bbc-news","abc-news","al-jazeera-english")
-//    ).cachedIn(viewModelScope)
 
     init {
         getArticles()
@@ -49,23 +48,23 @@ internal class NewsViewModel @Inject constructor(
 
     private fun getNews() {
         viewModelScope.launch {
-            newsRepository.getNews()
+            getNewsUseCase()
                 .onSuccess {
                     updateArticles(it)
                 }
                 .onFailure {
-                    updateDialog(dialogData = DialogData(it.asUiText()))
+                    updateDialog(dialogData = DialogData(it.toUiText()))
                 }
         }
     }
 
     private fun getPagedNews() = with(_state) {
-//        val articles = searchPagedArticledUseCase(searchQuery = value.searchQuery)
-//            .cachedIn(viewModelScope)
-//
-//        update {
-//            it.copy(articlesPaged = articles)
-//        }
+        val articles = getPagedNewsUseCase()
+            .cachedIn(viewModelScope)
+
+        update {
+            it.copy(articlesPaged = articles)
+        }
     }
 
     private fun updateScrollValue(newValue: Int) = with(_state) {

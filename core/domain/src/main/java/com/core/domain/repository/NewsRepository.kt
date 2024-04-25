@@ -23,6 +23,7 @@ interface NewsRepository {
     suspend fun save(article: Article)
 
     suspend fun getNews(sources: List<String> = NewsSources.DEFAULT_SOURCES): DataResponse<List<Article>>
+    fun getPagedNews(sources: List<String> = NewsSources.DEFAULT_SOURCES): Flow<PagingData<Article>>
 
     suspend fun updateBookmark(article: Article)
 }

@@ -10,7 +10,7 @@ import com.artemissoftware.feature.news.NewsScreen
 import com.artemissoftware.navigation.BaseDestination
 import com.artemissoftware.newsroom.core.model.Article
 
-private const val NEWS_GRAPH = "news_graph"
+const val NEWS_GRAPH = "news_graph"
 
 fun NavController.navigateToNewsGraph(navOptions: NavOptions) = navigate(NEWS_GRAPH, navOptions)
 

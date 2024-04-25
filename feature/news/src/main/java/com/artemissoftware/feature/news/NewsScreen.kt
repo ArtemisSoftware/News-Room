@@ -28,13 +28,12 @@ import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.palette
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.presentation.composables.article.ArticlesList
+import com.core.presentation.composables.article.ArticleList
 import com.core.ui.composables.Dialog
 import kotlinx.coroutines.delay
 
 @Composable
 internal fun NewsScreen(
-//    articles: LazyPagingItems<Article>,
     navigateToSearch: () -> Unit,
     navigateToDetails: (Article) -> Unit,
     viewModel: NewsViewModel = hiltViewModel(),
@@ -51,7 +50,6 @@ internal fun NewsScreen(
 
 @Composable
 private fun NewsContent(
-//    articles: LazyPagingItems<Article>,
     state: NewsState,
     event: (NewsEvent) -> Unit,
     navigateToSearch: () -> Unit,
@@ -113,11 +111,14 @@ private fun NewsContent(
                 .horizontalScroll(state = scrollState, enabled = false),
         )
 
-        ArticlesList(
-            modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing3),
+        ArticleList(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaterialTheme.spacing.spacing3),
             articles = state.articles,
-            onClick = {
-                navigateToDetails(it)
+            pagedArticles = state.articlesPaged,
+            onClick = { article ->
+                navigateToDetails(article)
             },
         )
     }

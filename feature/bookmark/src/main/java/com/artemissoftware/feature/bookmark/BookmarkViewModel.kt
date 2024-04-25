@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.core.domain.usecases.GetPagedSavedArticlesUseCase
-import com.core.domain.usecases.GetSavedArticlesUseCase
+import com.core.domain.usecases.GetBookmarkedArticlesUseCase
 import com.core.presentation.util.constants.PresentationConstants.PAGINATION
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
-    private val getSavedArticlesUseCase: GetSavedArticlesUseCase,
+    private val getBookmarkedArticlesUseCase: GetBookmarkedArticlesUseCase,
     private val getPagedSavedArticlesUseCase: GetPagedSavedArticlesUseCase,
 ) : ViewModel() {
 
@@ -45,7 +45,7 @@ class BookmarkViewModel @Inject constructor(
 
     private fun getArticles() = with(_state) {
         viewModelScope.launch {
-            getSavedArticlesUseCase().collect { articles ->
+            getBookmarkedArticlesUseCase().collect { articles ->
                 update {
                     it.copy(articles = articles)
                 }

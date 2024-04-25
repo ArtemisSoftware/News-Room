@@ -16,18 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.artemissoftware.feature.PreviewData
 import com.artemissoftware.newsroom.core.designsystem.theme.NewsRoomTheme
 import com.artemissoftware.newsroom.core.designsystem.theme.spacing
 import com.artemissoftware.newsroom.core.model.Article
-import com.core.presentation.PaginationContent
-import com.core.ui.SearchBar
-import com.core.presentation.composables.article.ArticleCardListShimmerEffect
 import com.core.presentation.composables.article.ArticleList
-import com.core.presentation.composables.article.ArticlesList
+import com.core.ui.SearchBar
 import com.core.ui.composables.Dialog
-import com.core.ui.composables.EmptyScreen
 
 @Composable
 internal fun SearchScreen(
