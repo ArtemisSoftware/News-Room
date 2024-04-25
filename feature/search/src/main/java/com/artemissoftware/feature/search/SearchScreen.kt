@@ -24,6 +24,7 @@ import com.artemissoftware.newsroom.core.model.Article
 import com.core.presentation.PaginationContent
 import com.core.ui.SearchBar
 import com.core.presentation.composables.article.ArticleCardListShimmerEffect
+import com.core.presentation.composables.article.ArticleList
 import com.core.presentation.composables.article.ArticlesList
 import com.core.ui.composables.Dialog
 import com.core.ui.composables.EmptyScreen
@@ -82,40 +83,16 @@ private fun SearchContent(
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.spacing3))
 
-        state.articlesPaged?.let {
-            PaginationContent(
-                items = it.collectAsLazyPagingItems(),
-                loadingContent = {
-                    ArticleCardListShimmerEffect(
-                        modifier = Modifier.padding(horizontal = MaterialTheme.spacing.spacing1),
-                    )
-                },
-                errorContent = { error ->
-                    EmptyScreen(message = error.asString())
-                },
-                content = { pagingItems ->
-                    ArticlesList(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = MaterialTheme.spacing.spacing3),
-                        articles = pagingItems,
-                        onClick = { article ->
-                            navigateToDetails.invoke(article)
-                        },
-                    )
-                },
-            )
-        } ?: run {
-            ArticlesList(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = MaterialTheme.spacing.spacing3),
-                articles = state.articles,
-                onClick = {
-                    navigateToDetails.invoke(it)
-                },
-            )
-        }
+        ArticleList(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = MaterialTheme.spacing.spacing3),
+            articles = state.articles,
+            pagedArticles = state.articlesPaged,
+            onClick = { article ->
+                navigateToDetails(article)
+            },
+        )
     }
 
     state.dialogData?.let {
